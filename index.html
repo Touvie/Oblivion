@@ -97,7 +97,7 @@
         /* --- 01 ACCUEIL (Citation Ajustée) --- */
         .accueil-quote { 
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            width: 100%; max-width: 500px;
+            width: 100%; max-width: 480px; /* Contrainte de largeur pour forcer le retour ligne naturel */
             text-align: center; pointer-events: none; z-index: 200;
         }
         .accueil-quote blockquote {
@@ -105,14 +105,13 @@
             font-size: clamp(16px, 2vw, 22px);
             font-weight: 700; line-height: 1.6; color: #fff; text-transform: uppercase; letter-spacing: 2px;
             text-shadow: 0 4px 20px rgba(0,0,0,1);
-            
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            margin: 0; padding: 0;
+            display: inline; /* Comportement naturel de texte */
         }
-        .quote-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
         
         .word-transition { 
             display: inline-flex; justify-content: center; align-items: center;
-            width: 120px; height: 1.2em; position: relative; 
+            width: 120px; height: 1em; position: relative; vertical-align: text-bottom;
         }
         .word-transition .word { position: absolute; white-space: nowrap; }
         .word-transition .word-next { opacity: 0; }
@@ -121,7 +120,7 @@
         .word-transition .word .letter.out { transform: translateY(-100%); opacity: 0; }
         .word-transition .word .letter.in { transform: translateY(100%); opacity: 0; }
         .word-code { font-family: 'Source Code Pro', monospace; color: #4EC9B0; }
-        .accueil-quote .author { font-size: 10px; color: rgba(255, 255, 255, 0.5); margin-top: 20px; text-transform: uppercase; letter-spacing: 3px; display: block; width: 100%; }
+        .accueil-quote .author { font-size: 10px; color: rgba(255, 255, 255, 0.5); margin-top: 25px; text-transform: uppercase; letter-spacing: 3px; display: block; width: 100%; text-align: center;}
         
         .accueil-location { position: absolute; bottom: 140px; left: 60px; font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.3); letter-spacing: 1px; pointer-events: none; }
         .accueil-location span { display: block; margin-top: 3px; }
@@ -132,7 +131,7 @@
         }
         .accueil-cta:hover { background: #fff; color: #0a0a0f; }
 
-        /* --- 02 À PROPOS (Caché par défaut) --- */
+        /* --- 02 À PROPOS (Synchronisé) --- */
         .apropos-wrapper::-webkit-scrollbar { width: 6px; }
         .apropos-wrapper::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
         .apropos-wrapper::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
@@ -141,8 +140,8 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth;
             pointer-events: auto; 
-            /* MODIF: Opacité gérée par JS pour éviter le spoil */
-            opacity: 0; transition: opacity 0.8s ease; 
+            /* Départ invisible pour éviter le spoil durant le voyage */
+            opacity: 0; transition: opacity 1s ease; 
         }
         .apropos-wrapper.visible { opacity: 1; }
 
@@ -174,7 +173,10 @@
         .apropos-lit-card p { font-size: 0.95rem; margin-bottom: 0; color: var(--text-muted); }
 
         /* --- 03 PROJETS --- */
-        .projets-title { position: absolute; top: 100px; left: 60px; font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; pointer-events: none; }
+        .projets-title { 
+            position: absolute; top: 40px; /* Remonté pour éviter le chevauchement */
+            left: 60px; font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; pointer-events: none; 
+        }
         .projets-grid {
             position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
             width: 1100px; max-width: 90%;
@@ -212,10 +214,14 @@
         .accent-block .accent-text { font-family: 'Space Mono', monospace; font-weight: 700; color: #BFA181; }
         .accent-block .accent-label { font-family: 'Space Mono', monospace; font-size: 7px; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
         .accent-block-highlight { background: linear-gradient(135deg, rgba(191, 161, 129, 0.2), rgba(191, 161, 129, 0.05)) !important; border-color: rgba(191, 161, 129, 0.4) !important; }
-        .logo-block { justify-content: center; align-items: center; text-align: center; gap: 6px; }
+        
+        .logo-block { 
+            /* Centrage amélioré */
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 4px; 
+        }
         .logo-icon { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 6px; width: 40px; height: 40px; font-size: 14px; }
         .logo-icon img { width: 100%; height: 100%; object-fit: contain; }
-        .logo-name { font-family: 'Space Mono', monospace; color: rgba(255, 255, 255, 0.6); text-transform: uppercase; font-size: 8px; }
+        .logo-name { font-family: 'Space Mono', monospace; color: rgba(255, 255, 255, 0.6); text-transform: uppercase; font-size: 8px; margin-top: 2px;}
         .logo-bar { width: 60%; height: 3px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; overflow: hidden; margin-top: 4px; }
         .logo-progress { height: 100%; background: #BFA181; transition: width 1.5s ease; width: 0; }
         .section.active .logo-progress { width: var(--logo-level); }
@@ -241,6 +247,7 @@
         @media (max-width: 1024px) {
             .projets-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; top: 55%; height: 70%; overflow-y: auto; display: block; }
             .project-card { margin-bottom: 20px; }
+            /* Bento Tablette */
             .competences-bento { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; overflow-y: auto; bottom: 20px; gap: 10px; }
             .skill-block { grid-column: span 2 !important; grid-row: span 1 !important; min-height: 120px; }
             .skill-block[style*="grid-column: 1 / 4"], .skill-block[style*="grid-column: 7 / 10"], .skill-block[style*="grid-column: 1 / 3"], .skill-block[style*="grid-column: 6 / 9"] { grid-column: span 4 !important; }
@@ -256,8 +263,18 @@
             .nav-item { font-size: 9px; }
             .projets-grid { grid-template-columns: 1fr; }
             .apropos-content-wrapper { padding-top: 120px; padding-left: 20px; padding-right: 20px; }
-            .competences-bento { grid-template-columns: 1fr; gap: 15px; }
+            
+            /* Bento Mobile Portrait Optimisé */
+            .competences-bento { 
+                grid-template-columns: 1fr 1fr; /* 2 Colonnes */
+                grid-template-rows: auto; /* Hauteur auto pour scroll */
+                gap: 15px; 
+                overflow-y: auto; /* Autorise le scroll */
+            }
             .skill-block { grid-column: span 1 !important; min-height: auto; }
+            /* Les gros blocs prennent toute la largeur sur mobile aussi */
+            .skill-block[style*="grid-column: 1 / 4"], .skill-block[style*="grid-column: 7 / 10"], .skill-block[style*="grid-column: 1 / 3"], .skill-block[style*="grid-column: 6 / 9"] { grid-column: span 2 !important; }
+
             .contact-form { width: 90%; left: 5%; transform: translateY(-50%); }
             .contact-title { top: 80px; right: 20px; }
         }
@@ -282,16 +299,10 @@
             <span class="deco-cross" style="bottom: 200px; right: 300px;">+</span>
             <div class="accueil-quote">
                 <blockquote>
-                    <div class="quote-line">
-                        <span class="word-transition" id="wordSwitch">
-                            <span class="word word-active">Écrire</span>
-                            <span class="word word-next word-code">&lt;Coder&gt;</span>
-                        </span> 
-                        <span>EST UNE MANIÈRE DE PARLER</span>
-                    </div>
-                    <div class="quote-line">
-                        <span><br>SANS ÊTRE INTERROMPU.</span>
-                    </div>
+                    <span class="word-transition" id="wordSwitch">
+                        <span class="word word-active">Écrire</span>
+                        <span class="word word-next word-code">&lt;Coder&gt;</span>
+                    </span> &nbsp;EST UNE MANIÈRE DE PARLER SANS ÊTRE INTERROMPU.
                 </blockquote>
                 <div class="author">— Jules Renard</div>
             </div>
@@ -678,7 +689,7 @@
         const aproposScenesData = [];
         
         // Harmonographe : Taille réduite
-        function getHarmonographPoints(c){const p=[];for(let i=0;i<c;i++){const t=i*0.05;const x=1.6*Math.sin(t*1.5)*Math.exp(-t*1e-4)*0.04;const y=1.6*Math.sin(t*1.8)*Math.exp(-t*1e-4)*0.04;const z=1.6*Math.sin(t*2.2)*Math.exp(-t*1e-4)*0.04;p.push(x,y,z)}return new Float32Array(p)}
+        function getHarmonographPoints(c){const p=[];for(let i=0;i<c;i++){const t=i*0.05;const x=1.6*Math.sin(t*1.5)*Math.exp(-t*1e-4)*0.5;const y=1.6*Math.sin(t*1.8)*Math.exp(-t*1e-4)*0.5;const z=1.6*Math.sin(t*2.2)*Math.exp(-t*1e-4)*0.5;p.push(x,y,z)}return new Float32Array(p)}
         
         // Chen : Taille ok
         function getChenPoints(c){const p=[];let x=5,y=5,z=5;const a=40,b=3,d=28,dt=0.003;for(let i=0;i<c;i++){let dx=a*(y-x)*dt;let dy=((d-a)*x-x*z+d*y)*dt;let dz=(x*y-b*z)*dt;x+=dx;y+=dy;z+=dz;p.push(x*0.05,y*0.05,(z-20)*0.05)}return new Float32Array(p)}
@@ -686,39 +697,34 @@
         // Sphère : Taille ok
         function getSpherePoints(c){const p=[];for(let i=0;i<c;i++){const r=1.6,t=Math.random()*Math.PI*2,h=Math.acos(2*Math.random()-1);p.push(r*Math.sin(h)*Math.cos(t),r*Math.sin(h)*Math.sin(t),r*Math.cos(h))}return new Float32Array(p)}
         
-        // Rossler : Taille ok
-        function getRosslerPoints(c){const p=[];let x=0.1,y=0.1,z=0.1;const a=0.2,b=0.2,k=5.7,dt=0.04;for(let j=0;j<500;j++){let dx=-y-z;let dy=x+a*y;let dz=b+z*(x-k);x+=dx*dt;y+=dy*dt;z+=dz*dt}for(let i=0;i<c;i++){let dx=-y-z;let dy=x+a*y;let dz=b+z*(x-k);x+=dx*dt;y+=dy*dt;z+=dz*dt;p.push(x*0.12,y*0.12,(z-10)*0.12)}return new Float32Array(p)}
+        // Rossler : Ajusté (moins grand)
+        function getRosslerPoints(c){const p=[];let x=0.1,y=0.1,z=0.1;const a=0.2,b=0.2,k=5.7,dt=0.04;for(let j=0;j<500;j++){let dx=-y-z;let dy=x+a*y;let dz=b+z*(x-k);x+=dx*dt;y+=dy*dt;z+=dz*dt}for(let i=0;i<c;i++){let dx=-y-z;let dy=x+a*y;let dz=b+z*(x-k);x+=dx*dt;y+=dy*dt;z+=dz*dt;p.push(x*0.08,y*0.08,(z-10)*0.08)}return new Float32Array(p)}
         
         // Spirale Sphérique : Taille réduite
-        function getSpiralSpherePoints(c){const p=[];for(let i=0;i<c;i++){const r=1.6*0.04,t=i*0.1,h=Math.acos(1-2*(i+0.5)/c);p.push(r*Math.sin(h)*Math.cos(t),r*Math.sin(h)*Math.sin(t),r*Math.cos(h))}return new Float32Array(p)}
+        function getSpiralSpherePoints(c){const p=[];for(let i=0;i<c;i++){const r=1.6*0.5,t=i*0.1,h=Math.acos(1-2*(i+0.5)/c);p.push(r*Math.sin(h)*Math.cos(t),r*Math.sin(h)*Math.sin(t),r*Math.cos(h))}return new Float32Array(p)}
         
         // Ruban de Moebius Paramétrique
         function getMoebiusPoints(c){
             const p = [];
             for(let i=0; i<c; i++){
-                // u va de 0 à 2PI (tour complet)
                 const u = Math.random() * Math.PI * 2;
-                // v va de -1 à 1 (largeur du ruban)
                 const v = (Math.random() - 0.5) * 0.6;
-                
                 const x = (1 + (v/2) * Math.cos(u/2)) * Math.cos(u);
                 const y = (1 + (v/2) * Math.cos(u/2)) * Math.sin(u);
                 const z = (v/2) * Math.sin(u/2);
-                
-                // Scale un peu
-                const scale = 1.5;
+                const scale = 1.2;
                 p.push(x * scale, y * scale, z * scale);
             }
             return new Float32Array(p);
         }
 
         function initAproposScenes() {
-            const count = 20000; // Augmenté pour la densité
+            const count = 20000; // Densité augmentée
             createMorphingScene('apropos-scene-1', getHarmonographPoints(count), getChenPoints(count));
             createMorphingScene('apropos-scene-2', getSpherePoints(count), getRosslerPoints(count));
             createMorphingScene('apropos-scene-3', getRosslerPoints(count), getSpherePoints(count));
             createMorphingScene('apropos-scene-4', getChenPoints(count), getSpiralSpherePoints(count));
-            // Scène 5 : Moebius, lock rotation désactivé dans le loop pour contrôle manuel
+            // Scène 5 : Moebius
             createMorphingScene('apropos-scene-5', getSpherePoints(count), getMoebiusPoints(count), false);
         }
 
@@ -803,6 +809,7 @@
             
             // GESTION APPARITION CONTENU À PROPOS (ANTI-SPOIL)
             const aproposWrapper = document.querySelector('.apropos-wrapper');
+            // On affiche seulement si on est "dedans" ET qu'on est sur la bonne section
             if (isInside && currentSection === 1 && !isTransitioning) {
                 aproposWrapper.classList.add('visible');
             } else {
@@ -837,7 +844,7 @@
                 let progress = (1.0 - (center / wHeight) - 0.2) * 1.6; 
                 d.mat.uniforms.uScroll.value = Math.max(0, Math.min(1, progress));
                 
-                // Rotation spécifique : constante et lente, pas influencée par le scroll pour la 5
+                // Rotation spécifique
                 if(d.id === 'apropos-scene-5') {
                     d.scene.children[0].rotation.y = time * 0.2; // Rotation lente constante
                     d.scene.children[0].rotation.x = Math.PI / 4; // Orientation pour voir l'infini
