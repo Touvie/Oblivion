@@ -31,23 +31,38 @@
             transition: opacity 1s ease;
         }
         
-        .splash-header {
-            position: absolute; top: 40px; left: 0; width: 100%; text-align: center;
-            font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.3); transition: opacity 1s ease;
+        .splash-content { transition: opacity 1.5s ease; opacity: 1; display: flex; flex-direction: column; align-items: center; }
+        .splash-content.fade-out { opacity: 0; }
+
+        .splash-title-big {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(60px, 10vw, 150px);
+            font-weight: 700; color: #fff;
+            letter-spacing: -2px; margin: 0; line-height: 1;
+            text-shadow: 0 0 30px rgba(255,255,255,0.1);
         }
-        .splash-content-center { transition: opacity 1.5s ease; opacity: 1; padding: 0 20px; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .splash-title-main { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 64px); font-weight: 700; color: #fff; line-height: 1.3; }
-        .splash-highlight { color: #2ed573; font-style: italic; }
-        .splash-highlight-2 { color: #ff4757; font-style: italic; }
-        .splash-highlight-3 { color: #eccc68; font-style: italic; }
-        .splash-rebel-text { font-family: 'Space Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .splash-btn { margin-top: 40px; background: transparent; color: #fff; font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; padding: 15px 50px; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.5s ease; pointer-events: auto; opacity: 1; }
-        .splash-btn:hover { background: #fff; color: #000; border-color: #fff; }
-        .fade-out { opacity: 0 !important; pointer-events: none; }
+        
+        .splash-subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px; color: var(--accent);
+            margin-top: 20px; letter-spacing: 4px;
+            text-transform: uppercase;
+        }
 
+        .splash-btn {
+            margin-top: 60px;
+            background: transparent; color: #fff;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px; padding: 15px 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: all 0.5s ease;
+            pointer-events: auto; opacity: 1;
+        }
+        .splash-btn:hover { background: #fff; color: #000; letter-spacing: 4px; }
+        .splash-btn.fade-out { opacity: 0; transform: translateY(20px); pointer-events: none; }
 
-        /* HEADER (SYMÉTRIE PARFAITE) */
+       /* HEADER (SYMÉTRIE PARFAITE) */
         #header {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 5000;
             padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; 
@@ -92,10 +107,8 @@
             transform: scale(1.5); 
         }
 
-
         /* SECTIONS */
         #sections-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
-
         .section { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; visibility: hidden; transition: opacity 0.8s ease, visibility 0.8s; pointer-events: none; }
         .section.active { opacity: 1; visibility: visible; pointer-events: auto !important; z-index: 100; }
 
@@ -147,7 +160,7 @@
         .apropos-lit-card p { font-size: 0.95rem; margin-bottom: 0; color: var(--text-muted); }
 
         /* PROJETS */
-        .projets-title { position: absolute; top: 80px; left: 60px; font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; pointer-events: none; }
+        .projets-title { position: absolute; top: 60px; left: 60px; font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; pointer-events: none; }
         .projets-grid { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 1100px; max-width: 90%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 30px; }
         .project-card { position: relative; padding: 25px; cursor: pointer; display: flex; flex-direction: column; width: 100%; height: 220px; animation: levitate 4s ease-in-out infinite; pointer-events: auto; text-decoration: none; color: inherit; }
         @keyframes levitate { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
@@ -181,6 +194,24 @@
         .logo-progress { height: 100%; background: #BFA181; transition: width 1.5s ease; width: 0; }
         .section.active .logo-progress { width: var(--logo-level); }
 
+        /* CONTACT */
+        .contact-title { position: absolute; top: 100px; right: 60px; text-align: right; pointer-events: none; }
+        .contact-title h2 { font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+        .contact-title p { font-size: 11px; color: rgba(255, 255, 255, 0.4); margin-top: 8px; font-family: 'Space Mono', monospace; }
+        .contact-form { position: absolute; top: 50%; left: 60px; transform: translateY(-50%); width: 350px; pointer-events: auto; padding: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255, 255, 255, 0.5); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 8px; }
+        input, textarea { width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); padding: 12px; color: #fff; font-family: 'Space Mono', monospace; font-size: 12px; transition: all 0.3s; border-radius: 4px; }
+        input:focus, textarea:focus { outline: none; border-color: #BFA181; background: rgba(255, 255, 255, 0.08); }
+        textarea { min-height: 100px; resize: none; }
+        .contact-form button { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); color: #fff; padding: 15px 30px; cursor: pointer; transition: all 0.3s; width: 100%; border-radius: 4px; }
+        .contact-form button:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+        .contact-social { position: absolute; bottom: 60px; right: 60px; display: flex; gap: 25px; pointer-events: auto; }
+        .social-link { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+        .social-link:hover { color: var(--accent); }
+        .contact-info { position: absolute; bottom: 60px; left: 60px; font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.4); pointer-events: none; }
+        .contact-info span { display: block; margin-top: 4px; }
+
         /* MAKING OF */
         .makingof-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 800px; padding: 40px; text-align: center; pointer-events: auto; }
         .makingof-container h2 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--accent); margin-bottom: 30px; }
@@ -197,8 +228,8 @@
             .apropos-content-row { flex-direction: column; margin-bottom: 100px; } .apropos-row-right { flex-direction: column; }
             .apropos-text-block { flex: 0 0 100%; width: 100%; margin: 0 0 30px 0; padding: 40px; }
             .apropos-visual-container { flex: 0 0 100%; width: 100%; height: 300px; }
-            #header { min-width: 95%; padding: 15px 20px; gap: 20px; }
-            .nav-group { gap: 15px; }
+            #header { min-width: 95%; padding: 15px 20px; gap: 20px; display: flex; }
+            .nav-group { gap: 15px; width: auto; }
         }
         @media (max-width: 768px) {
             #header { gap: 10px; padding: 10px 15px; width: 95%; top: 15px; }
@@ -230,27 +261,26 @@
     <div id="toast">🚧 Fonctionnalité en cours de développement</div>
 
     <div id="splash-screen">
-        <div class="splash-header">
-            PORTFOLIO / Design • Code • Édition
-        </div>
-        <div class="splash-content-center">
-            <h1 class="splash-title-main">Le design d’un site web<br>se doit d’être <span class="splash-highlight">sobre</span>, <span class="splash-highlight-2">pur</span>,<br><span class="splash-highlight-3">cohérent</span>.</h1>
-            <p class="splash-rebel-text">But i have an authority issue</p>
+        <div class="splash-content">
+            <h1 class="splash-title-big">PORTFOLIO</h1>
+            <div class="splash-subtitle">Design • Code • Édition</div>
         </div>
         <button class="splash-btn" id="splash-btn">Entrer</button>
     </div>
 
     <nav id="header">
-        <div class="nav-group">
+        <div class="nav-group left">
             <span class="nav-item active" data-section="0">Accueil</span>
             <span class="nav-item" data-section="1">À propos</span>
         </div>
         
-        <div id="header-center-btn" data-section="5">
-            <img src="https://ekladata.com/XYBb6i_bYDeg8Svg2Fumyt3PadI.gif" alt="Making Of"> 
+        <div id="header-center-container">
+             <div id="header-center-btn" data-section="5">
+                <img src="https://ekladata.com/XYBb6i_bYDeg8Svg2Fumyt3PadI.gif" alt="Making Of"> 
+            </div>
         </div>
 
-        <div class="nav-group">
+        <div class="nav-group right">
             <span class="nav-item" data-section="2">Projets</span>
             <span class="nav-item" data-section="3">Compétences</span>
         </div>
@@ -278,7 +308,7 @@
             <a href="#" class="accueil-cta" id="cta-projects">[ PROJETS ]</a>
             <div class="section-number">01<span>Accueil</span></div>
         </div>
-        
+
         <div class="section" data-section="1">
             <div class="apropos-wrapper">
                 <div class="apropos-content-wrapper">
@@ -311,11 +341,11 @@
                             <p>Après ce premier site, j’ai arrêté de voir le web comme un simple “exercice d’informatique” pour le cours du lundi matin. J’ai commencé à explorer tout ce qui gravite autour.</p>
                             <p>D’abord <strong>Figma</strong>, pour sortir de la page statique et réfléchir en termes d’interface. Comment disposer les éléments pour que l’œil comprenne où aller ? Où placer un bouton, un menu, un titre ? Quels composants réutiliser, quels états prévoir ? Figma m’a appris qu’avant même une ligne de code, on peut déjà raconter quelque chose avec des blocs, des espacements et des couleurs.</p>
                             <p>Puis il y a eu une <strong>vidéo de promotion de livre</strong> pour le festival Les Escales du Livre. Une vraie première fois en tournage et en montage : écrire un script, découper en plans, gérer le cadrage, le son, le rythme, le lien entre texte et image. Là encore, même logique : comment adapter un objet (un livre) à un autre médium (une courte vidéo), sans perdre son intention ?</p>
-                            <p>En parallèle, mes cours de culture numérique — ceux que j’attendais le plus dans la semaine — m’ont ouvert une autre porte : comprendre d’où vient tout ça. J’ai commencé à lire sur les pionniers de l’informatique et du web, de Pascal à Ampère en passant par Turing, d’Ada Lovelace à Blackwell, pour ne citer qu’eux, non sans hasard :). Pas pour les réciter, mais pour comprendre ce qui se joue derrière les interfaces qu’on utilise tous les jours.</p>
+                            <p>En parallèle, mes cours de culture numérique — ceux que j’attendais le plus dans la semaine — m’ont ouvert une autre porte : comprendre d’où vient tout ça. J’ai commencé à lire sur les pionniers de l’informatique et du web, de Pascal à Ampère en passant par Turing, d’Ada Lovelace à Blackwell, pour ne citer qu’eux, non sans hasard :).</p>
                             <p>Quand est venu le moment de concevoir <strong>mon portfolio</strong>, j’ai fait un choix simple : je ne voulais pas d’un site WordPress ou d’un template préfabriqué. Je voulais un site codé de A à Z, même si ça impliquait de me confronter à mes limites techniques.</p>
-                            <p>Pour ne pas rester bloqué, j’ai décidé d’utiliser l’IA en mode <em>vibe coding</em>. Concrètement, je pars d’une intention précise : « je veux telle interaction », « telle animation 3D », « telle structure de page ». Je décris ce que je veux, l’IA propose du code, et je travaille dessus : je teste, je modifie des paramètres, je casse des choses, je regarde ce que ça change. Je ne prétends pas comprendre chaque ligne dans le détail, mais je vois ce que fait chaque bloc important, où agir pour changer un comportement, et pourquoi tel effet est là.</p>
-                            <p>J’ai volontairement intégré du JavaScript plus poussé — <strong>Three.js, 3D, systèmes de particules</strong> — pour casser le modèle du simple site en une page qui scrolle de haut en bas. Pour moi, un portfolio est une vitrine : il doit montrer, dès le premier regard, le type d’expériences que j’ai envie de créer.</p>
+                            <p>J’ai volontairement intégré du JavaScript plus poussé — <strong>Three.js, 3D, systèmes de particules</strong> — pour casser le modèle du simple site en une page qui scrolle verticalement. Pour moi, un portfolio est une vitrine : il doit montrer, dès le premier regard, le type d’expériences que j’ai envie de créer.</p>
                             <p>Ce projet m’a permis de mesurer à la fois ce que je suis déjà capable de faire avec de la débrouille, de la curiosité et l’IA comme outil, et les limites de cette approche. Je peux concevoir, expérimenter, ajuster, mais je sens bien qu’il me manque encore les bases techniques solides pour être pleinement autonome. C’est précisément cette marche que je veux franchir.</p>
+                            <p> Pour plus d'information sur la conception de ce portfolio <a href="#" id="lien-vers-making-of">cliquer ici</a></p>
                         </div>
                         <div class="apropos-visual-container" id="apropos-scene-3"></div>
                     </div>
@@ -348,8 +378,9 @@
             </div>
             <div class="section-number">02<span>À propos</span></div>
         </div>
-        
+
         <div class="section" data-section="2">
+            <span class="deco-cross" style="top: 130px; right: 100px;">+</span>
             <div class="projets-title">Projets</div>
             <div class="projets-grid">
                 <div class="project-card glass-panel">
@@ -379,8 +410,9 @@
             </div>
             <div class="section-number">03<span>Projets</span></div>
         </div>
-        
+
         <div class="section" data-section="3">
+            <span class="deco-cross" style="top: 180px; right: 200px;">+</span>
             <div class="competences-title">Compétences</div>
             <div class="competences-bento">
                 <div class="skill-block glass-panel" style="grid-column: 1 / 4; grid-row: 1 / 3;"><h3>Développement Web</h3><div class="skill-item"><div class="skill-name">HTML / CSS</div><div class="skill-bar"><div class="skill-progress" style="--skill-level: 75%"></div></div></div><div class="skill-item"><div class="skill-name">JavaScript</div><div class="skill-bar"><div class="skill-progress" style="--skill-level: 50%"></div></div></div><div class="skill-item"><div class="skill-name">Three.js</div><div class="skill-bar"><div class="skill-progress" style="--skill-level: 40%"></div></div></div></div>
@@ -411,6 +443,21 @@
             <div class="section-number">04<span>Compétences</span></div>
         </div>
 
+        <div class="section" data-section="4">
+            <span class="deco-cross" style="top: 200px; left: 400px;">+</span>
+            <span class="deco-cross" style="bottom: 150px; right: 200px;">+</span>
+            <div class="contact-title"><h2>Contact</h2><p>Une question ?</p></div>
+            <form class="contact-form glass-panel" action="#" method="POST">
+                <div class="form-group"><label>Nom</label><input type="text" required></div>
+                <div class="form-group"><label>Email</label><input type="email" required></div>
+                <div class="form-group"><label>Message</label><textarea required></textarea></div>
+                <button type="submit">[ ENVOYER ]</button>
+            </form>
+            <div class="contact-info"><span>BORDEAUX, FRANCE</span><span>MMI 2025</span></div>
+            <div class="contact-social"><a href="#" class="social-link">GitHub</a><a href="#" class="social-link">LinkedIn</a></div>
+            <div class="section-number">05<span>Contact</span></div>
+        </div>
+
         <div class="section" data-section="5">
             <span class="deco-cross" style="top: 10%; left: 10%;">+</span>
             <span class="deco-cross" style="bottom: 10%; right: 10%;">+</span>
@@ -435,7 +482,26 @@
     <script type="module">
         import * as THREE from 'three';
         
-        let scene, camera, renderer, bgMesh, nebulaSphere, stars, blackHole, glowSphere, accretionDisk;
+        // GPU DETECTION
+        function getGPUTier() {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl');
+            if (!gl) return 'low';
+            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+            if (!debugInfo) return 'low';
+            const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL).toLowerCase();
+            if (/(intel|hd graphics|mali|adreno|powervr|open source|mesa|swiftshader)/.test(renderer)) return 'low';
+            return 'high';
+        }
+
+        const gpuTier = getGPUTier();
+        const CONFIG = {
+            pixelRatio: gpuTier === 'low' ? 1 : Math.min(window.devicePixelRatio, 2),
+            particlesCount: gpuTier === 'low' ? 5000 : 20000,
+            sphereSegments: gpuTier === 'low' ? 32 : 64
+        };
+        
+        let scene, camera, renderer, bgMesh, stars, blackHole, glowSphere, accretionDisk;
         let currentSection = -1; 
         let targetSectionIndex = -1;
         let isTransitioning = false; 
@@ -448,13 +514,13 @@
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 3000);
             
-            // DÉPART SPLASH
+            // DÉPART SPLASH (Décalé pour éviter le Gimbal Lock)
             camera.position.set(0, 6, 1); 
             camera.lookAt(0,0,0);
 
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setPixelRatio(CONFIG.pixelRatio);
             renderer.autoClear = false;
             container.appendChild(renderer.domElement);
 
@@ -462,7 +528,7 @@
             const milkyWayUrl = 'https://cdn.eso.org/images/large/eso0932a.jpg';
             
             // FOND
-            const bgGeo = new THREE.SphereGeometry(1500, 64, 64);
+            const bgGeo = new THREE.SphereGeometry(1500, CONFIG.sphereSegments, CONFIG.sphereSegments);
             bgGeo.scale(-1, 1, 1);
             const bgMat = new THREE.ShaderMaterial({
                 uniforms: { u_texture: { value: textureLoader.load(milkyWayUrl) } },
@@ -473,17 +539,6 @@
             bgMesh.rotation.x = Math.PI * 0.1;
             bgMesh.rotation.z = Math.PI * 0.15;
             scene.add(bgMesh);
-
-            // NEBULEUSE
-            const nebulaGeo = new THREE.SphereGeometry(1400, 64, 64);
-            const nebulaMat = new THREE.ShaderMaterial({
-                uniforms: { u_time: { value: 0 } },
-                vertexShader: `varying vec3 vPos; void main() { vPos = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-                fragmentShader: `uniform float u_time; varying vec3 vPos; ${noiseFunctions} float fbm(vec3 p) { float f = 0.0; f += 0.500 * snoise(p); p *= 2.02; f += 0.250 * snoise(p); p *= 2.03; f += 0.125 * snoise(p); return f * 0.5 + 0.5; } vec3 warp(vec3 p) { vec3 q = vec3(snoise(p), snoise(p + vec3(5.2, 1.3, 2.8)), snoise(p + vec3(8.1, 2.4, 1.1))); return p + q * 0.5; } void main() { vec3 dir = normalize(vPos); float time = u_time * 0.02; vec3 warpedDir = warp(dir * 1.2 + vec3(time * 0.1)); float mask = smoothstep(0.2, 0.8, snoise(warpedDir) * 0.6 + snoise(dir * 2.0 - time * 0.1) * 0.4); float density = mask * fbm(warpedDir * 3.0 + vec3(0.0, time*0.2, 0.0)); float zoneMix = smoothstep(-0.3, 0.3, snoise(warp(dir * 0.5 + vec3(10.0)) * 1.5)); vec3 blueCloud = mix(vec3(0.0, 0.0, 0.1), vec3(0.2, 0.4, 0.8), density); vec3 redCloud = mix(vec3(0.1, 0.0, 0.0), vec3(0.8, 0.3, 0.1), density); vec3 finalCloudColor = mix(blueCloud, redCloud, zoneMix); gl_FragColor = vec4(finalCloudColor * 1.5, density * 0.3); }`,
-                side: THREE.BackSide, transparent: true, blending: THREE.AdditiveBlending
-            });
-            nebulaSphere = new THREE.Mesh(nebulaGeo, nebulaMat);
-            scene.add(nebulaSphere);
 
             // ETOILES
             const starsCount = 4000; const starsGeo = new THREE.BufferGeometry(); const starsPos = new Float32Array(starsCount * 3);
@@ -497,13 +552,13 @@
 
             // TROU NOIR
             const BH_RADIUS = 4.0;
-            const coreGeo = new THREE.SphereGeometry(BH_RADIUS, 64, 64);
+            const coreGeo = new THREE.SphereGeometry(BH_RADIUS, CONFIG.sphereSegments, CONFIG.sphereSegments);
             const coreMat = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide });
             blackHole = new THREE.Mesh(coreGeo, coreMat);
             scene.add(blackHole);
 
             // GLOW
-            const glowGeo = new THREE.SphereGeometry(BH_RADIUS * 1.05, 64, 64);
+            const glowGeo = new THREE.SphereGeometry(BH_RADIUS * 1.05, CONFIG.sphereSegments, CONFIG.sphereSegments);
             const glowMat = new THREE.ShaderMaterial({
                 uniforms: { glowColor: { value: new THREE.Color(0xffaa33) }, viewVector: { value: new THREE.Vector3() }, power: { value: 3.5 }, intensity: { value: 1.4 } },
                 vertexShader: `uniform vec3 viewVector; varying float vIntensity; uniform float power; void main() { vec3 vNormal = normalize(normalMatrix * normal); vec3 vNormel = normalize(normalMatrix * viewVector); vIntensity = pow(0.7 - dot(vNormal, vNormel), power); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
@@ -552,6 +607,7 @@
                 document.getElementById('splash-screen').style.display = 'none'; 
                 isTransitioning = true;
                 
+                // PHASED MOVEMENT
                 const pos1 = new THREE.Vector3(0, 6, 1);
                 const pos2 = new THREE.Vector3(0, 120, 1); 
                 const pos3 = new THREE.Vector3(40, 5, 40);
@@ -624,6 +680,7 @@
             });
         }
 
+        // SCENES MATHS
         const aproposScenesData = [];
         function getHarmonographPoints(c){const p=[];for(let i=0;i<c;i++){const t=i*0.05;const x=1.6*Math.sin(t*1.5)*Math.exp(-t*1e-4)*0.05;const y=1.6*Math.sin(t*1.8)*Math.exp(-t*1e-4)*0.05;const z=1.6*Math.sin(t*2.2)*Math.exp(-t*1e-4)*0.05;p.push(x,y,z)}return new Float32Array(p)}
         function getChenPoints(c){const p=[];let x=5,y=5,z=5;const a=40,b=3,d=28,dt=0.003;for(let i=0;i<c;i++){let dx=a*(y-x)*dt;let dy=((d-a)*x-x*z+d*y)*dt;let dz=(x*y-b*z)*dt;x+=dx;y+=dy;z+=dz;p.push(x*0.05,y*0.05,(z-20)*0.05)}return new Float32Array(p)}
@@ -633,7 +690,8 @@
         function getLemniscatePoints(c){ const p = []; for(let i=0; i<c; i++){ const t = Math.random() * Math.PI * 2; const scale = 1.5; const denom = 1 + Math.sin(t)**2; const x = scale * Math.cos(t) / denom; const y = scale * Math.sin(t) * Math.cos(t) / denom; const z = (Math.random() - 0.5) * 0.2; p.push(x, y, z); } return new Float32Array(p); }
 
         function initAproposScenes() {
-            const count = 20000; 
+            // OPTIM: Use CONFIG.particlesCount
+            const count = CONFIG.particlesCount; 
             createMorphingScene('apropos-scene-1', getHarmonographPoints(count), getChenPoints(count));
             createMorphingScene('apropos-scene-2', getSpherePoints(count), getRosslerPoints(count));
             createMorphingScene('apropos-scene-3', getRosslerPoints(count), getSpherePoints(count));
@@ -679,6 +737,12 @@
             document.getElementById('cta-projects').addEventListener('click', (e) => {
                 e.preventDefault(); goToSection(2);
             });
+            const linkMakingOf = document.getElementById('lien-vers-making-of');
+            if(linkMakingOf) {}
+                linkMakingOf.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    goToSection(5);
+                })
         }
 
         function goToSection(index) {
@@ -721,7 +785,6 @@
             requestAnimationFrame(animate);
             const time = clock.getElapsedTime();
 
-            if(nebulaSphere) nebulaSphere.material.uniforms.u_time.value = time;
             if(accretionDisk) accretionDisk.material.uniforms.u_time.value = time;
             if(glowSphere) glowSphere.material.uniforms.viewVector.value.subVectors(camera.position, glowSphere.position);
 
@@ -762,7 +825,7 @@
             }
 
             bgMesh.visible = !isInside;
-            nebulaSphere.visible = !isInside;
+            // Nébuleuse supprimée
             stars.visible = !isInside;
             accretionDisk.visible = !isInside;
             glowSphere.visible = !isInside;
