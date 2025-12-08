@@ -216,7 +216,81 @@
         .makingof-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 800px; padding: 40px; text-align: center; pointer-events: auto; }
         .makingof-container h2 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--accent); margin-bottom: 30px; }
         .makingof-container p { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; color: var(--text-light); }
+/* Ajoute ceci dans la section CSS du Making Of */
 
+.makingof-container ul {
+    padding-left: 20px;  /* Décale les puces pour qu'elles ne soient pas collées au bord */
+    margin-bottom: 20px; /* Espace après la fin de la liste */
+}
+
+.makingof-container li {
+    margin-bottom: 20px; /* Espace ENTRE chaque point de la liste */
+    line-height: 1.6;    /* Aère le texte à l'intérieur des points */
+}
+
+        /* AJOUT POUR LE MAKING OF */
+.makingof-container {
+    /* On garde tes styles existants et on ajoute/force ceux-ci : */
+    max-height: 80vh;       /* Limite la hauteur à 80% de l'écran */
+    overflow-y: auto;       /* Active le scroll vertical */
+    text-align: left;       /* Plus lisible pour les longs textes */
+    scrollbar-width: thin;  /* Scrollbar fine pour Firefox */
+    scrollbar-color: var(--accent) rgba(0,0,0,0.3);
+}
+
+/* Style de la scrollbar pour Chrome/Safari/Edge */
+.makingof-container::-webkit-scrollbar { width: 6px; }
+.makingof-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+.makingof-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+.makingof-container h2 {
+    text-align: center;
+    margin-bottom: 40px; /* Plus d'espace sous le titre */
+}
+
+.makingof-container h3 {
+    font-family: 'Space Mono', monospace;
+    color: var(--accent);
+    font-size: 18px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(191, 161, 129, 0.3);
+    padding-bottom: 10px;
+}
+
+.makingof-container h4 {
+    font-family: 'Space Mono', monospace;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.makingof-container p {
+    margin-bottom: 15px;
+    font-size: 14px; /* Un peu plus petit pour la densité de texte */
+    text-align: justify;
+}
+
+/* Style des placeholders d'images */
+.mo-placeholder {
+    width: 100%;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed var(--accent);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+    font-family: 'Space Mono', monospace;
+    color: rgba(255, 255, 255, 0.4);
+    transition: background 0.3s;
+}
+.mo-placeholder:hover { background: rgba(255, 255, 255, 0.08); }
+.mo-placeholder span { font-size: 24px; margin-bottom: 10px; display: block; }
         @media (max-width: 1024px) {
             .projets-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; top: 55%; height: 70%; overflow-y: auto; display: block; }
             .project-card { margin-bottom: 20px; }
@@ -459,16 +533,105 @@
         </div>
 
         <div class="section" data-section="5">
-            <span class="deco-cross" style="top: 10%; left: 10%;">+</span>
-            <span class="deco-cross" style="bottom: 10%; right: 10%;">+</span>
-            <div class="makingof-container glass-panel">
-                <h2>Making Of</h2>
-                <p>Bienvenue dans les coulisses de ce portfolio. Ici, je vais détailler le processus créatif, les défis techniques rencontrés avec Three.js, la gestion de la caméra 3D, l'intégration des shaders pour les nébuleuses et les disques d'accrétion, et comment j'ai utilisé l'IA pour m'assister dans le "vibe coding".</p>
-                <p style="margin-top: 20px; font-size: 12px; color: var(--text-muted);">(Contenu détaillé à venir...)</p>
-            </div>
-            <div class="section-number">06<span>Making Of</span></div>
+    <span class="deco-cross" style="top: 10%; left: 10%;">+</span>
+    <span class="deco-cross" style="bottom: 10%; right: 10%;">+</span>
+    
+    <div class="makingof-container glass-panel">
+        <h2>Making Of</h2>
+
+        <h3>Partie 1 : Le Processus de Création</h3>
+        
+        <h4>Définition des objectifs</h4>
+        <p>Avant de me lancer, j'ai défini mes objectifs. Pas vaguement, vraiment comprendre pourquoi, pour qui, comment.</p>
+        <p><strong>Pourquoi :</strong> Pas juste un portfolio lambda. Je voulais quelque chose qui montre ma démarche, ma façon de penser. Un truc qu'un recruteur verra et se dira "ok là il a réfléchi".</p>
+        <p><strong>Pour qui :</strong> Pour moi d'abord - j'avais envie d'apprendre. Et pour les recruteurs MMI ensuite, pour leur prouver que je suis capable de structurer un projet ambitieux, que je peux me débrouiller avec les outils sans m'en faire esclave.</p>
+        <p><strong>Comment :</strong> Honnêtement, je n'avais pas les compétences pour faire seul ce que j'imaginais. Mais au lieu de rabaisser ma vision, j'ai décidé que l'IA serait uniquement un outil, pas une excuse. Un moyen de pallier mes lacunes techniques tout en apprenant vraiment en chemin.</p>
+
+        <h4>Le début : Trois options</h4>
+        <p>Pour sortir ce portfolio de terre tel le colosse de Rhodes, trois options s'offraient à moi :</p>
+        <ul>
+            <li><strong>Première option :</strong> le fait main limité. C'était rester sur du HTML/CSS pur, et en accepter les limites esthétiques. Mais postuler à un cursus MMI avec un site "banal" ne jouerait pas vraiment en ma faveur.</li>
+            <li><strong>Deuxième option :</strong> WordPress. Faire un site esthétique, rapide à faire. Cependant, j'avais conscience que les recruteurs n'apprécient pas particulièrement WordPress pour un portfolio en MMI : c'est du "tout cuit". Ça crie "je n'ai rien vraiment construit".</li>
+            <li><strong>Troisième option :</strong> utiliser l'IA. Mais pas de la manière qu'on pourrait penser. L'idée n'était pas de demander à l'IA de coder ma vision et de s'arrêter là. C'était une véritable collaboration : avoir une direction claire, explorer ce que l'IA propose, comprendre le code, le questionner, l'adapter. C'est un processus itératif où chaque étape m'apprend quelque chose et où je reste vraiment aux commandes des choix créatifs.</li>
+        </ul>
+        <p>Poussé par la curiosité et par l'envie d'apprendre, j'ai choisi cette troisième option.</p>
+
+        <h4>Exploration des différentes IA</h4>
+        <p>J'ai d'abord essayé ChatGPT avec leur option Canva. Je ne voulais pas un site statique, mais ça ne faisait que crasher. Ce n'était clairement pas la bonne direction.</p>
+        <p>En me renseignant, j'ai appris que Claude IA d'Anthropic était réputée bien meilleure pour le code. J'ai commencé avec les Artefacts et c'était clairement mieux. C'est en explorant les Artefacts publics que j'ai découvert <em>thewayofcode.com</em>, créé en collaboration avec Rick Rubin. Ce site a été un moment clé : en l'inspectant, j'ai découvert <strong>Three.js</strong>. La page 26, avec ses particules qui bougent comme des vagues, m'a particulièrement marqué.</p>
+
+        <h3>Première projection</h3>
+        
+        <h4>Le choix du trou noir</h4>
+        <p>Depuis le début, l'idée était de faire un site animé. Le trou noir me semblait être un bon choix : c'est une forme connue, impressionnante, et au final c'est juste une spirale qui tourne. Le ratio entre la difficulté et le résultat visuel était intéressant.</p>
+        
+        <h4>La vision 3D et l'animation d'entrée</h4>
+        <p>J'ai imaginé un vrai trou noir en 3D : une sphère noire entourée d'une spirale au nombre d'or. Le site commencerait par un splash : une vue du trou noir en 3D de 45 degrés d'en haut. Un effet "whaou" dès le début, inspiré des splashs immersifs de jeux comme Genshin Impact.</p>
+        
+        <div class="mo-placeholder">
+            <span>🚀</span>
+            [ IMAGE : ANIMATION D'ENTRÉE / CONCEPT SPLASH ]
         </div>
+
+        <p>Sur le splash, un bouton "entrer" déclencherait l'animation. La caméra se déplacerait en ligne droite vers le centre de la sphère. L'idée : le site se trouve au centre du trou noir, tu plonges à l'intérieur.</p>
+
+        <h3>Awwwards ou la genèse du renouveau</h3>
+        <p>C'est à ce moment-là que j'ai découvert Awwwards.com. C'est rapidement devenu ma meilleure découverte de 2025. Deux sites en particulier ont changé ma vision du projet.</p>
+
+        <div class="mo-placeholder">
+            <span>🏆</span>
+            [ IMAGE : AWWWARDS / DÉCOUVERTE ]
+        </div>
+
+        <h4>Mantis.works : l'équilibre parfait</h4>
+        <p>Mantis.works m'a montré comment faire un site totalement original tout en restant équilibré. Ce qui m'a surtout frappé, c'est leur utilisation du 3D : des genres de statues où le scroll va de pair avec le mouvement caméra. C'est superbe et ça respire l'équilibre.</p>
+        
+        <div class="mo-placeholder">
+            <span>🗿</span>
+            [ IMAGE : MANTIS.WORKS ]
+        </div>
+
+        <p>Ça m'a prouvé qu'on pouvait intégrer la 3D de manière bien pensée sans que ça fasse "trop".</p>
+
+        <h4>CCUS Heidelberg Materials : le 3D total</h4>
+        <p>Ensuite, j'ai découvert le site de CCUS Heidelberg Materials. Là, c'était du pur 3D avec des mouvements de caméra qui te font naviguer d'une section à l'autre. Tout était fait avec des particules.</p>
+
+        <div class="mo-placeholder">
+            <span>✨</span>
+            [ IMAGE : CCUS HEIDELBERG ]
+        </div>
+
+        <p>Ça a été révélateur : "Pourquoi faire un site 2D après le splash alors que je peux faire le site entier en 3D avec des mouvements de caméra pour naviguer ?"</p>
+
+        <h3>Le pivot majeur</h3>
+        <p>Après Awwwards, j'ai compris que le portfolio lui-même était le projet. J'ai revu entièrement mon plan. Le trou noir ne serait plus juste l'intro, mais l'objet central. Au lieu de plonger dedans et de scroller verticalement, le site tournerait autour du trou noir. Tout devait tenir sur l'écran : pas de scrolling infini.</p>
+
+        <h3>Partie 2 : Explication du Site Actuel</h3>
+
+        <h4>Le Splash : l'introduction scénarisée</h4>
+        <p>L'idée était de transformer une simple intro en une véritable mise en scène narrative. Ça commence par une citation classique, cassée immédiatement par ma réponse : "but I have an authority issue". En cliquant sur "entrer", l'animation se lance : un système de rail de caméra en trois phases (montée, recul, flyby) pour une progression narrative de l'attente à la surprise.</p>
+
+        <h4>La scène 3D : le trou noir</h4>
+        <p>L'utilisateur se trouve à l'intérieur d'une sphère avec une texture réelle de la Voie lactée. Le trou noir lui-même est une sphère Three.js haute résolution. La spirale n'est pas une texture mais un <strong>shader</strong> utilisant du bruit Perlin, dont la vitesse de rotation varie pour créer un effet d'essorage réaliste.</p>
+
+        <h4>Section Accueil</h4>
+        <p>La citation de Jules Renard est positionnée pile au centre du trou noir. Le mot bascule entre "Écrire" et "&lt;Coder&gt;" symbolise mon parcours. Le trou noir met en évidence la citation, et inversement, inspiré par l'équilibre texte/visuel de Mantis.works.</p>
+
+        <h4>Section À propos</h4>
+        <p>C'était la section la plus complexe. Pour le contenu, j'ai utilisé un schéma narratif littéraire (Situation initiale, Élément perturbateur, etc.) pour transformer l'autobiographie en narration.</p>
+        <p>Pour la forme, le défi était d'intégrer des particules 3D à côté du texte sans gêner la lecture. J'ai utilisé des attracteurs mathématiques (Harmonograph, Chen, Rossler) qui "morphent" entre deux formes au rythme du scroll. Il y a d'ailleurs une référence cachée dans ce texte...</p>
+
+        <h4>Sections Projets & Compétences</h4>
+        <p>Les projets sont présentés sous forme de grille où le fond sert de teaser. Les compétences utilisent une "Bento Grid" asymétrique inspirée des keynotes Apple, permettant de hiérarchiser l'information visuellement. Ici aussi, un easter egg plus visible est présent.</p>
+
+        <h3>Conclusion</h3>
+        <p>Ce projet représente 30 heures d'expérimentation. L'IA a été un outil pour matérialiser une vision, mais les vraies décisions, les pivots et le design viennent de moi.</p>
+        <p>Tout le monde dit être "motivé et curieux". Ce portfolio est ma manière de le prouver concrètement. MMI est pour moi l'opportunité d'amplifier ça : apprendre à maîtriser techniquement ce que je suis déjà capable de concevoir, pour créer des expériences où le fond et la forme ne font qu'un.</p>
+        <p style="margin-top: 40px; text-align: center; color: var(--accent); font-weight: bold;">Créativement,<br>Un passionné.</p>
     </div>
+    
+    <div class="section-number">06<span>Making Of</span></div>
+</div>
 
     <script type="importmap">
         {
