@@ -141,12 +141,10 @@
            NOUVELLE SECTION A PROPOS
            ========================================= */
         
-        /* Conteneur principal qui scroll (remplace .apropos-wrapper ancien) */
         .apropos-wrapper { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             overflow-y: auto; overflow-x: hidden; 
             scroll-behavior: smooth; pointer-events: auto; opacity: 0; transition: opacity 1s ease;
-            /* Fond beaucoup plus transparent pour éviter l'effet "voile sombre" */
             background: radial-gradient(circle at center, rgba(26,26,32,0.2) 0%, rgba(0,0,0,0) 100%);
         }
         .apropos-wrapper.visible { opacity: 1; }
@@ -158,10 +156,9 @@
             position: relative; z-index: 2;
         }
 
-        /* Styles des blocs textes (Glassmorphism clair) */
         .text-block {
             position: relative; padding: 60px; border-radius: 20px;
-            background: rgba(10, 10, 12, 0.65); /* Plus transparent */
+            background: rgba(10, 10, 12, 0.65); 
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(191, 161, 129, 0.15);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
@@ -171,7 +168,6 @@
 
         .section-header { text-align: center; margin-bottom: 40px; }
         
-        /* Typo spécifique À Propos */
         .text-block h2 { 
             color: var(--accent); font-family: 'Space Mono', monospace; text-transform: uppercase; 
             font-weight: 700; font-size: 1.1rem; letter-spacing: 3px; 
@@ -184,7 +180,6 @@
         .text-block p:last-child { margin-bottom: 0; }
         .text-block strong { color: #fff; font-weight: 600; }
 
-        /* Composants : Cards Italie */
         .italy-cards { display: flex; gap: 20px; margin: 40px auto; justify-content: center; }
         .italy-card { 
             width: 90px; height: 130px; background: rgba(255,255,255,0.03); 
@@ -194,7 +189,6 @@
         .italy-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.06); }
         .italy-card h4 { font-family:'Space Mono'; font-size: 9px; color: var(--text-muted); letter-spacing: 1px; }
 
-        /* Composants : Grille Littéraire */
         .lit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
         .lit-card { 
             background: rgba(191, 161, 129, 0.05); padding: 25px; border-radius: 8px; 
@@ -204,7 +198,6 @@
         .lit-card h3 { color: var(--accent); font-size: 11px; font-family: 'Space Mono'; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
         .lit-card p { font-size: 0.9rem; margin-bottom: 0; color: var(--text-muted); text-align: left; line-height: 1.5; }
 
-        /* Liens et CTA */
         .internal-link { 
             display: inline-block; margin-top: 15px; color: var(--accent); 
             font-size: 0.9rem; text-decoration: none; border-bottom: 1px dashed var(--accent); 
@@ -230,15 +223,89 @@
         /* PROJETS */
         .projets-title { position: absolute; top: 60px; left: 60px; font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; pointer-events: none; }
         .projets-grid { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 1100px; max-width: 90%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 30px; }
-        .project-card { position: relative; padding: 25px; cursor: pointer; display: flex; flex-direction: column; width: 100%; height: 220px; animation: levitate 4s ease-in-out infinite; pointer-events: auto; text-decoration: none; color: inherit; }
+        .project-card { position: relative; padding: 25px; cursor: pointer; display: flex; flex-direction: column; width: 100%; height: 220px; animation: levitate 4s ease-in-out infinite; pointer-events: auto; text-decoration: none; color: inherit; transition: transform 0.3s, background 0.3s, border-color 0.3s; }
         @keyframes levitate { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         .project-card:hover { border-color: rgba(191, 161, 129, 0.5); background: rgba(255, 255, 255, 0.08); animation-play-state: paused; transform: translateY(-5px) scale(1.02); }
         .project-card h3 { font-family: 'Space Mono', monospace; font-size: 11px; color: #BFA181; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         .project-card p { font-size: 10px; line-height: 1.5; color: rgba(255, 255, 255, 0.5); flex: 1; }
         .project-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
         .tag { font-family: 'Space Mono', monospace; font-size: 7px; color: rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.05); padding: 3px 6px; text-transform: uppercase; }
-        #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: rgba(191, 161, 129, 0.9); color: #000; padding: 12px 24px; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; z-index: 10000; opacity: 0; transition: all 0.5s ease; pointer-events: none; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
-        #toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        /* OVERLAY PROJET */
+        #project-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 6000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        #project-overlay.visible { opacity: 1; pointer-events: auto; }
+        
+        .overlay-content {
+            width: 80%; max-width: 900px; max-height: 85vh;
+            background: rgba(15, 15, 20, 0.95);
+            border: 1px solid var(--accent);
+            padding: 50px; border-radius: 4px;
+            overflow-y: auto; position: relative;
+            transform: translateY(30px); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            scrollbar-width: thin; scrollbar-color: var(--accent) rgba(0,0,0,0.3);
+        }
+        #project-overlay.visible .overlay-content { transform: translateY(0); }
+        
+        .overlay-close {
+            position: absolute; top: 30px; right: 30px;
+            font-family: 'Space Mono'; font-size: 12px; color: rgba(255,255,255,0.5);
+            cursor: pointer; transition: color 0.3s; text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.2); padding: 8px 15px;
+        }
+        .overlay-close:hover { color: var(--accent); border-color: var(--accent); }
+
+        .overlay-header h2 {
+            font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent);
+            margin-bottom: 20px; line-height: 1.1;
+        }
+        .overlay-tags { display: flex; gap: 10px; margin-bottom: 40px; }
+        .overlay-tag {
+            font-family: 'Space Mono'; font-size: 9px; color: #000;
+            background: var(--accent); padding: 5px 10px; text-transform: uppercase; font-weight: 700;
+        }
+        .overlay-body { font-family: 'Inter', sans-serif; font-size: 1.05rem; line-height: 1.8; color: var(--text-light); }
+        .overlay-body h3 {
+            font-family: 'Space Mono'; color: var(--accent); font-size: 1.1rem;
+            margin: 40px 0 15px 0; text-transform: uppercase; letter-spacing: 1px;
+            border-bottom: 1px solid rgba(191,161,129,0.2); padding-bottom: 10px; display: inline-block;
+        }
+        .overlay-body p { margin-bottom: 20px; text-align: justify; }
+        
+        .overlay-btn {
+            display: inline-block; margin-top: 30px; margin-right: 15px; padding: 15px 35px;
+            background: transparent; border: 1px solid var(--accent);
+            color: var(--accent); font-family: 'Space Mono'; font-size: 11px;
+            text-transform: uppercase; letter-spacing: 2px; text-decoration: none;
+            transition: all 0.3s; cursor: pointer;
+        }
+        .overlay-btn:hover { background: var(--accent); color: #000; }
+
+        /* NOUVEAU : CONTAINER VIDÉO RESPONSIVE (YOUTUBE) */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            height: 0;
+            overflow: hidden;
+            margin: 30px 0;
+            border: 1px solid rgba(191, 161, 129, 0.2);
+            background: #000;
+            border-radius: 4px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
         /* COMPETENCES */
         .competences-title { position: absolute; top: 85px; left: 60px; font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; pointer-events: none; }
@@ -304,15 +371,40 @@
         @media (max-width: 1024px) {
             .projets-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; top: 55%; height: 70%; overflow-y: auto; display: block; }
             .project-card { margin-bottom: 20px; }
-            .competences-bento { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; overflow-y: auto; bottom: 20px; gap: 10px; }
-            .skill-block { grid-column: span 2 !important; grid-row: span 1 !important; min-height: 120px; }
-            .skill-block[style*="grid-column: 1 / 4"], .skill-block[style*="grid-column: 7 / 10"], .skill-block[style*="grid-column: 1 / 3"], .skill-block[style*="grid-column: 6 / 9"] { grid-column: span 4 !important; }
+            
+            /* MODIFICATION COMPETENCES : SCROLL HORIZONTAL */
+            .competences-bento {
+                /* On réutilise la grille "Desktop" (10 cols / 6 rows) mais on force une largeur min */
+                display: grid;
+                grid-template-columns: repeat(10, minmax(110px, 1fr)); /* Chaque col fait au moins 110px */
+                grid-template-rows: repeat(6, minmax(0, 1fr));
+                
+                /* Positionnement adapté mobile */
+                top: 130px; bottom: 30px; left: 20px; right: 20px;
+                
+                /* Activation Scroll Horizontal */
+                overflow-x: auto;
+                overflow-y: hidden;
+                gap: 8px;
+                
+                /* Smooth scroll sur mobile */
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 5px; /* Espace pour la barre de scroll */
+            }
+
+            /* Style de la barre de scroll horizontale */
+            .competences-bento::-webkit-scrollbar { height: 4px; }
+            .competences-bento::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+            .competences-bento::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
         }
+
         @media (max-width: 900px) {
             .text-block { padding: 40px 30px; }
             .lit-grid { grid-template-columns: 1fr; }
             #header { min-width: 95%; padding: 15px 20px; gap: 20px; display: flex; }
             .nav-group { gap: 15px; width: auto; }
+            .overlay-content { width: 95%; padding: 30px; }
+            .overlay-header h2 { font-size: 2rem; }
         }
         @media (max-width: 768px) {
             #header { gap: 10px; padding: 10px 15px; width: 95%; top: 15px; }
@@ -322,9 +414,13 @@
             .projets-grid { grid-template-columns: 1fr; top: 60%; height: 65%;}
             .text-block { padding: 30px 20px; }
             .italy-card { width: 70px; height: 100px; }
-            .competences-bento { grid-template-columns: 1fr; grid-template-rows: auto; gap: 15px; overflow-y: auto; padding-bottom: 80px; }
-            .skill-block { grid-column: span 1 !important; min-height: auto; }
-            .skill-block[style*="grid-column"], .logo-block { grid-column: span 1 !important; }
+            
+            /* Ajustement Compétences petit écran */
+            .competences-bento {
+                grid-template-columns: repeat(10, minmax(90px, 1fr)); /* Un peu plus petit sur mobile */
+                left: 15px; right: 15px; bottom: 40px;
+            }
+            
             .contact-form { width: 90%; left: 5%; top: 60%; transform: translateY(-50%); }
             .contact-title { top: 80px; right: 20px; }
             .makingof-container h2 { font-size: 28px; }
@@ -334,6 +430,21 @@
 <body>
     <div id="canvas-container"></div>
     <div id="toast">🚧 Fonctionnalité en cours de développement</div>
+
+    <!-- OVERLAY PROJET (Modal) -->
+    <div id="project-overlay">
+        <div class="overlay-content">
+            <button class="overlay-close">Fermer [X]</button>
+            <div class="overlay-header">
+                <div class="overlay-tags" id="modal-tags"></div>
+                <h2 id="modal-title">Titre du Projet</h2>
+            </div>
+            <div class="overlay-body" id="modal-body">
+                <!-- Contenu injecté via JS -->
+            </div>
+            <div id="modal-footer" style="text-align:center;"></div>
+        </div>
+    </div>
 
     <div id="splash-screen">
         <div class="splash-content">
@@ -476,27 +587,33 @@
             <span class="deco-cross" style="top: 130px; right: 100px;">+</span>
             <div class="projets-title">Projets</div>
             <div class="projets-grid">
-                <div class="project-card glass-panel">
+                <!-- PROJECT 1 -->
+                <div class="project-card glass-panel" data-project="portfolio">
                     <h3>Portfolio Interactif</h3><p>Animations Three.js et navigation 3D.</p>
                     <div class="project-tags"><span class="tag">Three.js</span><span class="tag">JavaScript</span></div>
                 </div>
-                <a class="project-card glass-panel" href="https://touvie.github.io/Hermes/" target="_blank">
+                <!-- PROJECT 2 -->
+                <div class="project-card glass-panel" data-project="hermes">
                     <h3>Éditions Hermès</h3><p>Site vitrine pour une maison d'édition.</p>
                     <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
-                </a>
-                <div class="project-card glass-panel">
+                </div>
+                <!-- PROJECT 3 -->
+                <div class="project-card glass-panel" data-project="escale">
                     <h3>Stop Motion Origami</h3><p>Vidéo d'animation avec personnages en origami.</p>
                     <div class="project-tags"><span class="tag">Stop Motion</span><span class="tag">Montage</span></div>
                 </div>
-                <div class="project-card glass-panel">
+                <!-- PROJECT 4 -->
+                <div class="project-card glass-panel" data-project="frise">
                     <h3>Frise Chronologique</h3><p>Frise interactive sur l'histoire du web.</p>
                     <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">Timeline</span></div>
                 </div>
-                <div class="project-card glass-panel">
+                <!-- PROJECT 5 -->
+                <div class="project-card glass-panel" data-project="traiteur">
                     <h3>Site Traiteur</h3><p>Site vitrine avec galerie et contact.</p>
                     <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
                 </div>
-                <div class="project-card glass-panel">
+                <!-- PROJECT 6 -->
+                <div class="project-card glass-panel" data-project="italie">
                     <h3>Site Italie</h3><p>Premier site web créé en cours.</p>
                     <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
                 </div>
@@ -561,15 +678,15 @@
                 <h3>Partie 1: Le Processus de Création</h3>
                 
                 <h4>Définition des objectifs</h4>
-                <p>Avant de me lancer, j'ai défini mes objectifs. Pas vaguement vraiment comprendre pourquoi, pour qui, comment.</p>
+                <p>Avant de me lancer, j'ai défini mes objectifs. Pas vaguement, vraiment pour comprendre pourquoi, pour qui, comment.</p>
                 <ul>
                     <li><strong>Pourquoi :</strong> Je voulais quelque chose qui montre ma démarche, ma façon de penser. Quelque chose où on pourra se dire "ok là il a réfléchi".</li>
                     <li><strong>Pour qui :</strong> Pour moi d'abord j'avais envie d'apprendre. Et pour les recruteurs MMI pour leur prouver que je suis capable de structurer un projet ambitieux, que je peux me débrouiller avec les outils sans m'en faire esclave.</li>
-                    <li><strong>Comment :</strong> Honnêtement, je n'avais pas les compétences pour faire seul ce que j'imaginais. Mais au lieu de rabaisser ma vision, j'ai décidé que l'IA serait uniquement un outil pas une excuse. Un moyen de pallier mes lacunes techniques tout en apprenant vraiment en chemin.</li>
+                    <li><strong>Comment :</strong> Honnêtement, je n'avais pas les compétences pour faire seul ce que j'imaginais. Mais au lieu de rabaisser ma vision, j'ai décidé que l'IA serait uniquement un outil, pas une excuse. Un moyen de pallier mes lacunes techniques tout en apprenant vraiment en chemin.</li>
                 </ul>
 
                 <h4>Il était un commencement</h4>
-                <p>Pour sortir ce portfolio de terre tel le colosse de Rhodes, trois options s'offraient à moi : faire quelque chose de simple en HTML/CSS comme pour mon premier site, utiliser un CMS du type Worldpress pour avoir un template déjà correct mais sans ambition, ou viser plus haut en mêlant ma créativité avec des outils d'assistance technique.</p>
+                <p>Pour sortir ce portfolio de terre tel le colosse de Rhodes, trois options s'offraient à moi : faire quelque chose de simple en HTML/CSS comme pour mon premier site, utiliser un CMS du type WordPress pour avoir un template déjà correct mais sans ambition, ou viser plus haut en mêlant ma créativité avec des outils d'assistance technique.</p>
                 <p>J'ai choisi la troisième option, non pas pour éviter l'effort, mais au contraire pour explorer un terrain où je pouvais apprendre en avançant et transformer ma motivation théorique en ambition empirique.</p>
 
                 <h4>The timeless art of vibe coding - Rick Rubin</h4>
@@ -582,7 +699,7 @@
                 <p>Pourquoi un trou noir ? Depuis le début, l'idée était de faire un site animé. Le trou noir me semblait être un bon choix: c'est une forme connue, impressionnante, et au final c'est juste une spirale qui tourne. Le ratio entre la difficulté et le résultat visuel était intéressant.</p>
                 
                 <h4>La vision 3D: le trou noir central</h4>
-                <p>Après avoir pris connaissance de la possibilité d'intégrer du 3D via Three.js et WebGL, j'ai imaginé quelque chose de plus ambitieux: un vrai trou noir en 3D. Une sphère noire entourée d'une spirale, en particules pour donner un effet spécial. Le site commencerait par un splash une vue du trou noir en 3D de 45 degrés d'en haut. Un effet qui se veut être impressionnant dès le début. L'inspiration me venait des jeux vidéos gacha que je connais ils ont tous des splashs immersifs (une porte, un train dans l'espace). Je voulais faire quelque chose de similaire.</p>
+                <p>Après avoir pris connaissance de la possibilité d'intégrer du 3D via Three.js et WebGL, j'ai imaginé quelque chose de plus ambitieux: un vrai trou noir en 3D. Une sphère noire entourée d'une spirale, en particules pour donner un effet spécial. Le site commencerait par un splash une vue du trou noir en 3D de 45 degrés d'en haut. Un effet qui se veut être impressionnant dès le début. L'inspiration me venait des jeux vidéo gacha que je connais, car ils ont tous des splashs immersifs (une porte, un train dans l'espace). Je voulais faire quelque chose de similaire.</p>
                 
                 <h4>L'animation d'entrée</h4>
                 <p>Sur le splash, un bouton "entrer" déclencherait l'animation. La caméra se déplacerait en ligne droite vers le centre de la sphère. Au début, j'avais prévu que ça fonctionne au scroll avancer en scrollant, reculer en scrollant dans l'autre sens. Mais j'ai réalisé que le concept d'un splash c'est d'être au début uniquement. J'ai opté pour un bouton qui lance directement l'animation. L'idée: le site se trouve au centre du trou noir tu plonges à l'intérieur.</p>
@@ -603,7 +720,7 @@
                 <p>Ces deux sites ont complètement redéfini mon ambition pour ce projet.</p>
 
                 <h3>Le retour</h3>
-                <p>Après Awwwards, mes ambitions ont décuplé. Pourquoi faire un banal site en 2D quand je pouvais créer quelque chose de vraiment impressionnant, dont je serais réellement fier ? Et là, j'ai eu l'eureka: le portfolio n'était pas juste un site qui regroupe mes projets. Le portfolio lui-même était le projet. Le plus ambitieux que j'aie entrepris. En littérature, on appelle ça un récit enchassé.</p>
+                <p>Après Awwwards, mes ambitions ont décuplé. Pourquoi faire un banal site en 2D quand je pouvais créer quelque chose de vraiment impressionnant, dont je serais réellement fier ? Et là, j'ai eu l'eureka: le portfolio n'était pas juste un site qui regroupe mes projets. Le portfolio lui-même était le projet. Le plus ambitieux que j'aie entrepris. En littérature, on appelle ça un récit enchâssé.</p>
                 <p>J'ai compris qu'une véritable vitrine, c'est pas seulement une belle interface c'est le site entier qui doit respirer créativité, originalité et storytelling. Un portfolio doit jouer sur ces trois éléments, pas juste les énumérer.</p>
 
                 <h3>Deuxième projection</h3>
@@ -622,7 +739,7 @@
                 <ul>
                     <li><strong>Le fond: une skybox cosmique.</strong> Le fond est une grande sphère avec une texture réelle de la Voie lactée (image de l'ESO). L'utilisateur se trouve à l'intérieur de cette sphère, pas devant ça crée une véritable immersion dans l'espace plutôt qu'une simple toile de fond.</li>
                     <li><strong>La sphère noire centrale.</strong> Le trou noir lui-même est une sphère Three.js avec une résolution assez élevée (32 à 64 segments selon la GPU) pour préserver les détails des particules autour. C'est simple en apparence, mais c'est la base sur laquelle repose toute l'optique.</li>
-                    <li><strong>La spirale: le cœur technique.</strong> La spirale n'est pas une simple texture appliquée - c'est un shader (code exécuté directement sur la carte graphique) qui génère la spirale en temps réel. Le système utilise du bruit Perlin (une fonction mathématique qui crée des motifs organiques naturels) pour générer les formes, puis les transforme pour créer cet effet de spirale tournante. L'astuce c'est que la vitesse de rotation n'est pas uniforme: le centre tourne plus vite que les bords, créant cet effet d'essorage caractéristique, comme si la matière était aspirée vers le centre.</li>
+                    <li><strong>La spirale: le cœur technique.</strong> La spirale n'est pas une simple texture appliquée - c'est un shader (code exécuté directement sur la carte graphique) qui génère la spirale en temps réel. Le système utilise du bruit de Perlin (une fonction mathématique qui crée des motifs organiques naturels) pour générer les formes, puis les transforme pour créer cet effet de spirale tournante. L'astuce c'est que la vitesse de rotation n'est pas uniforme: le centre tourne plus vite que les bords, créant cet effet d'essorage caractéristique, comme si la matière était aspirée vers le centre.</li>
                 </ul>
                 <p>Avant, la spirale était faite en particules, mais c'était moins fluide. Avec Gemini 3.0, en passant à un système de shader, la spirale est devenue vraiment élégante et performante.</p>
 
@@ -635,7 +752,7 @@
                 <h4>Section À propos</h4>
                 <p><strong>La complication: une section qui parle de soi.</strong> La section À propos a été la plus compliquée à mettre en place. D'abord le contenu : étant moi-même le genre de personne à avoir du mal à parler de soi, il a fallu plusieurs réécritures avant de trouver la bonne structure. Au final j'ai trouvé la solution dans mon côté littéraire. L'idée était d'utiliser un schéma narratif littéraire classique Situation initiale, Élément perturbateur, Péripéties, Dénouement, Situation finale comme on le ferait pour une histoire. Cela rendait l'exercice plus cohérent avec le parcours littéraire, tout en transformant l'autobiographie en véritable narration.</p>
                 <p><strong>La complication: intégrer le 3D au texte.</strong> La deuxième complication était la forme. L'idée était que cette section se déploierait à l'intérieur du trou noir une transition visuelle claire avec le reste du site. Mais on voulait aussi intégrer des systèmes de particules 3D en parallèle du texte. Le défi c'était l'équilibre: comment placer du contenu textuel lourd (plusieurs blocs) à côté d'animations 3D sans que l'un éclipse l'autre ? Les systèmes de particules inspirés de The Way Of Code utilisent des attracteurs mathématiques formes mathématiques qui utilisent la loi du chaos qui créent des formes organiques continuellement transformées. Mais la taille du texte rendait difficile de bien les intégrer.</p>
-                <p>La solution a été de créer un système adaptatif: chaque bloc textuel a à côté un système de particules unique qui morphe entre deux formes différentes, au rythme du scroll. Le scroll lui-même devient un paramètre d'animation. De plus aimant particulièrement la mécanique des easter eggs, il y a dans ce texte une référence cachée, sauriez vous la retrouver ?</p>
+                <p>La solution a été de créer un système adaptatif: chaque bloc textuel a à côté un système de particules unique qui se transforme entre deux formes différentes, au rythme du scroll. Le scroll lui-même devient un paramètre d'animation. De plus aimant particulièrement la mécanique des easter eggs, il y a dans ce texte une référence cachée, sauriez-vous la retrouver ?</p>
 
                 <h4>Section Projets</h4>
                 <p>La section Projets présente les projets sous forme de grille (3 colonnes, 2 lignes). L'idée principale c'est que le fond de chaque carte est un teaser visuel du projet lui-même. Plutôt que de lire une description, on voit directement ce qu'on trouvera à l'intérieur. C'est montrer plutôt que raconter.</p>
@@ -646,7 +763,7 @@
 
                 <h3>Conclusion</h3>
                 <p>Ce projet a demandé beaucoup de travail explorations, itérations, apprentissages. Ce n'était pas juste quelques prompts et c'est fini. J'ai expérimenté beaucoup, j'ai cherché beaucoup, j'ai échoué beaucoup mais surtout j'ai appris beaucoup.</p>
-                <p>L'IA a été un outil pour matérialiser une vision, pas l'inverse. Les vraies décisions les découvertes (Three.js, Awwards, les attracteurs mathématiques), les pivots conscients, les choix de design c'est moi. L'IA m'a permis de concrétiser ma pensée là où je ne savais pas techniquement comment la mettre en forme, mais la vision venait de moi.</p>
+                <p>L'IA a été un outil pour matérialiser une vision, pas l'inverse. Les vraies décisions les découvertes (Three.js, Awwards, les attracteurs mathématiques), les pivots conscients, les choix de design c'est moi qui les ai prises. L'IA m'a permis de concrétiser ma pensée là où je ne savais pas techniquement comment la mettre en forme, mais la vision venait de moi.</p>
                 <p>Tout le monde dit qu'ils sont motivés et curieux, moi j'ai décidé de le montrer concrètement. Ce portfolio c'est une motivation concrète, pas celle des lettres de motivation. C'est 30 heures d'expérimentation, c'est des pivots conscients, c'est des découvertes qu'on suit. C'est la preuve que quand une idée m'intéresse, je creuse vraiment. MMI c'est l'opportunité d'amplifier ça: apprendre vraiment le développement web, le design d'interfaces, la narration interactive.</p>
                 <p>À terme, je veux mener des projets complets de la conception à la réalisation - où chaque élément (design, code, contenu) raconte la même histoire. Où un site d'édition n'est pas juste une vitrine, mais une vraie expérience qui reflète l'identité de la maison. Il y a tant de maisons d'édition et de librairies qui méritent un site internet qui les met en valeur qui raconte leur histoire, pas juste qui liste leurs produits.</p>
                 
@@ -669,6 +786,194 @@
 
     <script type="module">
         import * as THREE from 'three';
+        
+        // --- DATA PROJETS (Extrait des PDF) ---
+        const projectsData = {
+            "portfolio": {
+                title: "Portfolio Interactif",
+                tags: ["Three.js", "WebGL", "Storytelling"],
+                content: `
+                    <h3>Un récit en trois dimensions</h3>
+                    <p>Ce portfolio n'est pas qu'une simple vitrine : c'est une exploration technique et narrative. L'objectif était de transformer une navigation web classique en une expérience immersive.</p>
+                    <p>Au lieu de lister mes compétences, j'ai voulu les démontrer : la gestion de la 3D avec Three.js, l'optimisation des shaders pour l'animation du trou noir, et une structure narrative inspirée des schémas littéraires.</p>
+                    <h3>Défis techniques</h3>
+                    <p>Le plus grand défi a été d'équilibrer la performance et l'esthétique. Le système de particules et les effets de post-traitement (bloom) sont gourmands, il a fallu optimiser le code pour qu'il tourne correctement même sur des machines modestes.</p>
+                `,
+                link: null, // Déjà dessus
+                linkLabel: "Vous y êtes déjà !"
+            },
+            "hermes": {
+                title: "Éditions Hermès",
+                tags: ["HTML", "CSS", "Identité Visuelle"],
+                content: `
+                    <h3>Présentation</h3>
+                    <p>Ce projet de groupe consistait à imaginer une maison d'édition de A à Z : son identité, sa collection et le premier titre de celle-ci. De mon côté, j'ai élaboré un plan de diffusion et de distribution cohérent, puis j'ai conçu et géré le site web des Éditions Hermès, afin d'offrir une vitrine numérique fidèle à l'esprit de la maison.</p>
+                    
+                    <h3>Volonté Artistique</h3>
+                    <p>Le site des Éditions Hermès adopte volontairement une esthétique très sobre. J'ai choisi une interface simple, presque dépouillée, en écho direct à la charte graphique minimaliste que nous avions définie. C'était une manière de montrer ma capacité à m'adapter à un univers visuel précis, sans le surcharger.</p>
+                    <p>Je me suis toutefois autorisé un <em>easter egg</em> discret, comme une petite trace personnelle glissée derrière la façade, preuve que la rigueur peut cohabiter avec un clin d'œil subtil.</p>
+                    
+                    <h3>Conclusion</h3>
+                    <p>Imaginer le site d'une maison d'édition fictive m'a donné envie de travailler, un jour, pour une maison bien réelle. En intégrant sa charte graphique au mieux, j'ai réellement pris plaisir à construire un espace lisible, cohérent et accueillant.</p>
+                    <p>Cette deuxième expérience de création de site web renforce mon envie d'aller plus loin dans les principes d'UI et d'UX design, pour affiner mes choix, comprendre davantage les usages et améliorer encore mes futures créations.</p>
+                `,
+                link: "https://touvie.github.io/Hermes/",
+                linkLabel: "Visiter le site"
+            },
+            "escale": {
+                title: "Stop Motion - Pas prévu",
+                tags: ["Stop Motion", "Origami", "Montage"],
+                content: `
+                    <h3>Présentation générale</h3>
+                    <p>Dans le cadre d'un partenariat avec le salon littéraire <em>Les Escales du Livre</em>, situé à Bordeaux au cœur de l'écosystème Darwin, deux camarades et moi avons imaginé puis réalisé une vidéo de promotion autour de l'album <em>Pas prévu</em> d'Élo, publié à L'École des loisirs.</p>
+                    <p>La cible étant de très jeunes enfants autour de quatre ans, nous avons choisi le <strong>stop motion</strong> et des personnages façonnés en <strong>origami</strong>, afin de rester proches de cet univers de simplicité, de jeu et de petites mains encore hésitantes.</p>
+                    
+                    <!-- EXEMPLE D'INTÉGRATION YOUTUBE -->
+                    <div class="video-container">
+                        <!-- Remplace l'URL ci-dessous par celle de ta vidéo (embed) -->
+                        <!-- Si ton lien est https://youtu.be/XYZ123, mets src="https://www.youtube.com/embed/XYZ123" -->
+                        <iframe 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=placeholder" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h3>Ce que j'ai appris</h3>
+                    <p>C'était la première fois que je me confrontais à l'écriture d'un script pensé pour un tournage. Écrire en anticipant la mise en scène, puis confronter ces idées au réel du plateau, révèle très vite des contraintes que l'on n'imagine pas au début. Cette découverte progressive, presque empirique, m'a beaucoup plu.</p>
+                    <p>J'ai également appris à manipuler un logiciel de montage (CapCut sur ordinateur) et à comprendre comment une vidéo prend forme, image après image.</p>
+                    
+                    <h3>Conclusion</h3>
+                    <p>Cette première immersion dans le domaine du multimédia, que je ne connaissais alors qu'en surface, m'a offert un point d'ancrage clair : je veux poursuivre dans cette voie. Elle confirme mon désir de me tourner vers les Métiers du Multimédia et de l'Internet, où l'image, l'histoire et l'expérimentation se rencontrent.</p>
+                `,
+                link: "#",
+                linkLabel: "Voir la vidéo sur YouTube"
+            },
+            "frise": {
+                title: "Frise Chronologique",
+                tags: ["Figma", "UX/UI", "Prototypage"],
+                content: `
+                    <h3>Présentation</h3>
+                    <p>Dans le cadre d'un projet réunissant la musique, la littérature et l'histoire de l'art, deux camarades et moi avons été chargés de concevoir une frise chronologique complète, sur le support de notre choix. Elle devait rassembler des dates essentielles pour chacune des trois disciplines. Nous avons choisi de la réaliser sur <strong>Figma</strong>, afin d'exploiter ses possibilités de mise en page et d'interactivité.</p>
+                    
+                    <h3>La frise</h3>
+                    <p>Nous avons imaginé la frise comme un ensemble de trois lignes temporelles parallèles, chacune consacrée à une matière. Le prototypage entièrement réalisé sur Figma nous a permis de créer une interface claire, où l'on peut cliquer sur des boutons pour faire apparaître les périodes, les mouvements et les événements. La frise n'est donc pas une simple image statique : elle fonctionne comme une petite interface interactive.</p>
+                    
+                    <h3>Conclusion</h3>
+                    <p>C'est avec ce projet que j'ai vraiment pris en main Figma. J'ai découvert comment construire un prototype interactif, en reliant des pages, en définissant des transitions et en rendant la navigation fluide. Cette approche m'a donné une première idée concrète de ce que peut être une interface pensée pour l'utilisateur.</p>
+                `,
+                // Modification ici pour supporter plusieurs boutons
+                buttons: [
+                    { label: "Voir le Prototype", url: "#" }, // Remplace par le lien proto
+                    { label: "Voir les Maquettes (Design)", url: "https://www.figma.com/design/QujD1wpP5gShSFdK1rJn37/Frise-chronoogique?node-id=0-1&t=k7SPQ3ya9DfJXzZ8-1" }
+                ]
+            },
+            "traiteur": {
+                title: "Site Traiteur",
+                tags: ["HTML", "CSS", "WIP"],
+                content: `
+                    <div style="display:flex; justify-content:center; align-items:center; height:100%; min-height:200px;">
+                        <h3 style="color: var(--accent); font-family: 'Space Mono'; text-transform: uppercase;">🚧 Fonctionnalité en cours de développement</h3>
+                    </div>
+                `,
+                link: null,
+                linkLabel: null
+            },
+            "italie": {
+                title: "Projet Italie",
+                tags: ["Premier Site", "HTML", "Découverte"],
+                content: `
+                    <h3>Le point de départ</h3>
+                    <p>Il y a un an, j'ai créé mon premier site web lors d'un cours d'informatique. Le sujet : l'Italie. Trois sections en cards – Nourriture, Monuments, Villes – structurées en HTML et stylisées en CSS. Les bases les plus basiques de la basitude.</p>
+                    <h3>Une révélation</h3>
+                    <p>Mais j'ai aimé le faire. Pas seulement le résultat, dont l'UI est sommaire, mais le processus lui-même : structurer l'information, choisir les couleurs, voir mes modifications s'afficher en direct. J'y ai passé plus de temps que les autres. Pas par obligation, mais parce que quelque chose dans cette façon de créer me plaisait vraiment.</p>
+                `,
+                link: "https://touvie.github.io/Italie",
+                linkLabel: "Visiter le site"
+            }
+        };
+
+        // GESTION MODAL
+        const modal = document.getElementById('project-overlay');
+        const modalTitle = document.getElementById('modal-title');
+        const modalTags = document.getElementById('modal-tags');
+        const modalBody = document.getElementById('modal-body');
+        const modalFooter = document.getElementById('modal-footer');
+        const closeModal = document.querySelector('.overlay-close');
+
+        function openModal(projectId) {
+            const data = projectsData[projectId];
+            if (!data) return;
+
+            modalTitle.innerText = data.title;
+            modalBody.innerHTML = data.content;
+            
+            // Tags
+            modalTags.innerHTML = '';
+            data.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'overlay-tag';
+                span.innerText = tag;
+                modalTags.appendChild(span);
+            });
+
+            // Footer Button(s)
+            modalFooter.innerHTML = '';
+            
+            if (data.buttons) {
+                // Cas avec plusieurs boutons (comme la Frise)
+                data.buttons.forEach(btnData => {
+                    const btn = document.createElement('a');
+                    btn.className = 'overlay-btn';
+                    btn.href = btnData.url;
+                    btn.target = "_blank";
+                    btn.innerText = `[ ${btnData.label} ]`;
+                    modalFooter.appendChild(btn);
+                });
+            } else if (data.link && data.link !== "#") {
+                // Cas classique (un seul lien)
+                const btn = document.createElement('a');
+                btn.className = 'overlay-btn';
+                btn.href = data.link;
+                btn.target = "_blank";
+                btn.innerText = `[ ${data.linkLabel} ]`;
+                modalFooter.appendChild(btn);
+            } else if (data.linkLabel) {
+                // Cas sans lien actif
+                const span = document.createElement('span');
+                span.style.fontFamily = "'Space Mono'";
+                span.style.fontSize = "10px";
+                span.style.color = "rgba(255,255,255,0.5)";
+                span.innerText = data.linkLabel;
+                modalFooter.appendChild(span);
+            }
+
+            modal.classList.add('visible');
+        }
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('visible');
+        });
+
+        // Fermer en cliquant en dehors
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('visible');
+            }
+        });
+
+        // Initialisation des écouteurs sur les cartes
+        function setupProjectCards() {
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault(); // Empêche le lien par défaut
+                    const pid = card.dataset.project;
+                    if(pid) openModal(pid);
+                });
+            });
+        }
+
         
         // GPU DETECTION
         function getGPUTier() {
@@ -799,7 +1104,7 @@
             }
 
             setupNavigation();
-            setupProjectToast();
+            setupProjectCards(); // CHANGED: Nouveau setup pour les cards
             animate();
         }
 
@@ -933,20 +1238,6 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        function setupProjectToast() {
-            const toast = document.getElementById('toast');
-            document.querySelectorAll('.project-card').forEach(card => {
-                if(!card.getAttribute('href')) { 
-                    card.addEventListener('click', () => {
-                        if(toast) {
-                            toast.classList.add('visible');
-                            setTimeout(() => { toast.classList.remove('visible'); }, 3000);
-                        }
-                    });
-                }
-            });
         }
 
         const sectionCoords = [
