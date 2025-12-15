@@ -24,7 +24,6 @@
         #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
         
         /* --- ZOOM INITIAL SUR LE CANVAS (CSS) --- */
-        /* C'est ici que tu gères la durée du dé-zoom (3s) */
         #canvas-container { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; 
             transform: scale(1.5); /* Zoom initial (1.5 = 150%) */
@@ -36,21 +35,19 @@
             transform: scale(1); /* Retour à la taille normale */
         }
 
-        /* --- SPLASH SCREEN (DESIGN TYPE A4-7 FINAL) --- */
+        /* --- SPLASH SCREEN --- */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: transparent; /* FOND TRANSPARENT POUR VOIR LE TROU NOIR */
             z-index: 9999;
             display: flex; flex-direction: column;
-            padding: 40px 60px; /* Marges desktop */
-            /* On garde la transition d'opacité pour la sortie fluide */
+            padding: 40px 60px; 
             transition: opacity 1s ease;
         }
 
         /* HEADER FICTIF DU SPLASH */
         .splash-header-wrapper {
             width: 100%;
-            /* Animation state */
             opacity: 1; transform: translateY(0);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
@@ -58,12 +55,12 @@
         .splash-header-content {
             display: flex; justify-content: space-between; align-items: baseline;
             padding-bottom: 20px;
-            border-bottom: 1px solid rgba(191, 161, 129, 0.4); /* Ligne fine dorée */
+            border-bottom: 1px solid rgba(191, 161, 129, 0.4); 
         }
 
         .splash-brand {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(40px, 6vw, 90px); /* Grand titre */
+            font-size: clamp(40px, 6vw, 90px); 
             font-weight: 700; color: #fff;
             letter-spacing: -2px; line-height: 0.8;
         }
@@ -72,22 +69,22 @@
             font-family: 'Space Mono', monospace;
             font-size: 11px; color: var(--accent);
             text-transform: uppercase; letter-spacing: 3px;
-            display: flex; gap: 40px; /* Espace large entre les items */
+            display: flex; gap: 40px; 
         }
 
         /* CONTENU CENTRAL DU SPLASH */
         .splash-center {
-            flex-grow: 1; /* Prend l'espace restant */
+            flex-grow: 1; 
             display: flex; flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            padding-top: 10vh; /* Pousse vers le bas */
+            padding-top: 10vh; 
             width: 100%;
         }
         
         .splash-text-container {
             text-align: center;
-            margin-bottom: 80px; /* Espace avant le bouton */
+            margin-bottom: 80px; 
         }
 
         .splash-quote-main {
@@ -95,7 +92,6 @@
             font-size: clamp(28px, 3.5vw, 52px);
             color: #fff; line-height: 1.3;
             margin-bottom: 40px;
-            /* Animation state */
             opacity: 1; transform: translateY(0);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
@@ -105,7 +101,6 @@
             font-style: italic;
             font-size: clamp(16px, 2vw, 24px);
             color: rgba(255, 255, 255, 0.7);
-            /* Animation state */
             opacity: 1; transform: translateY(0);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
@@ -117,7 +112,6 @@
             border: 1px solid rgba(255,255,255,0.2);
             text-transform: uppercase; letter-spacing: 3px;
             cursor: pointer; transition: all 0.3s ease;
-            /* Animation state */
             opacity: 1; transform: translateY(0);
         }
         .splash-btn:hover { background: #fff; color: #000; letter-spacing: 5px; border-color: #fff; }
@@ -132,13 +126,13 @@
         /* RESPONSIVE SPLASH */
         @media (max-width: 900px) {
              #splash-screen { padding: 30px; }
-             .splash-header-content { flex-direction: column; align-items: center; gap: 20px; border-bottom: none; } /* On simplifie sur mobile */
+             .splash-header-content { flex-direction: column; align-items: center; gap: 20px; border-bottom: none; } 
              .splash-brand { font-size: 60px; }
              .splash-nav-list { font-size: 10px; gap: 20px; }
              .splash-center { padding-top: 5vh; }
         }
 
-       /* HEADER (VRAI MENU - Caché au début) */
+       /* HEADER */
         #header {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 5000;
             padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; 
@@ -212,7 +206,7 @@
         .accueil-cta { position: absolute; bottom: 60px; right: 60px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); color: #fff; padding: 12px 25px; cursor: pointer; transition: all 0.3s; text-decoration: none; pointer-events: auto; z-index: 200; }
         .accueil-cta:hover { background: #fff; color: #0a0a0f; }
 
-        /* SCROLL INDICATOR (VISIBLE ET ANIMÉ) */
+        /* SCROLL INDICATOR */
         .scroll-hint {
             position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
             display: flex; flex-direction: column; align-items: center; gap: 15px;
@@ -248,10 +242,7 @@
             100% { transform: translateX(-50%) translateY(16px); opacity: 0; }
         }
 
-        /* =========================================
-           NOUVELLE SECTION A PROPOS
-           ========================================= */
-        
+        /* A PROPOS */
         .apropos-wrapper { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             overflow-y: auto; overflow-x: hidden; 
@@ -341,6 +332,62 @@
         .project-card p { font-size: 10px; line-height: 1.5; color: rgba(255, 255, 255, 0.5); flex: 1; }
         .project-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
         .tag { font-family: 'Space Mono', monospace; font-size: 7px; color: rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.05); padding: 3px 6px; text-transform: uppercase; }
+        
+        /* OVERLAY PROJET */
+        #project-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 6000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        #project-overlay.visible { opacity: 1; pointer-events: auto; }
+        
+        .overlay-content {
+            width: 80%; max-width: 900px; max-height: 85vh;
+            background: rgba(15, 15, 20, 0.95);
+            border: 1px solid var(--accent);
+            padding: 50px; border-radius: 4px;
+            overflow-y: auto; position: relative;
+            transform: translateY(30px); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            scrollbar-width: thin; scrollbar-color: var(--accent) rgba(0,0,0,0.3);
+        }
+        #project-overlay.visible .overlay-content { transform: translateY(0); }
+        
+        .overlay-close {
+            position: absolute; top: 30px; right: 30px;
+            font-family: 'Space Mono'; font-size: 12px; color: rgba(32, 28, 28, 0.5);
+            cursor: pointer; transition: color 0.3s; text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.2); padding: 8px 15px;
+        }
+        .overlay-close:hover { color: var(--accent); border-color: var(--accent); }
+
+        .overlay-header h2 {
+            font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent);
+            margin-bottom: 20px; line-height: 1.1;
+        }
+        .overlay-tags { display: flex; gap: 10px; margin-bottom: 40px; }
+        .overlay-tag {
+            font-family: 'Space Mono'; font-size: 9px; color: #000;
+            background: var(--accent); padding: 5px 10px; text-transform: uppercase; font-weight: 700;
+        }
+        .overlay-body { font-family: 'Inter', sans-serif; font-size: 1.05rem; line-height: 1.8; color: var(--text-light); }
+        .overlay-body h3 {
+            font-family: 'Space Mono'; color: var(--accent); font-size: 1.1rem;
+            margin: 40px 0 15px 0; text-transform: uppercase; letter-spacing: 1px;
+            border-bottom: 1px solid rgba(191,161,129,0.2); padding-bottom: 10px; display: inline-block;
+        }
+        .overlay-body p { margin-bottom: 20px; text-align: justify; }
+        
+        .overlay-btn {
+            display: inline-block; margin-top: 30px; margin-right: 15px; padding: 15px 35px;
+            background: transparent; border: 1px solid var(--accent);
+            color: var(--accent); font-family: 'Space Mono'; font-size: 11px;
+            text-transform: uppercase; letter-spacing: 2px; text-decoration: none;
+            transition: all 0.3s; cursor: pointer;
+        }
+        .overlay-btn:hover { background: var(--accent); color: #000; }
         #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: rgba(191, 161, 129, 0.9); color: #000; padding: 12px 24px; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; z-index: 10000; opacity: 0; transition: all 0.5s ease; pointer-events: none; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
         #toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
 
@@ -387,31 +434,52 @@
         
         .mo-placeholder { width: 100%; height: 60px; background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 20px 0; font-family: 'Space Mono', monospace; color: rgba(255, 255, 255, 0.4); font-size: 10px; }
 
+        /* --- CSS POUR MÉDIAS MAKING OF (AJUSTÉ) --- */
+        .mo-media-container {
+            margin: 40px auto; 
+            width: 100%;       
+            text-align: center;
+        }
+
+        .mo-media {
+            max-width: 100%;   
+            height: auto;      
+            max-height: 80vh;  
+            border-radius: 8px;
+            border: 1px solid rgba(191, 161, 129, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: block;
+            margin: 0 auto;    
+        }
+
+        .mo-caption {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 10px;
+            display: block;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
         @media (max-width: 1024px) {
             .projets-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; top: 55%; height: 70%; overflow-y: auto; display: block; }
-            .project-card { margin-bottom: 20px; }
-            
+            .project-card { margin-bottom: 20px; 
+        }
+
             /* MODIFICATION COMPETENCES : SCROLL HORIZONTAL */
             .competences-bento {
-                /* On réutilise la grille "Desktop" (10 cols / 6 rows) mais on force une largeur min */
                 display: grid;
-                grid-template-columns: repeat(10, minmax(110px, 1fr)); /* Chaque col fait au moins 110px */
+                grid-template-columns: repeat(10, minmax(110px, 1fr)); 
                 grid-template-rows: repeat(6, minmax(0, 1fr));
-                
-                /* Positionnement adapté mobile */
                 top: 130px; bottom: 30px; left: 20px; right: 20px;
-                
-                /* Activation Scroll Horizontal */
                 overflow-x: auto;
                 overflow-y: hidden;
                 gap: 8px;
-                
-                /* Smooth scroll sur mobile */
                 -webkit-overflow-scrolling: touch;
-                padding-bottom: 5px; /* Espace pour la barre de scroll */
+                padding-bottom: 5px; 
             }
 
-            /* Style de la barre de scroll horizontale */
             .competences-bento::-webkit-scrollbar { height: 4px; }
             .competences-bento::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
             .competences-bento::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
@@ -434,15 +502,13 @@
             .text-block { padding: 30px 20px; }
             .italy-card { width: 70px; height: 100px; }
             
-            /* Ajustement Compétences petit écran */
             .competences-bento {
-                grid-template-columns: repeat(10, minmax(90px, 1fr)); /* Un peu plus petit sur mobile */
+                grid-template-columns: repeat(10, minmax(90px, 1fr)); 
                 left: 15px; right: 15px; bottom: 40px;
             }
             
             .makingof-container h2 { font-size: 28px; }
             
-            /* Ajustement Splash Mobile */
             #splash-screen { padding: 30px 20px; }
             .splash-header-content { flex-direction: column; align-items: flex-start; gap: 20px; }
             .splash-brand { font-size: 48px; }
@@ -453,11 +519,11 @@
         }
     </style>
 </head>
+
 <body>
     <div id="canvas-container"></div>
     <div id="toast">🚧 Fonctionnalité en cours de développement</div>
 
-    <!-- SCROLL HINT (NEW) -->
     <div class="scroll-hint" id="scroll-hint">
         <div class="scroll-mouse">
             <div class="scroll-wheel"></div>
@@ -465,7 +531,6 @@
         <span>SCROLL</span>
     </div>
 
-    <!-- OVERLAY PROJET (Modal) -->
     <div id="project-overlay">
         <div class="overlay-content">
             <button class="overlay-close">Fermer [X]</button>
@@ -474,13 +539,11 @@
                 <h2 id="modal-title">Titre du Projet</h2>
             </div>
             <div class="overlay-body" id="modal-body">
-                <!-- Contenu injecté via JS -->
-            </div>
+                </div>
             <div id="modal-footer" style="text-align:center;"></div>
         </div>
     </div>
 
-    <!-- NOUVEAU SPLASH SCREEN (DESIGN TYPE A4-7 FINAL) -->
     <div id="splash-screen">
         <div class="splash-header-wrapper" id="splash-header-box">
             <div class="splash-header-content">
@@ -521,8 +584,6 @@
     </nav>
     
     <div id="sections-container">
-        <!-- ... (Contenu des sections inchangé) ... -->
-        <!-- Code simplifié pour l'exemple, le reste du HTML est identique à la version précédente -->
         <div class="section" data-section="0">
             <span class="deco-cross" style="top: 200px; right: 200px;">+</span>
             <span class="deco-cross" style="top: 400px; left: 300px;">+</span>
@@ -545,7 +606,6 @@
             <div class="section-number">01<span>Accueil</span></div>
         </div>
         
-        <!-- ... autres sections ... -->
          <div class="section" data-section="1">
             <div class="apropos-wrapper">
                 <div class="content-container">
@@ -605,50 +665,98 @@
 
         <div class="section" data-section="2">
             <div class="makingof-container glass-panel">
-                <h2>Making OF - Portfolio</h2>
-                <h3>Partie 1: Le Processus de Création</h3>
-                <h4>Définition des objectifs</h4>
-                <p>Avant de me lancer, j'ai défini mes objectifs. Pas vaguement, vraiment pour comprendre pourquoi, pour qui, comment.</p>
-                <ul>
-                    <li><strong>Pourquoi :</strong> Je voulais quelque chose qui montre ma démarche, ma façon de penser. Quelque chose où on pourra se dire "ok là il a réfléchi".</li>
-                    <li><strong>Pour qui :</strong> Pour moi d'abord j'avais envie d'apprendre. Et pour les recruteurs MMI pour leur prouver que je suis capable de structurer un projet ambitieux, que je peux me débrouiller avec les outils sans m'en faire esclave.</li>
-                    <li><strong>Comment :</strong> Honnêtement, je n'avais pas les compétences pour faire seul ce que j'imaginais. Mais au lieu de rabaisser ma vision, j'ai décidé que l'IA serait uniquement un outil, pas une excuse. Un moyen de pallier mes lacunes techniques tout en apprenant vraiment en chemin.</li>
-                </ul>
-                <h4>Il était un commencement</h4>
-                <p>Pour sortir ce portfolio de terre tel le colosse de Rhodes, trois options s'offraient à moi : faire quelque chose de simple en HTML/CSS comme pour mon premier site, utiliser un CMS du type WordPress pour avoir un template déjà correct mais sans ambition, ou viser plus haut en mêlant ma créativité avec des outils d'assistance technique.</p>
-                <p>J'ai choisi la troisième option, non pas pour éviter l'effort, mais au contraire pour explorer un terrain où je pouvais apprendre en avançant et transformer ma motivation théorique en ambition empirique.</p>
-                <h4>The timeless art of vibe coding - Rick Rubin</h4>
-                <p>C'est en explorant les Artefacts publics de Claude IA que j'ai découvert <em>The Way of Code</em>, créé en collaboration entre Anthropic et Rick Rubin. Ce site a vraiment été une première grande inspiration pour moi. Chaque page du site est une exploration artistique différente très inspirante. Mais bien qu'elle ne soit pas particulièrement la plus artistiquement poussée, c'est la page 26, avec ses particules qui bougent comme des vagues - ou comme un livre qui s'ouvre, qui m'a vraiment marqué. En voyant ça, j'ai été inspiré - j'arrivais à me projeter dans ce que je voulais faire.</p>
-                <p>En l'inspectant et en comprenant comment il était construit, j'ai découvert <strong>Three.js</strong> une bibliothèque JavaScript pour faire de la 3D sur le web. Jusqu'alors, j'ignorais qu'il était même possible de faire une telle chose.</p>
-                <h3>Première projection</h3>
-                <h4>Le choix du trou noir</h4>
-                <p>Pourquoi un trou noir ? Depuis le début, l'idée était de faire un site animé. Le trou noir me semblait être un bon choix: c'est une forme connue, impressionnante, et au final c'est juste une spirale qui tourne. Le ratio entre la difficulté et le résultat visuel était intéressant.</p>
-                <h4>La vision 3D: le trou noir central</h4>
-                <p>Après avoir pris connaissance de la possibilité d'intégrer du 3D via Three.js et WebGL, j'ai imaginé quelque chose de plus ambitieux: un vrai trou noir en 3D. Une sphère noire entourée d'une spirale, en particules pour donner un effet spécial. Le site commencerait par un splash une vue du trou noir en 3D de 45 degrés d'en haut. Un effet qui se veut être impressionnant dès le début. L'inspiration me venait des jeux vidéo gacha que je connais, car ils ont tous des splashs immersifs (une porte, un train dans l'espace). Je voulais faire quelque chose de similaire.</p>
-                <h4>L'animation d'entrée</h4>
-                <p>Sur le splash, un bouton "entrer" déclencherait l'animation. La caméra se déplacerait en ligne droite vers le centre de la sphère. Au début, j'avais prévu que ça fonctionne au scroll avancer en scrollant, reculer en scrollant dans l'autre sens. Mais j'ai réalisé que le concept d'un splash c'est d'être au début uniquement. J'ai opté pour un bouton qui lance directement l'animation. L'idée: le site se trouve au centre du trou noir tu plonges à l'intérieur.</p>
-                <h4>Après le splash</h4>
-                <p>Une fois à l'intérieur, le site devient classique: une page web avec scroll vertical pour voir les sections. J'ai gardé cette version un moment parce que j'avançais plus vite sur la forme que sur le fond.</p>
-                <h3>Awwwards ou la genèse du renouveau</h3>
-                <p>C'est à ce moment-là que j'ai découvert <strong>Awwwards</strong>, un site qui regroupe les sites webs les plus impressionnants d'UI & UX designers professionnels. C'est rapidement devenu mon meilleur site découvert en 2025. En explorant, deux sites en particulier m'ont vraiment marqué et ont changé ma vision du projet.</p>
-                <h4>Mantis: l'équilibre parfait</h4>
-                <p>Mantis m'a montré comment faire un site totalement original tout en restant équilibré. Les couleurs sont sobres, les textes sont courts mais impactant comme des slogans. Mais ce qui m'a surtout frappé, c'est leur utilisation du 3D : des genres de statues où le scroll va de pair avec le mouvement caméra. C'est superbe et ça respire l'équilibre.</p>
-                <p>Ça m'a vraiment influencé. J'ai réalisé qu'on pouvait intégrer la 3D de manière bien pensée sans que ça fasse "trop". Que ce ne soit pas juste un splash au début, mais que la 3D fasse partie du site entier. Mantis.works a prouvé qu'on pouvait être impressionnant tout en gardant de la retenue.</p>
-                <h4>Heidelberg Materials: le 3D total</h4>
-                <p>Ensuite, j'ai découvert le site de Heidelberg Materials. Là, c'était complètement différent. Le site entier n'était que du 3D. Ce n'était pas des éléments 3D placés dans un environnement 2D comme chez Mantis - c'était du pur 3D avec des mouvements de caméra qui te font naviguer d'une section à l'autre. Et tout était fait avec des particules - partout.</p>
+        <h2>Making OF - Portfolio</h2>
+    
+        <h3>Partie 1: Le Processus de Création</h3>
+    
+        <h4>Définition des objectifs</h4>
+        <p>Avant de me lancer, j'ai défini mes objectifs. Pas vaguement, vraiment pour comprendre pourquoi, pour qui, comment.</p>
+        <ul>
+         <li><strong>Pourquoi :</strong> Je voulais quelque chose qui montre ma démarche, ma façon de penser. Quelque chose où on pourra se dire "ok là il a réfléchi".</li>
+         <li><strong>Pour qui :</strong> Pour moi d'abord j'avais envie d'apprendre. Et pour les recruteurs MMI pour leur prouver que je suis capable de structurer un projet ambitieux, que je peux me débrouiller avec les outils sans m'en faire esclave.</li>
+         <li><strong>Comment :</strong> Honnêtement, je n'avais pas les compétences pour faire seul ce que j'imaginais. Mais au lieu de rabaisser ma vision, j'ai décidé que l'IA serait uniquement un outil, pas une excuse. Un moyen de pallier mes lacunes techniques tout en apprenant vraiment en chemin.</li>
+        </ul>
+
+        <h4>Il était un commencement</h4>
+        <p>Pour sortir ce portfolio de terre tel le colosse de Rhodes, trois options s'offraient à moi : faire quelque chose de simple en HTML/CSS comme pour mon premier site, utiliser un CMS du type WordPress pour avoir un template déjà correct mais sans ambition, ou viser plus haut en mêlant ma créativité avec des outils d'assistance technique.</p>
+        <p>J'ai choisi la troisième option, non pas pour éviter l'effort, mais au contraire pour explorer un terrain où je pouvais apprendre en avançant et transformer ma motivation théorique en ambition empirique.</p>
+
+        <h4>The timeless art of vibe coding - Rick Rubin</h4>
+        <p>C'est en explorant les Artefacts publics de Claude IA que j'ai découvert <em>The Way of Code</em>, créé en collaboration entre Anthropic et Rick Rubin. Ce site a vraiment été une première grande inspiration pour moi. Chaque page du site est une exploration artistique différente très inspirante. Mais bien qu'elle ne soit pas particulièrement la plus artistiquement poussée, c'est la page 26, avec ses particules qui bougent comme des vagues - ou comme un livre qui s'ouvre, qui m'a vraiment marqué. En voyant ça, j'ai été inspiré - j'arrivais à me projeter dans ce que je voulais faire.</p>
+        <p>En l'inspectant et en comprenant comment il était construit, j'ai découvert <strong>Three.js</strong> une bibliothèque JavaScript pour faire de la 3D sur le web. Jusqu'alors, j'ignorais qu'il était même possible de faire une telle chose.</p>
+
+        <h3>Première projection</h3>
+
+        <h4>Le choix du trou noir</h4>
+        <p>Pourquoi un trou noir ? Quand j'étais petit, j'étais fasciné par l'espace. Loin de moi l'idée de vouloir être astronaute, j'admirais la lune en espérant pouvoir y apercevoir le Petit Prince. Cependant je fus fort dépourvu lorsque la vérité fut venue, le Petit Prince n'habitait pas sur la lune, mais sur l'astéroïde B 612. Avoir choisi un trou noir est donc pour moi une symbolisation de cet émerveillement d'enfance que je tente de retrouver.</p>
+    
+        <div class="mo-media-container">
+            <video src="Vidéos/First.mp4" class="mo-media lazy-video" muted loop playsinline></video>
+            <span class="mo-caption">Fig 1. Premiers essais de la sphère centrale</span>
+        </div>
+    
+        <div class="mo-media-container">
+            <video src="Vidéos/Second.mp4" class="mo-media lazy-video" muted loop playsinline></video>
+            <span class="mo-caption">Fig 2. Ajout de la rotation et des premiers effets</span>
+        </div>
+
+        <h4>La vision 3D: le trou noir central</h4>
+        <p>Après avoir pris connaissance de la possibilité d'intégrer du 3D via Three.js et WebGL, j'ai imaginé quelque chose de plus ambitieux: un vrai trou noir en 3D. Une sphère noire entourée d'une spirale, en particules pour donner un effet spécial. Le site commencerait par un splash une vue du trou noir en 3D de 45 degrés d'en haut. Un effet qui se veut être impressionnant dès le début. L'inspiration me venait des jeux vidéo gacha que je connais, car ils ont tous des splashs immersifs (une porte, un train dans l'espace). Je voulais faire quelque chose de similaire.</p>
+
+        <h4>L'animation d'entrée</h4>
+        <p>Sur le splash, un bouton "entrer" déclencherait l'animation. La caméra se déplacerait en ligne droite vers le centre de la sphère. Au début, j'avais prévu que ça fonctionne au scroll avancer en scrollant, reculer en scrollant dans l'autre sens. Mais j'ai réalisé que le concept d'un splash c'est d'être au début uniquement. J'ai opté pour un bouton qui lance directement l'animation. L'idée: le site se trouve au centre du trou noir tu plonges à l'intérieur.</p>
+
+        <h4>Après le splash</h4>
+        <p>Une fois à l'intérieur, le site devient classique: une page web avec scroll vertical pour voir les sections. J'ai gardé cette version un moment parce que j'avançais plus vite sur la forme que sur le fond.</p>
+    
+        <div class="mo-media-container">
+            <video src="Vidéos/Quatro.mp4" class="mo-media lazy-video" muted loop playsinline></video>
+            <span class="mo-caption">Fig 3. Prototype de la navigation post-splash</span>
+        </div>
+
+        <h3>Awwwards ou la genèse du renouveau</h3>
+        <p>C'est à ce moment-là que j'ai découvert <strong>Awwwards</strong>, un site qui regroupe les sites webs les plus impressionnants d'UI & UX designers professionnels. C'est rapidement devenu mon meilleur site découvert en 2025. En explorant, deux sites en particulier m'ont vraiment marqué et ont changé ma vision du projet.</p>
+    
+        <div class="mo-media-container">
+            <img src="Images/Awwwards.png" alt="Site Awwwards" class="mo-media">
+            <span class="mo-caption">Fig 4. La plateforme Awwwards, source d'inspiration</span>
+        </div>
+
+        <h4>Mantis: l'équilibre parfait</h4>
+        <p>Mantis m'a montré comment faire un site totalement original tout en restant équilibré. Les couleurs sont sobres, les textes sont courts mais impactant comme des slogans. Mais ce qui m'a surtout frappé, c'est leur utilisation du 3D : des genres de statues où le scroll va de pair avec le mouvement caméra. C'est superbe et ça respire l'équilibre.</p>
+    
+     <div class="mo-media-container">
+          <img src="Images/Mantis.png" alt="Site Mantis" class="mo-media">
+           <span class="mo-caption">Fig 5. Mantis.works - L'élégance de la 3D subtile</span>
+     </div>
+
+        <p>Ça m'a vraiment influencé. J'ai réalisé qu'on pouvait intégrer la 3D de manière bien pensée sans que ça fasse "trop". Que ce ne soit pas juste un splash au début, mais que la 3D fasse partie du site entier. Mantis.works a prouvé qu'on pouvait être impressionnant tout en gardant de la retenue.</p>
+
+        <h4>Heidelberg Materials: le 3D total</h4>
+        <p>Ensuite, j'ai découvert le site de Heidelberg Materials. Là, c'était complètement différent. Le site entier n'était que du 3D. Ce n'était pas des éléments 3D placés dans un environnement 2D comme chez Mantis - c'était du pur 3D avec des mouvements de caméra qui te font naviguer d'une section à l'autre. Et tout était fait avec des particules - partout.</p>
+    
+        <div class="mo-media-container">
+            <img src="Images/Material.png" alt="Site Heidelberg Materials" class="mo-media">
+            <span class="mo-caption">Fig 6. Heidelberg Materials - L'immersion totale</span>
+        </div>
+
                 <p>Ça a été révélateur pour moi. J'ai pensé: "Pourquoi faire un site 2D après le splash alors que je peux faire le site entier en 3D avec des mouvements de caméra pour naviguer ?" Ça m'a montré qu'il n'y avait pas que le 2D avec intégration du 3D qui marche il y a le 3D complet, et c'est merveilleux.</p>
                 <p>Ces deux sites ont complètement redéfini mon ambition pour ce projet.</p>
+
                 <h3>Le retour</h3>
                 <p>Après Awwwards, mes ambitions ont décuplé. Pourquoi faire un banal site en 2D quand je pouvais créer quelque chose de vraiment impressionnant, dont je serais réellement fier ? Et là, j'ai eu l'eureka: le portfolio n'était pas juste un site qui regroupe mes projets. Le portfolio lui-même était le projet. Le plus ambitieux que j'aie entrepris. En littérature, on appelle ça un récit enchâssé.</p>
                 <p>J'ai compris qu'une véritable vitrine, c'est pas seulement une belle interface c'est le site entier qui doit respirer créativité, originalité et storytelling. Un portfolio doit jouer sur ces trois éléments, pas juste les énumérer.</p>
+
                 <h3>Deuxième projection</h3>
                 <h4>Le pivot majeur</h4>
                 <p>J'ai revu entièrement mon plan. Le trou noir ne serait plus le splash d'introduction - c'était devenu l'objet central du site. Au lieu de plonger dedans et de scroller verticalement, le site tournerait autour du trou noir avec des mouvements de caméra. C'était un changement radical.</p>
                 <p>J'ai gardé deux éléments de la première vision: l'idée d'entrer dans le trou noir et les formes en particules. Je les ai réaffectés à la section à propos elle se trouverait à l'intérieur du trou noir.</p>
+
                 <h3>Partie 2: Explication du Site Actuel</h3>
                 <h4>Le Splash: l'introduction scénarisée</h4>
                 <p>L'idée du splash c'était de transformer une simple intro en une véritable mise en scène narrative. Ça commence par une citation générale: "un site doit être simple, élégant et conceptuel" (les adjectifs peuvent varier). C'est classique, attendu.</p>
                 <p>Mais juste en dessous, il y a ma réponse: "but I have an authority issue" une petite provocation qui se veut être casseur de code. C'est là qu'on sent que ce ne sera pas un portfolio lambda. Ensuite, en cliquant sur "entrer", l'animation se lance. On découvre alors un système de rail de caméra en trois phases pour guider le mouvement: d'abord on monte pour voir la spirale 2D, puis on recule et on tourne pour révéler que le trou noir est en 3D, enfin un flyby qui referme tout et nous place devant le site. C'est une progression narrative: de l'attente à la surprise à l'arrivée.</p>
+
                 <h4>La scène 3D: le trou noir</h4>
                 <ul>
                     <li><strong>Le fond: une skybox cosmique.</strong> Le fond est une grande sphère avec une texture réelle de la Voie lactée (image de l'ESO). L'utilisateur se trouve à l'intérieur de cette sphère, pas devant ça crée une véritable immersion dans l'espace plutôt qu'une simple toile de fond.</li>
@@ -656,20 +764,25 @@
                     <li><strong>La spirale: le cœur technique.</strong> La spirale n'est pas une simple texture appliquée - c'est un shader (code exécuté directement sur la carte graphique) qui génère la spirale en temps réel. Le système utilise du bruit de Perlin (une fonction mathématique qui crée des motifs organiques naturels) pour générer les formes, puis les transforme pour créer cet effet de spirale tournante. L'astuce c'est que la vitesse de rotation n'est pas uniforme: le centre tourne plus vite que les bords, créant cet effet d'essorage caractéristique, comme si la matière était aspirée vers le centre.</li>
                 </ul>
                 <p>Avant, la spirale était faite en particules, mais c'était moins fluide. Avec Gemini 3.0, en passant à un système de shader, la spirale est devenue vraiment élégante et performante.</p>
+
                 <h4>Section Accueil</h4>
                 <p>La citation de Jules Renard c'est une phrase qui traîne depuis longtemps dans la tête comme une morale de fable qu'on ne peut pas oublier, peu importe pourquoi. Elle semblait parfaite pour cette section: sobre, directe, qui résonne avec le projet.</p>
                 <p>Au-dessus de cette citation, le mot bascule entre "Écrire" et "&lt;Coder&gt;" une manière de symboliser cette double approche, ce mouvement entre le littéraire et le numérique. C'est littéralement ce portfolio en miniature.</p>
                 <p>La citation est positionnée pile au centre du trou noir. C'est une mise en relation consciente: le trou noir met en évidence la citation, et la citation met en évidence le trou noir. Comme une couverture de livre bien pensée, pas besoin que le titre soit écrit en gros sur fond noir uni comme les éditions Grasset pour ne pas les citer. Il suffit qu'il soit visible, captivant, que le décor amène naturellement vers lui. L'inspiration vient directement de Mantis, qui maîtrise parfaitement cet équilibre entre texte et élément visuel.</p>
                 <p>L'idée c'était de faire en sorte que rien de superflu ne vienne éclipser ce contraste. Le trou noir devient un élément de premier plan, pas juste de la décoration. C'est une utilisation consciente de la profondeur et de la hiérarchie visuelle. Une idée dont je suis assez fier.</p>
+
                 <h4>Section À propos</h4>
                 <p><strong>La complication: une section qui parle de soi.</strong> La section À propos a été la plus compliquée à mettre en place. D'abord le contenu : étant moi-même le genre de personne à avoir du mal à parler de soi, il a fallu plusieurs réécritures avant de trouver la bonne structure. Au final j'ai trouvé la solution dans mon côté littéraire. L'idée était d'utiliser un schéma narratif littéraire classique Situation initiale, Élément perturbateur, Péripéties, Dénouement, Situation finale comme on le ferait pour une histoire. Cela rendait l'exercice plus cohérent avec le parcours littéraire, tout en transformant l'autobiographie en véritable narration.</p>
                 <p><strong>La complication: intégrer le 3D au texte.</strong> La deuxième complication était la forme. L'idée était que cette section se déploierait à l'intérieur du trou noir une transition visuelle claire avec le reste du site. Mais on voulait aussi intégrer des systèmes de particules 3D en parallèle du texte. Le défi c'était l'équilibre: comment placer du contenu textuel lourd (plusieurs blocs) à côté d'animations 3D sans que l'un éclipse l'autre ? Les systèmes de particules inspirés de The Way Of Code utilisent des attracteurs mathématiques formes mathématiques qui utilisent la loi du chaos qui créent des formes organiques continuellement transformées. Mais la taille du texte rendait difficile de bien les intégrer.</p>
                 <p>La solution a été de créer un système adaptatif: chaque bloc textuel a à côté un système de particules unique qui se transforme entre deux formes différentes, au rythme du scroll. Le scroll lui-même devient un paramètre d'animation. De plus aimant particulièrement la mécanique des easter eggs, il y a dans ce texte une référence cachée, sauriez-vous la retrouver ?</p>
+
                 <h4>Section Projets</h4>
                 <p>La section Projets présente les projets sous forme de grille (3 colonnes, 2 lignes). L'idée principale, c'est que le fond de chaque carte est un teaser visuel du projet lui-même. Plutôt que de lire une description, on voit directement ce qu'on trouvera à l'intérieur. C'est montrer plutôt que raconter.</p>
+
                 <h4>Section Compétences</h4>
                 <p>La section Compétences présente les skills sous forme de Bento Grid un layout asymétrique où les blocs ont des tailles variables. L'inspiration vient des keynotes Apple, où cette grille permet de montrer plusieurs produits avec des informations à différentes échelles tout en gardant une cohérence visuelle. C'est la même logique ici: avoir une vision rapide et condensée des compétences (comme un CV), mais de manière esthétique. Les blocs de différentes tailles permettent de hiérarchiser les compétences : les principales prennent plus de place, les outils complémentaires sont plus compacts.</p>
                 <p>Il y a également la présence d'un autre easter egg cette fois beaucoup plus visible.</p>
+
                 <h3>Conclusion</h3>
                 <p>Ce projet a demandé beaucoup de travail explorations, itérations, apprentissages. Ce n'était pas juste quelques prompts et c'est fini. J'ai expérimenté beaucoup, j'ai cherché beaucoup, j'ai échoué beaucoup mais surtout j'ai appris beaucoup.</p>
                 <p>L'IA a été un outil pour matérialiser une vision, pas l'inverse. Les vraies décisions les découvertes (Three.js, Awwards, les attracteurs mathématiques), les pivots conscients, les choix de design c'est moi qui les ai prises. L'IA m'a permis de concrétiser ma pensée là où je ne savais pas techniquement comment la mettre en forme, mais la vision venait de moi.</p>
@@ -677,38 +790,49 @@
                 <p>À terme, je veux mener des projets complets de la conception à la réalisation - où chaque élément (design, code, contenu) raconte la même histoire. Où un site d'édition n'est pas juste une vitrine, mais une vraie expérience qui reflète l'identité de la maison. Il y a tant de maisons d'édition et de librairies qui méritent un site internet qui les met en valeur qui raconte leur histoire, pas juste qui liste leurs produits.</p>
                 <p style="margin-top: 40px; text-align: center; color: var(--accent); font-weight: bold; font-family:'Playfair Display', serif; font-style:italic;">Créativement vôtre,<br>Un passionné.</p>
             </div>
+    
             <div class="section-number">03<span>Making Of</span></div>
         </div>
 
         <div class="section" data-section="3">
             <div class="projets-title">Projets</div>
-            <div class="projets-grid">
+         <div class="projets-grid">
                 <div class="project-card glass-panel" data-project="portfolio">
-                    <h3>Portfolio Interactif</h3><p>Animations Three.js et navigation 3D.</p>
+                    <h3>Portfolio Interactif</h3>
+                    <p>Animations Three.js et navigation 3D.</p>
                     <div class="project-tags"><span class="tag">Three.js</span><span class="tag">JavaScript</span></div>
                 </div>
-                <a class="project-card glass-panel" href="https://touvie.github.io/Hermes/" target="_blank">
-                    <h3>Éditions Hermès</h3><p>Site vitrine pour une maison d'édition.</p>
+
+                <div class="project-card glass-panel" data-project="hermes">
+                    <h3>Éditions Hermès</h3>
+                    <p>Site vitrine pour une maison d'édition.</p>
                     <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
-                </a>
+                </div>
+
                 <div class="project-card glass-panel" data-project="escale">
-                    <h3>Stop Motion Origami</h3><p>Vidéo d'animation avec personnages en origami.</p>
+                    <h3>Stop Motion Origami</h3>
+                    <p>Vidéo d'animation avec personnages en origami.</p>
                     <div class="project-tags"><span class="tag">Stop Motion</span><span class="tag">Montage</span></div>
                 </div>
+
                 <div class="project-card glass-panel" data-project="frise">
-                    <h3>Frise Chronologique</h3><p>Frise interactive sur l'histoire du web.</p>
+                    <h3>Frise Chronologique</h3>
+                    <p>Frise interactive sur l'histoire du web.</p>
                     <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">Timeline</span></div>
                 </div>
+
                 <div class="project-card glass-panel" data-project="traiteur">
-                    <h3>Site Traiteur</h3><p>Site vitrine avec galerie et contact.</p>
+                    <h3>Site Traiteur</h3>
+                    <p>Site vitrine avec galerie et contact.</p>
                     <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
                 </div>
+
                 <div class="project-card glass-panel" data-project="italie">
-                    <h3>Site Italie</h3><p>Premier site web créé en cours.</p>
+                    <h3>Site Italie</h3>
+                    <p>Premier site web créé en cours.</p>
                     <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
                 </div>
             </div>
-            <div class="section-number">04<span>Projets</span></div>
         </div>
 
         <div class="section" data-section="4">
@@ -743,7 +867,7 @@
         </div>
 
     </div>
-
+    </div>
     <script type="importmap">
         {
             "imports": {
@@ -797,10 +921,7 @@
                     <p>Dans le cadre d'un partenariat avec le salon littéraire <em>Les Escales du Livre</em>, situé à Bordeaux au cœur de l'écosystème Darwin, deux camarades et moi avons imaginé puis réalisé une vidéo de promotion autour de l'album <em>Pas prévu</em> d'Élo, publié à L'École des loisirs.</p>
                     <p>La cible étant de très jeunes enfants autour de quatre ans, nous avons choisi le <strong>stop motion</strong> et des personnages façonnés en <strong>origami</strong>, afin de rester proches de cet univers de simplicité, de jeu et de petites mains encore hésitantes.</p>
                     
-                    <!-- EXEMPLE D'INTÉGRATION YOUTUBE -->
                     <div class="video-container">
-                        <!-- Remplace l'URL ci-dessous par celle de ta vidéo (embed) -->
-                        <!-- Si ton lien est https://youtu.be/XYZ123, mets src="https://www.youtube.com/embed/XYZ123" -->
                         <iframe 
                             src="https://www.youtube.com/embed/zUz145uZZLE" 
                             title="YouTube video player" 
@@ -933,19 +1054,21 @@
         });
 
         // Initialisation des écouteurs sur les cartes
-        function setupProjectCards() {
+       function setupProjectCards() {
             document.querySelectorAll('.project-card').forEach(card => {
                 card.addEventListener('click', (e) => {
-                    if(card.tagName === 'A') return;
+                    // On empêche le comportement par défaut (au cas où)
                     e.preventDefault(); 
+                    
                     const pid = card.dataset.project;
                     
-                    // CAS SPÉCIAL: Portfolio -> Making Of (Section 2)
+                    // Si c'est Portfolio -> On va au Making Of (Section 2)
                     if (pid === 'portfolio') {
                         goToSection(2);
-                        return; // On arrête là, pas d'ouverture de modal
+                        return; 
                     }
 
+                    // Pour tous les autres -> On ouvre l'overlay
                     if(pid) openModal(pid);
                 });
             });
@@ -984,7 +1107,7 @@
         let lastScrollTime = 0; 
         let scrollAccumulator = 0;
         let scrollTimeout;
-        const SCROLL_THRESHOLD = 300; 
+        const SCROLL_THRESHOLD = 600; 
         let resistanceY = 0; // La valeur qui simule l'élastique
         
         const noiseFunctions = `vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}float snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;i=mod289(i);vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}`;
@@ -1095,7 +1218,7 @@
                 // --- RÉSISTANCE VISUELLE (ELASTIQUE) ---
                 // On ajoute le delta à la valeur de résistance (avec un facteur pour la sensibilité)
                 // Plus on scroll, plus resistanceY augmente
-                resistanceY += e.deltaY * 0.05;
+                resistanceY += e.deltaY * 0.09;
 
                 // On limite la résistance visuelle pour pas que la caméra parte trop loin
                 resistanceY = Math.max(Math.min(resistanceY, 150), -150);
@@ -1289,25 +1412,21 @@
                 setTimeout(() => { header.classList.add('fade-out-up'); }, 600);
             }
             
-            // 3. Déclenchement de l'effet "Iris Out" (Cercle qui rétrécit)
-            // On le lance juste après la disparition des textes
+            // 3. Déclenchement de l'effet "Iris Out"
             setTimeout(() => {
                 if(splashScreen) splashScreen.classList.add('iris-out');
             }, 800);
 
-            // 4. Start Camera Move & Hide Splash Screen completely after fade
+            // 4. Start Camera Move
             setTimeout(() => {
-                // if(splashScreen) splashScreen.style.display = 'none'; // Plus besoin de display:none immédiat grâce à l'iris
                 isTransitioning = true;
                 
-                // PHASED MOVEMENT
                 const pos1 = new THREE.Vector3(0, 6, 1);
                 const pos2 = new THREE.Vector3(0, 120, 1); 
                 const pos3 = new THREE.Vector3(40, 5, 40);
                 const pos4 = new THREE.Vector3(0, 2, 10);
                 if(window.innerWidth < 768) pos4.set(0, 2, 14);
 
-                const startPos = camera.position.clone();
                 const startTime = performance.now();
                 const d1 = 3000;
                 const d2 = 3000;
@@ -1341,7 +1460,7 @@
                         camera.position.copy(pos4);
                         
                         document.getElementById('header').classList.add('visible');
-                        document.getElementById('scroll-hint').classList.add('visible'); // Show hint on start
+                        document.getElementById('scroll-hint').classList.add('visible'); 
                         
                         const activeSec = document.querySelector('.section[data-section="0"]');
                         if (activeSec) {
@@ -1350,7 +1469,6 @@
                             activeSec.style.visibility = 'visible';
                         }
                         
-                        // Nettoyage final du splash screen
                         if(splashScreen) splashScreen.style.display = 'none';
 
                         isTransitioning = false;
@@ -1358,7 +1476,7 @@
                 }
                 requestAnimationFrame(introLoop);
 
-            }, 3000); // Délai augmenté à 3000ms comme demandé
+            }, 3000); 
         }
 
         function onWindowResize() {
@@ -1383,24 +1501,23 @@
 
         const sectionCoords = [
             new THREE.Vector3(0, 2, 10),     // 0: Accueil
-            new THREE.Vector3(0, 0, 8),      // 1: À propos (Distance ajustée pour la sphère)
+            new THREE.Vector3(0, 0, 8),      // 1: À propos
             new THREE.Vector3(0, 60, 5),     // 2: Projets
             new THREE.Vector3(0, 30, 40),    // 3: Compétences
             new THREE.Vector3(0, 10, 150),   // 4: Contact
             new THREE.Vector3(40, 20, 40)    // 5: Making Of
         ];
         
-        let targetPosition = new THREE.Vector3(0, 6, 1); // Start Splash Exact
+        let targetPosition = new THREE.Vector3(0, 6, 1); 
 
         function setupNavigation() {
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.addEventListener('click', () => goToSection(parseInt(item.dataset.section)));
             });
             document.getElementById('cta-projects').addEventListener('click', (e) => {
-                e.preventDefault(); goToSection(3); // Projets is now index 3
+                e.preventDefault(); goToSection(3); 
             });
             
-            // GESTION DES LIENS INTERNES (Texte -> Projets / Making Of)
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('internal-link')) {
                     e.preventDefault();
@@ -1413,15 +1530,12 @@
         function goToSection(index) {
             if(index === currentSection && !isTransitioning) return;
             
-            // 1. Hide Old Section Immediately
             document.querySelectorAll('.section').forEach(s => {
                 s.classList.remove('active');
                 s.style.opacity = '0';
                 s.style.visibility = 'hidden';
             });
             
-            // HIDE SCROLL HINT WHEN MOVING FROM HOME
-            // ONLY SHOW ON HOME (0)
             const hint = document.getElementById('scroll-hint');
             if(index === 0) {
                  setTimeout(() => hint.classList.add('visible'), 1000);
@@ -1432,21 +1546,15 @@
             currentSection = index;
             targetSectionIndex = index;
             
-            // DRAPEAU : On bouge vers une section, donc on attend avant d'afficher
             isMovingToSection = true;
             
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             
-            // Update active nav based on new index
-            // 0: Accueil, 1: Apropos, 2: MakingOf(Btn), 3: Projets, 4: Compétences
             if(index === 0 || index === 1) {
-                // Left group
                 document.querySelector(`.nav-item[data-section="${index}"]`)?.classList.add('active');
             } else if (index === 3 || index === 4) {
-                // Right group
                 document.querySelector(`.nav-item[data-section="${index}"]`)?.classList.add('active');
             }
-            // Index 2 (Making Of) is handled by center button which doesn't have 'active' class style usually
 
             if (index === 0 && window.innerWidth < 768) {
                 targetPosition.set(0, 2, 14); 
@@ -1454,7 +1562,6 @@
                 targetPosition.copy(sectionCoords[index]);
             }
             
-            // RESET SCROLL
             if(index === 1) {
                 const wrapper = document.querySelector('.apropos-wrapper');
                 if(wrapper) wrapper.scrollTop = 0;
@@ -1474,30 +1581,26 @@
             if(accretionDisk) accretionDisk.material.uniforms.u_time.value = time;
             if(glowSphere) glowSphere.material.uniforms.viewVector.value.subVectors(camera.position, glowSphere.position);
             
-            // Damping for visual resistance
             resistanceY *= 0.9;
             if(Math.abs(resistanceY) < 0.01) resistanceY = 0;
 
             if (currentSection !== -1 && !isTransitioning) { 
-                // Zéro Latence Mouvement + Resistance Offset applied
                 let finalTarget = targetPosition.clone();
                 finalTarget.y -= resistanceY * 0.05; 
 
                 camera.position.lerp(finalTarget, 0.04);
                 camera.lookAt(0, 0, 0); 
                 
-                // GESTION D'APPARITION INTELLIGENTE (Fix Latence)
                 if(isMovingToSection) {
                     const dist = camera.position.distanceTo(targetPosition);
                     if(dist < 2.0) { 
-                        isMovingToSection = false; // Arrivé !
+                        isMovingToSection = false; 
                         const activeSec = document.querySelector(`.section[data-section="${currentSection}"]`);
                         if(activeSec) {
                             activeSec.classList.add('active');
                             activeSec.style.opacity = '1';
                             activeSec.style.visibility = 'visible';
                             
-                            // SHOW SCROLL HINT IF NOT IN OVERLAY
                             if(!document.getElementById('project-overlay').classList.contains('visible') && currentSection === 0) {
                                 document.getElementById('scroll-hint').classList.add('visible');
                             }
@@ -1507,28 +1610,18 @@
             }
 
             let targetFOV = 60;
-            // Pas de changement de FOV spécifique pour la nouvelle section à propos, on reste stable
             camera.fov = THREE.MathUtils.lerp(camera.fov, targetFOV, 0.04);
             camera.updateProjectionMatrix();
 
             const distToCenter = camera.position.length();
             
-            // LOGIQUE D'AFFICHAGE (SWITCH SCÈNES)
-            // Si on est dans la section "À Propos" (Index 1) et stabilisé
             const isAboutSection = (currentSection === 1 && !isTransitioning && !isMovingToSection);
             
-            // On définit une zone spécifique pour l'activation du mode "About"
-            // La caméra est à z=8 pour About.
             const isAboutZone = distToCenter < 12.0; 
             
-            // Pour le "trou noir" visuel (le trou noir géométrique), on le cache si on est trop près (ex < 6) 
-            // OU si on est dans la section About (car on la remplace par la sphère de particules)
-            
-            // Gestion Visibilité Contenu HTML À Propos
             const aproposWrapper = document.querySelector('.apropos-wrapper');
             
             if (isAboutSection) {
-                // FORCE L'AFFICHAGE POUR LA SECTION ABOUT
                 if(aproposWrapper) aproposWrapper.classList.add('visible');
                 
                 if(aboutPoints) {
@@ -1537,7 +1630,6 @@
                     aboutPoints.rotation.y += 0.0007; 
                 }
                 
-                // On cache tout le reste
                 bgMesh.visible = false;
                 stars.visible = false;
                 accretionDisk.visible = false;
@@ -1545,12 +1637,9 @@
                 blackHole.visible = false;
                 
             } else {
-                // COMPORTEMENT CLASSIQUE (ACCUEIL, PROJETS, ETC.)
                 if(aproposWrapper) aproposWrapper.classList.remove('visible');
                 if(aboutPoints) aboutPoints.visible = false;
                 
-                // On affiche le décor spatial normal
-                // Sauf si on est "dans" le trou noir géométrique (ce qui n'arrive plus vraiment avec les nouvelles coords, mais on garde la sécu)
                 const tooClose = distToCenter < 4.0; 
                 
                 bgMesh.visible = !tooClose;
@@ -1564,7 +1653,6 @@
             renderer.clear();
             renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
             
-            // On rend toujours la scène principale car now tout est dedans (y compris aboutPoints)
             renderer.render(scene, camera);
         }
         
@@ -1592,6 +1680,27 @@
         }
 
         init();
+
+        // --- GESTION AUTOPLAY DES VIDÉOS (VISIBILITÉ) ---
+        function setupVideoObserver() {
+            const videos = document.querySelectorAll('.lazy-video');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        video.play().catch(e => { console.log("Autoplay bloqué par le navigateur", e); });
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, {
+                threshold: 0.5 
+            });
+            videos.forEach(video => {
+                observer.observe(video);
+            });
+        }
+        setupVideoObserver();
         initWordSwitch();
 
     </script>
