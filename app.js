@@ -409,22 +409,6 @@ accretionDisk = new THREE.Mesh(diskGeo, diskMat);
 accretionDisk.rotation.x = -Math.PI / 2;
 scene.add(accretionDisk);
 
-            // --- NOUVELLE SCÈNE À PROPOS (SPHÈRE UNIQUE) ---
-            initAboutSphere();
-            
-            window.addEventListener('resize', onWindowResize);
-            window.addEventListener('keydown', (e) => {
-                if (currentSection === -1) return;
-                // LOOP KEYBOARD LOGIC
-                const totalSections = 5;
-                if(e.key === 'ArrowRight') { 
-                    goToSection((currentSection + 1) % totalSections); 
-                } 
-                else if(e.key === 'ArrowLeft') { 
-                    goToSection((currentSection - 1 + totalSections) % totalSections); 
-                }
-            });
-
             // --- SCROLL HANDLING AVEC ACCUMULATEUR ---
             window.addEventListener('wheel', (e) => {
                 if (currentSection === -1) return; // Ignore on Splash
@@ -559,62 +543,6 @@ scene.add(accretionDisk);
             setupNavigation();
             setupProjectCards(); 
             animate();
-        }
-
-        // Initialisation de la Sphère "À Propos"
-        function initAboutSphere() {
-            const geometry = new THREE.BufferGeometry();
-            const positions = [];
-            
-            for (let i = 0; i < 5000; i++) {
-                const r = CONFIG.aboutSphereRadius;
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos(2 * Math.random() - 1);
-
-                const x = r * Math.sin(phi) * Math.cos(theta);
-                const y = r * Math.sin(phi) * Math.sin(theta);
-                const z = r * Math.cos(phi);
-                
-                positions.push(x, y, z);
-            }
-
-            geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-
-            const material = new THREE.ShaderMaterial({
-                uniforms: {
-                    uColor: { value: new THREE.Color(0xBFA181) },
-                    uTime: { value: 0 }
-                },
-                vertexShader: `
-                    uniform float uTime;
-                    varying float vAlpha;
-                    void main() {
-                        vec3 pos = position;
-                        vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-                        gl_Position = projectionMatrix * mvPosition;
-                        
-                        float sparkle = sin(uTime * 2.0 + pos.x);
-                        gl_PointSize = (${CONFIG.aboutParticleSize.toFixed(1)} + sparkle * 0.2) * (30.0 / -mvPosition.z);
-                        
-                        vAlpha = 0.5 + 0.5 * sin(pos.z + uTime);
-                    }
-                `,
-                fragmentShader: `
-                    uniform vec3 uColor;
-                    varying float vAlpha;
-                    void main() {
-                        if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.5) discard;
-                        gl_FragColor = vec4(uColor, 0.6); 
-                    }
-                `,
-                transparent: true,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false
-            });
-
-            aboutPoints = new THREE.Points(geometry, material);
-            aboutPoints.visible = false; // Caché par défaut
-            scene.add(aboutPoints);
         }
 
         function startIntroSequence() {
@@ -754,49 +682,119 @@ scene.add(accretionDisk);
         }
 
         function goToSection(index) {
-            if(index === currentSection && !isTransitioning) return;
-            
-            document.querySelectorAll('.section').forEach(s => {
-                s.classList.remove('active');
-                s.style.opacity = '0';
-                s.style.visibility = 'hidden';
-            });
-            
-            const hint = document.getElementById('scroll-hint');
-            if(index === 0) {
-                 setTimeout(() => hint.classList.add('visible'), 1000);
-            } else {
-                 hint.classList.remove('visible');
-            }
+    if(index === currentSection && !isTransitioning) return;
+    
+    document.querySelectorAll('.section').forEach(s => {
+        s.classList.remove('active');
+        s.style.opacity = '0';
+        s.style.visibility = 'hidden';
+    });
+    
+    const hint = document.getElementById('scroll-hint');
+    if(index === 0) {
+        setTimeout(() => hint.classList.add('visible'), 1000);
+    } else {
+        hint.classList.remove('visible');
+    }
 
-            currentSection = index;
-            targetSectionIndex = index;
+    currentSection = index;
+    targetSectionIndex = index;
+    
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    
+    // === ANIMATION SPÉCIALE POUR "À PROPOS" ===
+    if (index === 1) {
+        isTransitioning = true;
+        isMovingToSection = true;
+        
+        document.querySelector('.nav-item[data-section="1"]')?.classList.add('active');
+        
+        // Réinitialiser les iframes à invisible
+        const tableauIframe = document.getElementById('iframe-tableau');
+        const livreIframe = document.getElementById('iframe-livre');
+        if (tableauIframe) tableauIframe.style.opacity = '0';
+        if (livreIframe) livreIframe.style.opacity = '0';
+        
+        // Animation de caméra vers le centre
+        const startPos = camera.position.clone();
+        const centerPos = new THREE.Vector3(0, 0, 8);
+        const animDuration = 2000;
+        const startTime = performance.now();
+        
+        function animateToCenter(now) {
+            const elapsed = now - startTime;
+            const t = Math.min(elapsed / animDuration, 1);
+            const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
             
-            isMovingToSection = true;
+            camera.position.lerpVectors(startPos, centerPos, ease);
+            camera.lookAt(0, 0, 0);
             
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            
-            if(index === 0 || index === 1) {
-                document.querySelector(`.nav-item[data-section="${index}"]`)?.classList.add('active');
-            } else if (index === 3 || index === 4) {
-                document.querySelector(`.nav-item[data-section="${index}"]`)?.classList.add('active');
-            }
-
-            if (index === 0 && window.innerWidth < 768) {
-                targetPosition.set(0, 2, 14); 
+            if (t < 1) {
+                requestAnimationFrame(animateToCenter);
             } else {
-                targetPosition.copy(sectionCoords[index]);
-            }
-            
-            if(index === 1) {
-                const wrapper = document.querySelector('.apropos-wrapper');
-                if(wrapper) wrapper.scrollTop = 0;
-            }
-            if(index === 2) {
-                const wrapper = document.querySelector('.makingof-container');
-                if(wrapper) wrapper.scrollTop = 0;
+                targetPosition.copy(centerPos);
+                isTransitioning = false;
+                isMovingToSection = false;
+                
+                // Afficher la section
+                const activeSec = document.querySelector('.section[data-section="1"]');
+                if (activeSec) {
+                    activeSec.classList.add('active');
+                    activeSec.style.opacity = '1';
+                    activeSec.style.visibility = 'visible';
+                }
+                
+                // Afficher le Tableau d'abord
+                if (tableauIframe) {
+                    tableauIframe.style.transition = 'opacity 0.8s ease';
+                    tableauIframe.style.opacity = '1';
+                }
+                
+                // Afficher le Livre après délai
+                setTimeout(() => {
+                    if (livreIframe) {
+                        const src = livreIframe.src;
+                        livreIframe.src = '';
+                        livreIframe.src = src;
+
+                        setTimeout(() => {
+                        livreIframe.style.transition = 'opacity 0.8s ease';
+                        livreIframe.style.opacity = '1';
+                    }, 100);
+                }
+            }, 900);
             }
         }
+        
+        requestAnimationFrame(animateToCenter);
+        return; // On sort ici, pas besoin du reste
+    }
+    // === FIN ANIMATION SPÉCIALE ===
+    
+    // Pour toutes les autres sections
+    isMovingToSection = true;
+    
+    if(index === 0 || index === 1) {
+        document.querySelector(`.nav-item[data-section="${index}"]`)?.classList.add('active');
+    } else if (index === 3 || index === 4) {
+        document.querySelector(`.nav-item[data-section="${index}"]`)?.classList.add('active');
+    }
+
+    if (index === 0 && window.innerWidth < 768) {
+        targetPosition.set(0, 2, 14); 
+    } else {
+        targetPosition.copy(sectionCoords[index]);
+    }
+    
+    if(index === 1) {
+        const wrapper = document.querySelector('.apropos-wrapper');
+        if(wrapper) wrapper.scrollTop = 0;
+    }
+    if(index === 2) {
+        const wrapper = document.querySelector('.makingof-container');
+        if(wrapper) wrapper.scrollTop = 0;
+    }
+}
 
         const clock = new THREE.Clock();
 
@@ -840,39 +838,25 @@ scene.add(accretionDisk);
             camera.updateProjectionMatrix();
 
             const distToCenter = camera.position.length();
-            
-            const isAboutSection = (currentSection === 1 && !isTransitioning && !isMovingToSection);
-            
-            const isAboutZone = distToCenter < 12.0; 
-            
-            const aproposWrapper = document.querySelector('.apropos-wrapper');
-            
-            if (isAboutSection) {
-                if(aproposWrapper) aproposWrapper.classList.add('visible');
-                
-                if(aboutPoints) {
-                    aboutPoints.visible = true;
-                    aboutPoints.material.uniforms.uTime.value = time;
-                    aboutPoints.rotation.y += 0.0007; 
-                }
-                
-                bgMesh.visible = false;
-                stars.visible = false;
+
+            // NOUVELLE LOGIQUE POUR LES IFRAMES
+            // Dans ton code, "À Propos" est la section 1
+            const isReadingBook = (currentSection === 1);
+
+            if (isReadingBook) {
+                // On cache tout le Trou Noir pour voir le Tableau.html derrière
+                blackHole.visible = false;
                 accretionDisk.visible = false;
                 glowSphere.visible = false;
-                blackHole.visible = false;
-                
+                stars.visible = false;
+                bgMesh.visible = false;
             } else {
-                if(aproposWrapper) aproposWrapper.classList.remove('visible');
-                if(aboutPoints) aboutPoints.visible = false;
-                
-                const tooClose = distToCenter < 4.0; 
-                
-                bgMesh.visible = !tooClose;
-                stars.visible = !tooClose;
-                accretionDisk.visible = !tooClose;
-                glowSphere.visible = !tooClose;
+                // On rallume tout pour les autres sections
                 blackHole.visible = true;
+                accretionDisk.visible = true;
+                glowSphere.visible = true;
+                stars.visible = true;
+                bgMesh.visible = true;
             }
 
             renderer.setScissorTest(false);
