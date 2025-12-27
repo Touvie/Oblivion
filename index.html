@@ -6,6 +6,7 @@
     <title>Portfolio - Singularité</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Styles.css">
+    <link rel="icon" type="image/jpg" href="Favicon.jpg">
 </head>
 
 <body>
@@ -110,136 +111,10 @@
             </div>
         </div>
 
-        <div class="section" data-section="2">
-            <div class="makingof-container glass-panel">
-        <h2>Making OF - Portfolio</h2>
-    
-        <h3>Partie 1: Le Processus de Création</h3>
-    
-        <h4>Définition des objectifs</h4>
-        <p>Avant de me lancer, j'ai défini mes objectifs. Pas vaguement, vraiment pour comprendre pourquoi, pour qui, comment.</p>
-        <ul>
-         <li><strong>Pourquoi :</strong> Je voulais quelque chose qui montre ma démarche, ma façon de penser. Quelque chose où on pourra se dire "ok là il a réfléchi".</li>
-         <li><strong>Pour qui :</strong> Pour moi d'abord j'avais envie d'apprendre. Et pour les recruteurs MMI pour leur prouver que je suis capable de structurer un projet ambitieux, que je peux me débrouiller avec les outils sans m'en faire esclave.</li>
-         <li><strong>Comment :</strong> Honnêtement, je n'avais pas les compétences pour faire seul ce que j'imaginais. Mais au lieu de rabaisser ma vision, j'ai décidé que l'IA serait uniquement un outil, pas une excuse. Un moyen de pallier mes lacunes techniques tout en apprenant vraiment en chemin.</li>
-        </ul>
-
-        <h4>Il était un commencement</h4>
-        <p>Pour sortir ce portfolio de terre tel le colosse de Rhodes, trois options s'offraient à moi : faire quelque chose de simple en HTML/CSS comme pour mon premier site, utiliser un CMS du type WordPress pour avoir un template déjà correct mais sans ambition, ou viser plus haut en mêlant ma créativité avec des outils d'assistance technique.</p>
-        <p>J'ai choisi la troisième option, non pas pour éviter l'effort, mais au contraire pour explorer un terrain où je pouvais apprendre en avançant et transformer ma motivation théorique en ambition empirique.</p>
-
-        <h4>The timeless art of vibe coding - Rick Rubin</h4>
-        <p>C'est en explorant les Artefacts publics de Claude IA que j'ai découvert <em>The Way of Code</em>, créé en collaboration entre Anthropic et Rick Rubin. Ce site a vraiment été une première grande inspiration pour moi. Chaque page du site est une exploration artistique différente très inspirante. Mais bien qu'elle ne soit pas particulièrement la plus artistiquement poussée, c'est la page 26, avec ses particules qui bougent comme des vagues - ou comme un livre qui s'ouvre, qui m'a vraiment marqué. En voyant ça, j'ai été inspiré - j'arrivais à me projeter dans ce que je voulais faire.</p>
-        <p>En l'inspectant et en comprenant comment il était construit, j'ai découvert <strong>Three.js</strong> une bibliothèque JavaScript pour faire de la 3D sur le web. Jusqu'alors, j'ignorais qu'il était même possible de faire une telle chose.</p>
-
-        <h3>Première projection</h3>
-
-        <h4>Le choix du trou noir</h4>
-        <p>Pourquoi un trou noir ? Quand j'étais petit, j'étais fasciné par l'espace. Loin de moi l'idée de vouloir être astronaute, j'admirais la lune en espérant pouvoir y apercevoir le Petit Prince. Cependant je fus fort dépourvu lorsque la vérité fut venue, le Petit Prince n'habitait pas sur la lune, mais sur l'astéroïde B 612. Avoir choisi un trou noir est donc pour moi une symbolisation de cet émerveillement d'enfance que je tente de retrouver.</p>
-    
-        <div class="mo-media-container">
-            <video src="Vidéos/First.mp4" class="mo-media lazy-video" muted loop playsinline></video>
-            <span class="mo-caption">Fig 1. Premiers essais de la sphère centrale</span>
-        </div>
-    
-        <div class="mo-media-container">
-            <video src="Vidéos/Second.mp4" class="mo-media lazy-video" muted loop playsinline></video>
-            <span class="mo-caption">Fig 2. Ajout de la rotation et des premiers effets</span>
-        </div>
-
-        <h4>La vision 3D: le trou noir central</h4>
-        <p>Après avoir pris connaissance de la possibilité d'intégrer du 3D via Three.js et WebGL, j'ai imaginé quelque chose de plus ambitieux: un vrai trou noir en 3D. Une sphère noire entourée d'une spirale, en particules pour donner un effet spécial. Le site commencerait par un splash une vue du trou noir en 3D de 45 degrés d'en haut. Un effet qui se veut être impressionnant dès le début. L'inspiration me venait des jeux vidéo gacha que je connais, car ils ont tous des splashs immersifs (une porte, un train dans l'espace). Je voulais faire quelque chose de similaire.</p>
-
-        <h4>L'animation d'entrée</h4>
-        <p>Sur le splash, un bouton "entrer" déclencherait l'animation. La caméra se déplacerait en ligne droite vers le centre de la sphère. Au début, j'avais prévu que ça fonctionne au scroll avancer en scrollant, reculer en scrollant dans l'autre sens. Mais j'ai réalisé que le concept d'un splash c'est d'être au début uniquement. J'ai opté pour un bouton qui lance directement l'animation. L'idée: le site se trouve au centre du trou noir tu plonges à l'intérieur.</p>
-
-        <h4>Après le splash</h4>
-        <p>Une fois à l'intérieur, le site devient classique: une page web avec scroll vertical pour voir les sections. J'ai gardé cette version un moment parce que j'avançais plus vite sur la forme que sur le fond.</p>
-    
-        <div class="mo-media-container">
-            <video src="Vidéos/Quatro.mp4" class="mo-media lazy-video" muted loop playsinline></video>
-            <span class="mo-caption">Fig 3. Prototype de la navigation post-splash</span>
-        </div>
-
-        <h3>Awwwards ou la genèse du renouveau</h3>
-        <p>C'est à ce moment-là que j'ai découvert <strong>Awwwards</strong>, un site qui regroupe les sites webs les plus impressionnants d'UI & UX designers professionnels. C'est rapidement devenu mon meilleur site découvert en 2025. En explorant, deux sites en particulier m'ont vraiment marqué et ont changé ma vision du projet.</p>
-    
-        <div class="mo-media-container">
-            <img src="Images/Awwwards.png" alt="Site Awwwards" class="mo-media">
-            <span class="mo-caption">Fig 4. La plateforme Awwwards, source d'inspiration</span>
-        </div>
-
-        <h4>Mantis: l'équilibre parfait</h4>
-        <p>Mantis m'a montré comment faire un site totalement original tout en restant équilibré. Les couleurs sont sobres, les textes sont courts mais impactant comme des slogans. Mais ce qui m'a surtout frappé, c'est leur utilisation du 3D : des genres de statues où le scroll va de pair avec le mouvement caméra. C'est superbe et ça respire l'équilibre.</p>
-    
-     <div class="mo-media-container">
-          <img src="Images/Mantis.png" alt="Site Mantis" class="mo-media">
-           <span class="mo-caption">Fig 5. Mantis.works - L'élégance de la 3D subtile</span>
-     </div>
-
-        <p>Ça m'a vraiment influencé. J'ai réalisé qu'on pouvait intégrer la 3D de manière bien pensée sans que ça fasse "trop". Que ce ne soit pas juste un splash au début, mais que la 3D fasse partie du site entier. Mantis.works a prouvé qu'on pouvait être impressionnant tout en gardant de la retenue.</p>
-
-        <h4>Heidelberg Materials: le 3D total</h4>
-        <p>Ensuite, j'ai découvert le site de Heidelberg Materials. Là, c'était complètement différent. Le site entier n'était que du 3D. Ce n'était pas des éléments 3D placés dans un environnement 2D comme chez Mantis - c'était du pur 3D avec des mouvements de caméra qui te font naviguer d'une section à l'autre. Et tout était fait avec des particules - partout.</p>
-    
-        <div class="mo-media-container">
-            <img src="Images/Material.png" alt="Site Heidelberg Materials" class="mo-media">
-            <span class="mo-caption">Fig 6. Heidelberg Materials - L'immersion totale</span>
-        </div>
-
-                <p>Ça a été révélateur pour moi. J'ai pensé: "Pourquoi faire un site 2D après le splash alors que je peux faire le site entier en 3D avec des mouvements de caméra pour naviguer ?" Ça m'a montré qu'il n'y avait pas que le 2D avec intégration du 3D qui marche il y a le 3D complet, et c'est merveilleux.</p>
-                <p>Ces deux sites ont complètement redéfini mon ambition pour ce projet.</p>
-
-                <h3>Le retour</h3>
-                <p>Après Awwwards, mes ambitions ont décuplé. Pourquoi faire un banal site en 2D quand je pouvais créer quelque chose de vraiment impressionnant, dont je serais réellement fier ? Et là, j'ai eu l'eureka: le portfolio n'était pas juste un site qui regroupe mes projets. Le portfolio lui-même était le projet. Le plus ambitieux que j'aie entrepris. En littérature, on appelle ça un récit enchâssé.</p>
-                <p>J'ai compris qu'une véritable vitrine, c'est pas seulement une belle interface c'est le site entier qui doit respirer créativité, originalité et storytelling. Un portfolio doit jouer sur ces trois éléments, pas juste les énumérer.</p>
-
-                <h3>Deuxième projection</h3>
-                <h4>Le pivot majeur</h4>
-                <p>J'ai revu entièrement mon plan. Le trou noir ne serait plus le splash d'introduction - c'était devenu l'objet central du site. Au lieu de plonger dedans et de scroller verticalement, le site tournerait autour du trou noir avec des mouvements de caméra. C'était un changement radical.</p>
-                <p>J'ai gardé deux éléments de la première vision: l'idée d'entrer dans le trou noir et les formes en particules. Je les ai réaffectés à la section à propos elle se trouverait à l'intérieur du trou noir.</p>
-
-                <h3>Partie 2: Explication du Site Actuel</h3>
-                <h4>Le Splash: l'introduction scénarisée</h4>
-                <p>L'idée du splash c'était de transformer une simple intro en une véritable mise en scène narrative. Ça commence par une citation générale: "un site doit être simple, élégant et conceptuel" (les adjectifs peuvent varier). C'est classique, attendu.</p>
-                <p>Mais juste en dessous, il y a ma réponse: "but I have an authority issue" une petite provocation qui se veut être casseur de code. C'est là qu'on sent que ce ne sera pas un portfolio lambda. Ensuite, en cliquant sur "entrer", l'animation se lance. On découvre alors un système de rail de caméra en trois phases pour guider le mouvement: d'abord on monte pour voir la spirale 2D, puis on recule et on tourne pour révéler que le trou noir est en 3D, enfin un flyby qui referme tout et nous place devant le site. C'est une progression narrative: de l'attente à la surprise à l'arrivée.</p>
-
-                <h4>La scène 3D: le trou noir</h4>
-                <ul>
-                    <li><strong>Le fond: une skybox cosmique.</strong> Le fond est une grande sphère avec une texture réelle de la Voie lactée (image de l'ESO). L'utilisateur se trouve à l'intérieur de cette sphère, pas devant ça crée une véritable immersion dans l'espace plutôt qu'une simple toile de fond.</li>
-                    <li><strong>La sphère noire centrale.</strong> Le trou noir lui-même est une sphère Three.js avec une résolution assez élevée (32 à 64 segments selon la GPU) pour préserver les détails des particules autour. C'est simple en apparence, mais c'est la base sur laquelle repose toute l'optique.</li>
-                    <li><strong>La spirale: le cœur technique.</strong> La spirale n'est pas une simple texture appliquée - c'est un shader (code exécuté directement sur la carte graphique) qui génère la spirale en temps réel. Le système utilise du bruit de Perlin (une fonction mathématique qui crée des motifs organiques naturels) pour générer les formes, puis les transforme pour créer cet effet de spirale tournante. L'astuce c'est que la vitesse de rotation n'est pas uniforme: le centre tourne plus vite que les bords, créant cet effet d'essorage caractéristique, comme si la matière était aspirée vers le centre.</li>
-                </ul>
-                <p>Avant, la spirale était faite en particules, mais c'était moins fluide. Avec Gemini 3.0, en passant à un système de shader, la spirale est devenue vraiment élégante et performante.</p>
-
-                <h4>Section Accueil</h4>
-                <p>La citation de Jules Renard c'est une phrase qui traîne depuis longtemps dans la tête comme une morale de fable qu'on ne peut pas oublier, peu importe pourquoi. Elle semblait parfaite pour cette section: sobre, directe, qui résonne avec le projet.</p>
-                <p>Au-dessus de cette citation, le mot bascule entre "Écrire" et "&lt;Coder&gt;" une manière de symboliser cette double approche, ce mouvement entre le littéraire et le numérique. C'est littéralement ce portfolio en miniature.</p>
-                <p>La citation est positionnée pile au centre du trou noir. C'est une mise en relation consciente: le trou noir met en évidence la citation, et la citation met en évidence le trou noir. Comme une couverture de livre bien pensée, pas besoin que le titre soit écrit en gros sur fond noir uni comme les éditions Grasset pour ne pas les citer. Il suffit qu'il soit visible, captivant, que le décor amène naturellement vers lui. L'inspiration vient directement de Mantis, qui maîtrise parfaitement cet équilibre entre texte et élément visuel.</p>
-                <p>L'idée c'était de faire en sorte que rien de superflu ne vienne éclipser ce contraste. Le trou noir devient un élément de premier plan, pas juste de la décoration. C'est une utilisation consciente de la profondeur et de la hiérarchie visuelle. Une idée dont je suis assez fier.</p>
-
-                <h4>Section À propos</h4>
-                <p><strong>La complication: une section qui parle de soi.</strong> La section À propos a été la plus compliquée à mettre en place. D'abord le contenu : étant moi-même le genre de personne à avoir du mal à parler de soi, il a fallu plusieurs réécritures avant de trouver la bonne structure. Au final j'ai trouvé la solution dans mon côté littéraire. L'idée était d'utiliser un schéma narratif littéraire classique Situation initiale, Élément perturbateur, Péripéties, Dénouement, Situation finale comme on le ferait pour une histoire. Cela rendait l'exercice plus cohérent avec le parcours littéraire, tout en transformant l'autobiographie en véritable narration.</p>
-                <p><strong>La complication: intégrer le 3D au texte.</strong> La deuxième complication était la forme. L'idée était que cette section se déploierait à l'intérieur du trou noir une transition visuelle claire avec le reste du site. Mais on voulait aussi intégrer des systèmes de particules 3D en parallèle du texte. Le défi c'était l'équilibre: comment placer du contenu textuel lourd (plusieurs blocs) à côté d'animations 3D sans que l'un éclipse l'autre ? Les systèmes de particules inspirés de The Way Of Code utilisent des attracteurs mathématiques formes mathématiques qui utilisent la loi du chaos qui créent des formes organiques continuellement transformées. Mais la taille du texte rendait difficile de bien les intégrer.</p>
-                <p>La solution a été de créer un système adaptatif: chaque bloc textuel a à côté un système de particules unique qui se transforme entre deux formes différentes, au rythme du scroll. Le scroll lui-même devient un paramètre d'animation. De plus aimant particulièrement la mécanique des easter eggs, il y a dans ce texte une référence cachée, sauriez-vous la retrouver ?</p>
-
-                <h4>Section Projets</h4>
-                <p>La section Projets présente les projets sous forme de grille (3 colonnes, 2 lignes). L'idée principale, c'est que le fond de chaque carte est un teaser visuel du projet lui-même. Plutôt que de lire une description, on voit directement ce qu'on trouvera à l'intérieur. C'est montrer plutôt que raconter.</p>
-
-                <h4>Section Compétences</h4>
-                <p>La section Compétences présente les skills sous forme de Bento Grid un layout asymétrique où les blocs ont des tailles variables. L'inspiration vient des keynotes Apple, où cette grille permet de montrer plusieurs produits avec des informations à différentes échelles tout en gardant une cohérence visuelle. C'est la même logique ici: avoir une vision rapide et condensée des compétences (comme un CV), mais de manière esthétique. Les blocs de différentes tailles permettent de hiérarchiser les compétences : les principales prennent plus de place, les outils complémentaires sont plus compacts.</p>
-                <p>Il y a également la présence d'un autre easter egg cette fois beaucoup plus visible.</p>
-
-                <h3>Conclusion</h3>
-                <p>Ce projet a demandé beaucoup de travail explorations, itérations, apprentissages. Ce n'était pas juste quelques prompts et c'est fini. J'ai expérimenté beaucoup, j'ai cherché beaucoup, j'ai échoué beaucoup mais surtout j'ai appris beaucoup.</p>
-                <p>L'IA a été un outil pour matérialiser une vision, pas l'inverse. Les vraies décisions les découvertes (Three.js, Awwards, les attracteurs mathématiques), les pivots conscients, les choix de design c'est moi qui les ai prises. L'IA m'a permis de concrétiser ma pensée là où je ne savais pas techniquement comment la mettre en forme, mais la vision venait de moi.</p>
-                <p>Tout le monde dit qu'ils sont motivés et curieux, moi j'ai décidé de le montrer concrètement. Ce portfolio c'est une motivation concrète, pas celle des lettres de motivation. C'est 30 heures d'expérimentation, c'est des pivots conscients, c'est des découvertes qu'on suit. C'est la preuve que quand une idée m'intéresse, je creuse vraiment. MMI c'est l'opportunité d'amplifier ça: apprendre vraiment le développement web, le design d'interfaces, la narration interactive.</p>
-                <p>À terme, je veux mener des projets complets de la conception à la réalisation - où chaque élément (design, code, contenu) raconte la même histoire. Où un site d'édition n'est pas juste une vitrine, mais une vraie expérience qui reflète l'identité de la maison. Il y a tant de maisons d'édition et de librairies qui méritent un site internet qui les met en valeur qui raconte leur histoire, pas juste qui liste leurs produits.</p>
-                <p style="margin-top: 40px; text-align: center; color: var(--accent); font-weight: bold; font-family:'Playfair Display', serif; font-style:italic;">Créativement vôtre,<br>Un passionné.</p>
-            </div>
-    
+       <section class="section" data-section="2" id="section-makingof">
+            <iframe src="Making-Of.html" style="width:100%; height:100%; border:none;"></iframe>
             <div class="section-number">03<span>Making Of</span></div>
-        </div>
+        </section>
 
         <div class="section" data-section="3">
             <div class="projets-title">Projets</div>
