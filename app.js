@@ -325,15 +325,16 @@ function generateNoiseTexture(size = 256) {
             scene.add(glowSphere);
 
            // DISQUE ACCRETION (OPTIMISÉ)
-const noiseTexture = generateNoiseTexture(256);
-const diskSegments = gpuTier === 'low' ? 128 : 192;
-const diskGeo = new THREE.RingGeometry(BH_RADIUS * 1.1, 60.0, diskSegments, 1);
+            const noiseTexture = generateNoiseTexture(256);
+            const diskSegments = gpuTier === 'low' ? 128 : 192;
+            const diskGeo = new THREE.RingGeometry(BH_RADIUS * 1.1, 60.0, diskSegments, 1);
 
-const diskMat = new THREE.ShaderMaterial({
-    uniforms: { 
-        u_time: { value: 0 },
-        u_noiseTexture: { value: noiseTexture }
-    },
+            const diskMat = new THREE.ShaderMaterial({
+                uniforms: { 
+                    u_time: { value: 0 },
+                    u_noiseTexture: { value: noiseTexture }
+            },
+            
     vertexShader: `
         varying vec3 vPos;
         varying vec2 vUv;
