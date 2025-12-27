@@ -325,60 +325,6 @@
         .logo-progress { height: 100%; background: #BFA181; transition: width 1.5s ease; width: 0; }
         .section.active .logo-progress { width: var(--logo-level); }
 
-        /* MAKING OF */
-        .makingof-container {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            width: 80%; max-width: 1000px; padding: 60px 40px; text-align: left; pointer-events: auto; 
-            max-height: 80vh; overflow-y: auto; 
-            scrollbar-width: thin; scrollbar-color: var(--accent) rgba(0,0,0,0.3);
-        }
-        .makingof-container::-webkit-scrollbar { width: 6px; }
-        .makingof-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
-        .makingof-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
-
-        .makingof-container h2 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--accent); margin-bottom: 40px; text-align: center; }
-        .makingof-container h3 { font-family: 'Space Mono', monospace; color: var(--accent); font-size: 18px; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase; border-bottom: 1px solid rgba(191, 161, 129, 0.3); padding-bottom: 10px; }
-        .makingof-container h4 { font-family: 'Space Mono', monospace; color: #fff; font-size: 14px; margin-top: 30px; margin-bottom: 15px; }
-        .makingof-container p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; color: var(--text-light); margin-bottom: 15px; text-align: justify; }
-        .makingof-container ul { padding-left: 20px; margin-bottom: 20px; }
-        .makingof-container li { margin-bottom: 10px; line-height: 1.6; color: var(--text-muted); font-size: 15px; }
-        .makingof-container strong { color: #fff; font-weight: 600; }
-        
-        .mo-placeholder { width: 100%; height: 60px; background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 20px 0; font-family: 'Space Mono', monospace; color: rgba(255, 255, 255, 0.4); font-size: 10px; }
-
-        /* --- CSS POUR MÉDIAS MAKING OF (AJUSTÉ) --- */
-        .mo-media-container {
-            margin: 40px auto; 
-            width: 100%;       
-            text-align: center;
-        }
-
-        .mo-media {
-            max-width: 100%;   
-            height: auto;      
-            max-height: 80vh;  
-            border-radius: 8px;
-            border: 1px solid rgba(191, 161, 129, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: block;
-            margin: 0 auto;    
-        }
-
-        .mo-caption {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 10px;
-            display: block;
-            font-style: italic;
-            letter-spacing: 0.5px;
-        }
-
-        @media (max-width: 1024px) {
-            .projets-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; top: 55%; height: 70%; overflow-y: auto; display: block; }
-            .project-card { margin-bottom: 20px; 
-        }
-
             /* MODIFICATION COMPETENCES : SCROLL HORIZONTAL */
             .competences-bento {
                 display: grid;
