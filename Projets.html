@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets - Galerie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="projets.css">
+</head>
+<body>
+
+<div class="gallery-viewport">
+    <div class="gallery-canvas" id="gallery">
+        
+        <!-- PORTFOLIO - Grand Paysage -->
+        <div class="frame frame-large-landscape frame-portfolio" data-project="portfolio" style="left: 950px; top: 750px;">
+           <img src="images/BlackHole.jpg" alt="BlackHole" class="frame-image">
+            <div class="frame-label">Portfolio Interactif</div>
+        </div>
+
+        <!-- HERMÈS - Moyen -->
+        <div class="frame frame-medium frame-hermes" data-project="hermes" style="left: 350px; top: 650px;">
+            <img src="Images/Hermes.png" alt="Hermes" class="frame-image">
+            <div class="frame-label">Éditions Hermès</div>
+        </div>
+
+        <!-- STOP MOTION - Moyen -->
+        <div class="frame frame-medium frame-escale" data-project="escale" style="left: 1350px; top: 250px;">
+            <img src="Images/Escale.png" alt="Pas Prévu" class="frame-image">
+            <div class="frame-label">Stop Motion - Pas prévu</div>
+        </div>
+
+        <!-- FRISE - Moyen -->
+        <div class="frame frame-medium frame-frise" data-project="frise" style="left: 1900px; top: 850px;">
+            <img src="Images/Frise.png" alt="Frise" class="frame-image">
+            <div class="frame-label">Frise Chronologique</div>
+        </div>
+
+        <!-- AFFICHE - Moyen -->
+        <div class="frame frame-medium frame-affiche" data-project="affiche" style="left: 550px; top: 1100px;">
+            <img src="images/Affiche.png" alt="Big Brother" class="frame-image">
+            <div class="frame-label">Mes Affiches</div>
+        </div>
+
+        <!-- ITALIE - Petit -->
+        <div class="frame frame-small frame-italie" data-project="italie" style="left: 1650px; top: 1150px;">
+            <div class="frame-placeholder">
+                <span class="frame-placeholder-icon">🖼</span>
+                Italie
+            </div>
+            <div class="frame-label">Projet Italie</div>
+        </div>
+
+        <!-- TRAITEUR - Petit -->
+        <div class="frame frame-small frame-traiteur" data-project="traiteur" style="left: 700px; top: 380px;">
+            <div class="frame-placeholder">
+                <span class="frame-placeholder-icon">🖼</span>
+                Traiteur
+            </div>
+            <div class="frame-label">Site Traiteur</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Contrôles Zoom -->
+<div class="zoom-controls">
+    <button class="zoom-btn" id="zoom-in">+</button>
+    <button class="zoom-btn" id="zoom-out">−</button>
+</div>
+
+<div class="nav-hint">Glisser pour explorer • Molette pour zoomer</div>
+
+<!-- Modale -->
+<div class="project-modal" id="modal">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-content">
+        <button class="modal-close" id="modal-close">Fermer [X]</button>
+        <div class="modal-inner">
+            <h2 class="modal-title" id="modal-title"></h2>
+            <div class="modal-tags" id="modal-tags"></div>
+            <div class="modal-body" id="modal-body"></div>
+            <div id="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<script src="projets.js"></script>
+</body>
+</html>
