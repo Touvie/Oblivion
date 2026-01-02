@@ -341,7 +341,6 @@
             .competences-bento::-webkit-scrollbar { height: 4px; }
             .competences-bento::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
             .competences-bento::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
-        }
 
         @media (max-width: 900px) {
             .text-block { padding: 40px 30px; }
@@ -430,4 +429,5 @@
         si tu veux que l'utilisateur puisse continuer à descendre vers le Making Of */
         #interface-livre {
             pointer-events: all;
+
         }
