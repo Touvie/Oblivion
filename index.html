@@ -98,12 +98,12 @@
         <div class="section" data-section="1" id="section-about">
             <div class="section-content" style="width: 100vw; height: 100vh; padding: 0;">
                 <div id="container-about-livre" style="position: relative; width: 100%; height: 100%; overflow: hidden;">
-                   <iframe src="Tableau.html" id="iframe-tableau"
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 1;">
+                   <iframe data-src="Tableau.html" id="iframe-tableau"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 1; opacity: 0; transition: opacity 1.2s ease;">
                    </iframe> 
                 
-                    <iframe src="Livre.html" id="iframe-livre"
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 2; background: transparent;">
+                    <iframe data-src="Livre.html" id="iframe-livre"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 2; background: transparent; opacity: 0; transition: opacity 0.8s ease;">
                     </iframe>
                     <div class="section-number">02<span>À propos</span></div>
                 </div>
