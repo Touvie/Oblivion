@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 
+import { initMobileOverlay } from "./MobileManager.js";
+
 // --- DATA PROJETS (Extrait des PDF) ---
         const projectsData = {
             "portfolio": {
@@ -266,6 +268,8 @@ function generateNoiseTexture(size = 256) {
 }
 
         function init() {
+            initMobileOverlay();
+
             const container = document.getElementById('canvas-container');
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 3000);
