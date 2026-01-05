@@ -42,6 +42,8 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: visible;
     box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
 .frame:hover {
@@ -151,7 +153,6 @@ body {
 .frame:hover .corner-tl,
 .frame:hover .corner-br {
     opacity: 1;
-    filter: drop-shadow(0 0 8px rgba(255, 170, 50, 0.8));
 }
 
 /* =========================================
