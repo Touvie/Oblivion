@@ -887,6 +887,44 @@
             modal.style.display = 'flex';
         });
     });
+
+    let scrollCooldown = false;
+
+    window.addEventListener('wheel', (e) => {
+        // On vérifie si on est tout en haut ou tout en bas
+        const scrollTop = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        
+        // Seuil de tolérance (en pixels) pour considérer qu'on est au bord
+        const threshold = 5; 
+
+        let direction = null;
+
+        // Si on scroll vers le HAUT et qu'on est déjà en HAUT
+        if (e.deltaY < 0 && scrollTop <= threshold) {
+            direction = 'up';
+        }
+        // Si on scroll vers le BAS et qu'on est déjà en BAS
+        else if (e.deltaY > 0 && scrollTop >= maxScroll - threshold) {
+            direction = 'down';
+        }
+
+        // Si une direction est détectée et qu'on n'est pas en cooldown
+        if (direction && !scrollCooldown) {
+            scrollCooldown = true;
+            
+            // Envoi du message au parent (app.js)
+            window.parent.postMessage({ 
+                type: 'scroll', 
+                direction: direction,
+                atBoundary: true 
+            }, '*');
+
+            // Petit délai pour éviter le spam
+            setTimeout(() => { scrollCooldown = false; }, 1000);
+        }
+    }, { passive: true });
+    
 </script>
 
 </body>
