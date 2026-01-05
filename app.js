@@ -473,30 +473,6 @@ scene.add(accretionDisk);
                     return;
                 }
 
-                // Cas 2 : Section "Making Of" (Index 2) - Contient du texte scrollable
-                if (currentSection === 2) {
-                    const wrapper = document.querySelector('.makingof-container');
-                    const isAtBottom = wrapper.scrollTop + wrapper.clientHeight >= wrapper.scrollHeight - 50;
-                    const isAtTop = wrapper.scrollTop <= 0;
-                    
-                    if (direction > 0) { // Scroll vers le bas
-                        if (isAtBottom) {
-                            goToSection(3); // Go to Projets
-                            lastScrollTime = now;
-                            scrollAccumulator = 0;
-                            resistanceY = 0;
-                        }
-                    } else { // Scroll vers le haut
-                        if (isAtTop) {
-                            goToSection(1); // Go back to About
-                            lastScrollTime = now;
-                            scrollAccumulator = 0;
-                            resistanceY = 0;
-                        }
-                    }
-                    return;
-                }
-
                 // Cas 3 : Toutes les autres sections
                 if (direction > 0) {
                     goToSection((currentSection + 1) % totalSections);
