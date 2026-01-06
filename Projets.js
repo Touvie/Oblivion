@@ -69,12 +69,21 @@ const projectsData = {
         linkLabel: "Voir le prototype"
     },
     affiche: {
-        title: "Mes Affiches",
-        tags: ["Design", "Créativité", "Print"],
+        title: "Большой Брат",
+        tags: ["Design", "Créativité", "Print", "No IA"],
         content: `
-            <h3>Présentation</h3>
-            <p>Une collection d'affiches créées par mes soins, sans assistance IA.</p>
-        `,
+            <h3>Présentation Générale</h3>
+            <p>Cette affiche est la première d’une série de travaux personnels qui ne comporte pas un octet d'IA de la réflexion à la conception.</p>
+            <p>Elle adopte volontairement une forme abstraite et codée : sa structure reprend celle du plan du métro de Moscou, non pas comme une citation immédiatement reconnaissable, mais comme un réseau sous-jacent, presque invisible, à l’image des systèmes qu’elle évoque.</p>
+            <p>L’esthétique emprunte au langage du circuit électronique et du processeur graphique afin de représenter une société pensée comme un maillage numérique tentaculaire. Au centre, un œil symbolise le pouvoir central — le Kremlin — non pas comme une entité humaine, mais comme une instance de surveillance diffuse. Inspiration Big Brother</p>
+            <p>L’affiche est conçue comme interactive : au survol, la dominante bleue bascule vers le rouge. Ce changement chromatique n’est pas décoratif : il accentue la présence de l’œil, qui devient plus visible, plus agressif, suggérant une montée en tension et une forme de colère ou de contrôle renforcé.</p>
+            <p>L’interaction permet ainsi de rendre perceptible un glissement : d’un réseau apparemment neutre et technologique vers une lecture politique plus oppressante.</p>
+        
+            <figure class="modal-figure">
+               <img src="Images/Affiche.png" alt="Affiche Big Brother Moscou" class="zoomable-image" id="project-img-trigger">
+               <figcaption class="modal-caption">Figure 1 : Большой Брат (Cliquer pour agrandir)</figcaption>
+            </figure>
+            `,
         link: null,
         linkLabel: null
     },
@@ -130,6 +139,14 @@ window.addEventListener('wheel', (e) => {
 document.querySelectorAll('.frame').forEach(frame => {
     frame.addEventListener('click', () => {
         const projectId = frame.dataset.project;
+        // NOUVEAU : Si c'est le portfolio, on demande au parent de zoomer dedans
+        if (projectId === 'portfolio') {
+        window.parent.postMessage({ 
+            type: 'navigate', 
+            section: 2 // Ou 0, selon si tu veux aller au Making of ou à l'Accueil
+        }, '*');
+        return; // On arrête là, pas de modale
+    }
         const data = projectsData[projectId];
         if (!data) return;
 
@@ -162,6 +179,8 @@ document.querySelectorAll('.frame').forEach(frame => {
         }
 
         modal.classList.add('visible');
+
+        setupImageZoom();
     });
 });
 
@@ -178,3 +197,42 @@ document.addEventListener('keydown', (e) => {
         modal.classList.remove('visible');
     }
 });
+
+// === GESTION LIGHTBOX (ZOOM IMAGE) ===
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+// Fonction pour initialiser le clic sur l'image APRÈS l'ouverture de la modale
+function setupImageZoom() {
+    const triggerImg = document.getElementById('project-img-trigger');
+    if (triggerImg) {
+        triggerImg.addEventListener('click', function() {
+            lightbox.classList.add('visible');
+            lightbox.style.display = "flex"; // Nécessaire pour l'override CSS parfois
+            lightboxImg.src = this.src;
+            // On récupère le texte de la légende pour le mettre dans le lightbox
+            const captionText = this.nextElementSibling ? this.nextElementSibling.innerText : '';
+            lightboxCaption.textContent = captionText.replace(' (Cliquer pour agrandir)', '');
+        });
+    }
+}
+
+// Fermeture Lightbox
+if(lightboxClose) {
+    lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('visible');
+        setTimeout(() => { lightbox.style.display = "none"; }, 300); // Attendre la fin de l'anim
+    });
+}
+
+// Fermer en cliquant à côté de l'image
+if(lightbox) {
+    lightbox.addEventListener('click', (e) => {
+        if(e.target === lightbox) {
+            lightbox.classList.remove('visible');
+            setTimeout(() => { lightbox.style.display = "none"; }, 300);
+        }
+    });
+}
