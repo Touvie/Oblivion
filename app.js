@@ -638,7 +638,7 @@ scene.add(accretionDisk);
             new THREE.Vector3(0, 2, 10),     // 0: Accueil
             new THREE.Vector3(0, 0, 8),      // 1: À propos
             new THREE.Vector3(30, 20, 30),     // 2: Makin Of
-            new THREE.Vector3(0, 50, 1),    // 3: Projets
+            new THREE.Vector3(180, 180, 1),    // 3: Projets
             new THREE.Vector3(0, 0, 50)    // 5: Compétences
         ];
         
