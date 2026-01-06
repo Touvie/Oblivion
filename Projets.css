@@ -35,20 +35,39 @@ body {
    BASE COMMUNE DES CADRES
    ========================================= */
 .frame {
-    position: absolute;
-    background: #1a1a1a;
+  position: absolute;
+    
+    /* 1. LE FOND NOIR (Le "Passe-partout") */
+    background-color: #0a0a0f; /* Noir très profond, légèrement bleuté pour l'espace */
+    
+    /* 2. L'ÉPAISSEUR DU NOIR (L'espace entre les deux ors) */
+    padding: 20px; 
+    
+    /* 3. LE CADRE DORÉ EXTÉRIEUR */
+    border: 5px solid var(--accent); /* #BFA181 */
+    /* Petit effet de relief sur le cadre extérieur */
+    outline: 2px solid rgba(0,0,0,0.8); 
+    
     cursor: pointer;
     transform: translate(-50%, -50%) scale(1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: visible;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    will-change: transform, opacity;
-    backface-visibility: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    
+    /* OMBRE PORTÉE GLOBALE */
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.9), 
+        0 0 15px rgba(191, 161, 129, 0.1); /* Légère lueur dorée externe */
+        
+    will-change: transform;
 }
 
 .frame:hover {
-    transform: transalte(-50%, -50%)scale(1.05);
+    transform: translate(-50%, -50%) scale(1.03);
     z-index: 100;
+    /* Au survol, la lueur dorée s'intensifie */
+    box-shadow: 
+        0 30px 60px rgba(0,0,0,1),
+        0 0 30px rgba(191, 161, 129, 0.3);
+    border-color: #fff; /* Petit flash blanc sur le cadre extérieur au survol ? (Optionnel) */
 }
 
 /* =========================================
@@ -107,29 +126,102 @@ body {
 
 .frame-label {
     position: absolute;
-    bottom: -40px;
+    /* Positionné EN DESSOUS du cadre */
+     background: rgba(0,0,0,0.8);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    bottom: -45px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0,0,0,0.8);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 8px 16px;
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    color: #fff;
+    text-align: center;
+    
+  /* STYLE GRAPHIQUE (Le style "Trou Noir") */
+    background: rgba(0, 0, 0, 0.85); /* Fond sombre semi-transparent */
+    border: 1px solid var(--accent); /* La fameuse bordure dorée/beige */
+    color: var(--accent); /* Texte de la même couleur */
+    
+    /* ESPACEMENT & TEXTE */
+    padding: 10px 20px;
+    min-width: 140px; /* Une largeur minimale pour la prestance */
+    
+    font-family: 'Playfair Display', serif; /* La police élégante */
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
     white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    
+    /* FINITIONS */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.8); /* Ombre portée */
+    opacity: 0.7; /* Légèrement visible au repos (optionnel, sinon mettre 0) */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+    z-index: 20;
+    
+    /* TYPOGRAPHIE MUSÉE */
+    font-family: 'Helvetica', 'Arial', sans-serif; /* Police neutre de galerie */
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 1.4;
 }
 
+
 .frame:hover .frame-label {
-    opacity: 1;
+   opacity: 1;
+    bottom: -50px; /* Petit glissement vers le bas */
+    background: #fff;
+}
+
+/* Exception pour le portfolio (Optionnel : on peut cacher le cartel ou le styliser différemment) */
+.frame-portfolio .frame-label {
+    background: rgba(0,0,0,0.8);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.frame-portfolio:hover .frame-label {
+    bottom: -65px;
+    transform: translateX(-50%); /* On garde le centrage */
 }
 
 .frame-image {
-    width: 100%;
+   width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    
+    /* 4. LE CADRE DORÉ INTÉRIEUR */
+    border: 2px solid var(--accent); /* #BFA181 */
+    outline: 2px solid rgba(0,0,0,0.8);
+    
+    /* Ombre interne pour détacher l'image du cadre doré */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5); 
+}
+
+/* REFLET VITRÉ SUR L'IMAGE */
+.frame::after {
+    content: '';
+    position: absolute;
+    top: 15px; left: 15px; right: 15px; bottom: 15px; /* Doit correspondre au padding du passe-partout */
+    background: linear-gradient(
+        135deg, 
+        rgba(255,255,255,0.1) 0%, 
+        rgba(255,255,255,0) 40%, 
+        rgba(255,255,255,0) 60%, 
+        rgba(255,255,255,0.05) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* On enlève la vitre pour le trou noir car il est "réel" */
+.frame-portfolio::after {
+    display: none;
 }
 
 /* =========================================
@@ -159,10 +251,23 @@ body {
    GRAND - ORION
    ========================================= */
 .frame-portfolio {
-    border: 2px solid rgba(255, 170, 50, 0.5);
+   /* On garde la bordure extérieure dorée mais on vide le fond */
+    background: transparent !important; 
+    
+    /* On peut réduire le padding ou le garder pour avoir un cadre flottant */
+    padding: 10px !important; 
+    
+    /* On renforce un peu la bordure extérieure pour lui */
+    border: 4px double var(--accent); 
+    
     box-shadow: 
-        0 0 40px rgba(255, 170, 50, 0.25),
-        0 10px 40px rgba(0,0,0,0.6);
+        0 0 30px rgba(191, 161, 129, 0.2),
+        inset 0 0 20px rgba(191, 161, 129, 0.1);
+}
+
+.frame-portfolio .frame-image,
+.frame-portfolio .frame-placeholder {
+    display: none; /* Disparition ! */
 }
 
 .frame-portfolio::before,
@@ -187,8 +292,7 @@ body {
 .frame-portfolio:hover {
     border-color: rgba(255, 170, 50, 0.8);
     box-shadow: 
-        0 0 60px rgba(255, 170, 50, 0.4),
-        0 15px 50px rgba(0,0,0,0.7);
+        0 0 50px rgba(191, 161, 129, 0.4);
 }
 
 /* =========================================
@@ -515,6 +619,124 @@ body {
     background: var(--accent);
     color: #000;
     box-shadow: 0 0 30px rgba(191, 161, 129, 0.4);
+}
+
+/* =========================================
+   IMAGE DANS LA MODALE & LÉGENDE
+   ========================================= */
+.modal-figure {
+    margin: 40px 0 20px 0; /* Espace avant/après */
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.zoomable-image {
+    width: 100%; /* Prend toute la largeur dispo dans la modale */
+    height: auto;
+    max-height: 60vh; /* Pour ne pas qu'elle soit trop haute sur petits écrans */
+    object-fit: contain; /* L'image ne sera pas déformée */
+    border: none;
+    outline: 2px solid var(--accent); /* Ligne dorée */
+    outline-offset: 5px;              /* L'écart de 5px */
+    
+    /* 3. MARGE DE SÉCURITÉ */
+    /* Important : comme le cadre sort de l'image, il faut ajouter une marge 
+       pour ne pas qu'il touche le texte au-dessus ou en dessous */
+    margin: 10px 0; 
+    
+    cursor: zoom-in; 
+    transition: all 0.3s ease;
+}
+
+.zoomable-image:hover {
+   outline-color: #fff; /* Le cadre devient blanc */
+    box-shadow: 0 0 30px rgba(191, 161, 129, 0.3); /* Lueur */
+}
+
+.modal-caption {
+    margin-top: 15px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    border-top: 1px solid var(--accent);
+    padding-top: 10px;
+    width: 80%;
+}
+
+/* =========================================
+   LIGHTBOX (ZOOM PLEIN ÉCRAN)
+   ========================================= */
+.lightbox {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    z-index: 5000; /* Au-dessus de tout (même la modale) */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.95); /* Fond noir presque opaque */
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 50px rgba(191, 161, 129, 0.2);
+    animation: zoomAnim 0.4s;
+}
+
+@keyframes zoomAnim {
+    from {transform:scale(0.8); opacity:0} 
+    to {transform:scale(1); opacity:1}
+}
+
+#lightbox-caption {
+    margin-top: 20px;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    font-family: sans-serif;
+    z-index: 5001;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* =========================================
