@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livre 3D - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #BFA181;
+            --bordeaux: #722F37;
+            --page-width: 340px;
+            --page-height: 480px;
+            --fold-shadow: rgba(0,0,0,0.15);
+            --transition-speed: 0.8s;
+            --parchment: linear-gradient(135deg, #f5f0e6 0%, #e8e0d0 100%);
+            --parchment-dark: rgba(0,0,0,0.03);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: transparent !important;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: zoom-out;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        /* Animation d'entrée "Fly-in" */
+        @keyframes bookEntrance {
+            0% {
+                opacity: 0;
+                transform: translateZ(-2000px) rotateX(30deg) rotateY(-10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateZ(0) rotateX(0) rotateY(0);
+            }
+        }
+
+        .book-container {
+            animation: bookEntrance 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            transform-style: preserve-3d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Cette classe sera ajoutée via JavaScript quand le livre est ouvert */
+        .book-container.open {
+            transform: translateX(0) rotateX(0) rotateY(0) !important;
+        }
+
+        .book-scene { 
+            perspective: 3000px;
+            margin-top: 0; 
+            margin-bottom: 10px; 
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform: translateX(calc(var(--page-width) / -2));
+        }
+        
+        .book-scene.open {
+            transform: translateX(0);
+        }
+
+        .book-scene.closed-final {
+            transform: translateX(calc(var(--page-width) / 2)) !important;
+        }
+
+        .book-scene.open .book-spine {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .book {
+            width: calc(var(--page-width) * 2);
+            height: var(--page-height);
+            position: relative;
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+        }
+        
+        .page, .cover {
+            position: absolute;
+            width: var(--page-width);
+            height: var(--page-height);
+            top: 0;
+            right: 0;
+            transform-origin: left center;
+            transition: transform var(--transition-speed) cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s 0.4s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        
+        .page.flipped, .cover.flipped { transform: rotateY(-180deg); }
+        
+        .cover { z-index: 100; }
+        .page[data-page="1"] { z-index: 90; }
+        .page[data-page="2"] { z-index: 80; }
+        .page[data-page="3"] { z-index: 70; }
+        .page[data-page="4"] { z-index: 60; }
+        .page[data-page="5"] { z-index: 50; }
+        .page[data-page="6"] { z-index: 40; }
+        .page[data-page="7"] { z-index: 30; }
+        .page[data-page="8"] { z-index: 20; }
+        
+        .cover.flipped { z-index: 1; }
+        .page[data-page="1"].flipped { z-index: 10; }
+        .page[data-page="2"].flipped { z-index: 20; }
+        .page[data-page="3"].flipped { z-index: 30; }
+        .page[data-page="4"].flipped { z-index: 40; }
+        .page[data-page="5"].flipped { z-index: 50; }
+        .page[data-page="6"].flipped { z-index: 60; }
+        .page[data-page="7"].flipped { z-index: 70; }
+        .page[data-page="8"].flipped { z-index: 80; }
+        
+        .page-front, .page-back, .cover-front, .cover-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .parchment-style {
+            background: var(--parchment);
+            color: #2a2420;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.07);
+        }
+        
+        .page-back, .cover-back { transform: rotateY(180deg); }
+
+        .parchment-style::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .page-front::after { left: 0; background: linear-gradient(90deg, var(--fold-shadow) 0%, transparent 100%); }
+        .page-back::after, .cover-back::after { right: 0; background: linear-gradient(-90deg, var(--fold-shadow) 0%, transparent 100%); }
+        
+        /* BINARY DECORATIONS */
+        .binary-corner {
+            position: absolute;
+            font-family: 'Space Mono', monospace;
+            font-size: 6px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            line-height: 1.3;
+            z-index: 10;
+        }
+        .binary-corner.top-left { top: 12px; left: 12px; }
+        .binary-corner.top-right { top: 12px; right: 12px; text-align: right; }
+        .binary-corner.top-right .binary-v { text-align: right; padding-right: 3px; }
+
+        .binary-line-bottom {
+            position: absolute;
+            bottom: 35px;
+            left: 20px;
+            right: 20px;
+            font-family: 'Space Mono', monospace;
+            font-size: 5px;
+            color: var(--accent);
+            text-align: center;
+            letter-spacing: 2px;
+            z-index: 10;
+        }
+
+        .visual-placeholder {
+            width: 100%;
+            height: 100px;
+            border: 1px dashed var(--accent);
+            background: var(--parchment-dark);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .visual-placeholder::before {
+            content: '[ Zone 3D ]';
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            color: var(--accent);
+            letter-spacing: 2px;
+            opacity: 0.6;
+        }
+
+        .page-content {
+            padding: 35px 35px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            font-size: 10.5px;
+            line-height: 1.5;
+            position: relative;
+        }
+        
+        .page-content h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--bordeaux);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            margin-top: 0 ;
+        }
+        
+        .page-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            color: #2a2420;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .page-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 10px;
+            color: #2a2420;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .page-content p { margin-bottom: 7px; }
+
+        /* Page footer avec séparation */
+        .page-footer {
+            position: absolute;
+            bottom: 14px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .page-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            color: var(--accent);
+            letter-spacing: 2px;
+        }
+
+        /* Images */
+        .page-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5%;
+            margin-bottom: 4px;
+            cursor: zoom-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .page-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .image-caption {
+            font-family: 'Space Mono', monospace;
+            font-size: 7px;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Pull Quote */
+        .pull-quote {
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-left: 2px solid var(--bordeaux);
+            background: var(--parchment-dark);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 11.5px;
+            color: #2a2420;
+        }
+        .pull-quote-author {
+            font-size: 8px;
+            font-style: normal;
+            color: var(--bordeaux);
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        /* Cards */
+        .card {
+            border: 1px solid var(--bordeaux);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            background: var(--parchment-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            color: var(--bordeaux);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+        }
+        .card-text {
+            font-size: 9px;
+            line-height: 1.4;
+            margin: 0;
+        }
+        .card-large {
+            padding: 14px 16px;
+        }
+        .card-large .card-text {
+            font-size: 9.5px;
+        }
+
+        .cover-front {
+            background: linear-gradient(145deg, #1a1a20 0%, #0a0a0f 100%);
+            border: 2px solid var(--accent);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .cover-front h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--accent); margin-bottom: 10px; }
+        .cover-subtitle { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 3px; }
+
+        .page-left {
+            position: absolute;
+            width: var(--page-width);
+            height: var(--page-height);
+            top: 0;
+            left: 0;
+            background: #d8d0c0;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .page-left.visible {
+            opacity: 1;
+        }
+
+        
+
+        .book-controls { display: flex; align-items: center; gap: 20px; margin-top: 5px; }
+        .book-nav-btn { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            color: #fff; 
+            font-family: 'Space Mono', monospace; 
+            font-size: 10px; 
+            padding: 10px 18px; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            text-transform: uppercase; 
+        }
+        .book-nav-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+        #page-indicator { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.4); text-align: center; min-width: 150px; }
+
+        .making-of-container {
+            margin-top: auto;
+            margin-bottom: 40px;
+            padding: 12px;
+            border: 1px solid var(--bordeaux);
+            text-align: center;
+            background: var(--parchment-dark);
+            border-radius: 4px;
+        }
+        .making-of-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background: var(--bordeaux);
+            color: rgb(255, 254, 254);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .making-of-btn:hover { background: #d4b896; }
+    </style>
+</head>
+<body>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Image agrandie" id="lightbox-img">
+    </div>
+
+    <div class="book-scene">
+        <div class="book-container">
+            <div class="book">
+                <div class="book-spine"></div>
+                <div class="page-left"></div>
+                
+                <!-- Feuille 8 -->
+                <div class="page" data-page="8">
+                    <div class="page-front parchment-style">
+                        <div class="page-content">
+                            <div class="pull-quote">J'ai commencé en suivant Percy Jackson, maintenant je veux rejoindre Scratch.</div>
+                            <p>Littérairement vôtre,<br>Un passionné.</p>
+                            <div class="making-of-container">
+                                <a href="#" class="making-of-btn">Accéder au Making Of</a>
+                            </div>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">15</span></div>
+                        </div>
+                    </div>
+                    <div class="page-back" style="background: #0a0a0f; border: 2px solid var(--accent);">
+                        <div class="page-content" style="justify-content: center; align-items: center; color: white; text-align: center;">
+                            <div style="font-size: 24px; color: var(--accent); margin-bottom: 15px;">✦</div>
+                            <p class="cover-subtitle"><em>This is only the beginning</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feuille 7 -->
+                <div class="page" data-page="7">
+                    <div class="page-front parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <div class="pull-quote">
+                                Il faut toujours viser la lune, car même en cas d'échec, on atterrit dans les étoiles.
+                                <div class="pull-quote-author">— Oscar Wilde</div>
+                            </div>
+                            <p>Je peux concevoir, expérimenter, ajuster, mais je sens bien qu'il me manque encore les bases techniques solides pour être pleinement autonome. C'est précisément cette marche que je veux franchir.</p>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">13</span></div>
+                        </div>
+                    </div>
+                    <div class="page-back parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <h3>Pourquoi MMI ?</h3>
+                            <p><strong>MMI représente pour moi la suite logique de ce parcours.</strong> Aujourd'hui, je sais très bien que quelque soit la direction que prendra mon avenir, il ira de pair avec l'apprentissage de ces outils numériques que ce soit en autodidacte ou accompagné et dont je ne connaissais seulement le nom il y a à peine un an encore.</p>
+                            <p>Le livre m'a appris à organiser le sens ; le numérique m'a donné envie d'organiser le monde. MMI n'est pas pour moi une bifurcation, mais un élargissement : passer du texte aux interfaces, du récit aux expériences, de l'objet fini aux objets vivants. Je n'ai pas encore un métier précis en tête, mais j'ai une direction : comprendre comment une idée devient forme, comment une intention devient image, comment une histoire devient expérience numérique. C'est exactement ce que MMI propose.</p>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">14</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feuille 6 -->
+                <div class="page" data-page="6">
+                    <div class="page-front parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <p>Avec le recul, cette vulgarisation en graphique c'était déjà une forme d'UX : partir des besoins des autres, organiser les données, choisir une forme visuelle qui facilite la décision.</p>
+                            <p><strong>En MMI, c'est cette démarche que je veux continuer, simplement avec d'autres outils et à une autre échelle.</strong></p>
+                            <img src="Images/Infographie.jpg" alt="Infographie terminale" class="page-image" style="margin-top: 50px;" onclick="openLightbox(this)">
+                            <div class="image-caption">Infographie terminale</div>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">11</span></div>
+                        </div>
+                    </div>
+                    <div class="page-back parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <h2>05 // Et maintenant ?</h2>
+                            <p>La situation finale n'existe pas encore. Ce portfolio marque une étape : un état des lieux honnête de ce que j'ai exploré jusqu'ici, de mes intuitions comme de mes limites actuelles.</p>
+                            <p>Quand est venu le moment de concevoir mon portfolio, les maîtres mots étaient l'<strong>ambition</strong> et l'<strong>originalité</strong>. Je ne voulais pas de quelque chose de classique, de trop propre mais quelque chose qui me ressemble, dont je pourrais être réellement fier.</p>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">12</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feuille 5 -->
+                <div class="page" data-page="5">
+                    <div class="page-front parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <div class="card">
+                                <div class="card-title">Structurer l'information</div>
+                                <p class="card-text">Hiérarchiser des contenus, construire un sommaire, penser un parcours de lecture. Cette rigueur éditoriale est la base de tout bon projet numérique.</p>
+                            </div>
+                            <div class="card">
+                                <div class="card-title">Analyser les enjeux</div>
+                                <p class="card-text">Ne jamais regarder un objet culturel uniquement par sa surface. Qui décide ? Pour qui ? Avec quelles contraintes ? Un site n'est jamais neutre.</p>
+                            </div>
+                            <div class="card">
+                                <div class="card-title">Communiquer clairement</div>
+                                <p class="card-text">Si ce n'est pas clair, ça ne fonctionne pas. Une interface, comme un texte, est une forme de conversation. Parfois, on est tellement investi qu'on en oublie le message à faire passer, c'est là où les autres nous viennent en aide.</p>
+                            </div>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">9</span></div>
+                        </div>
+                    </div>
+                    <div class="page-back parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <div class="card card-large">
+                                <div class="card-title">Penser l'usage</div>
+                                <p class="card-text">Quand j'étais délégué durant mes trois années de lycée, je transformais les retours de mes camarades de classe en diagrammes que je distribuais aux professeurs lors des conseils de classe. Je faisais toujours un discours devant l'assemblée du corps enseignant en guise d'explication de mes diagrammes.</p>
+                            </div>
+                            <p style="margin-top: 10px;">Partir des besoins des autres, organiser les données, choisir une forme visuelle qui facilite la décision.</p>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">10</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feuille 4 -->
+                <div class="page" data-page="4">
+                    <div class="page-front parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <h4>Frise chronologique - Figma</h4>
+                            <p>Cette SAE demandait de condenser plusieurs siècles de musique, de littérature française et d'histoire de l'art dans une seule ligne visuelle cohérente. Construire un rythme, hiérarchiser les événements et trouver une charte graphique lisible. J'ai compris à quel point le design sert avant tout à rendre le savoir accessible — et agréable à parcourir.</p>
+                            <h4>Les Editions Hermès</h4>
+                            <p>Création d'une maison d'édition fictive. Pour ce projet de groupe, j'ai créé un site web crédible pour une maison d'édition. J'ai travaillé sur la structure, la cohérence visuelle, la navigation, tout en veillant à ce que l'identité de la maison reste présente à chaque page. Ce fut une belle initiation à la logique professionnelle : organiser, répartir, trancher, et produire un résultat qui tient debout.</p>
+                            <div class="making-of-container">
+                                <a href="#" class="making-of-btn">Accéder aux Projets</a>
+                            </div>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">7</span></div>
+                        </div>
+                    </div>
+                    <div class="page-back parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <h2>04 // L'Approche Littéraire - Un atout</h2>
+                            <p>Les Métiers du Multimédia et de l'Internet ont un fort taux de profil orienté vers les domaines scientifiques et technologiques. Je viens d'un parcours littéraire et éditorial. Loin d'être un handicap, c'est ce qui structure aujourd'hui ma manière d'aborder le numérique.</p>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">8</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feuille 3 -->
+                <div class="page" data-page="3">
+                    <div class="page-front parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <p>En parallèle, mes cours de culture numérique — ceux que j'attendais le plus dans la semaine — m'ont ouvert une autre porte : comprendre d'où vient tout ça. J'ai commencé à lire sur les pionniers de l'informatique et du web, de Pascal à Ampère en passant par Turing, d'Ada Lovelace à Blackwell, pour ne citer qu'eux, non sans hasard.</p>
+                            <img src="Images/Nvidia.png" alt="Les pionniers de l'informatique" class="page-image" onclick="openLightbox(this)">
+                            <div class="image-caption">Les pionniers de l'informatique</div>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">5</span></div>
+                        </div>
+                    </div>
+                    <div class="page-back parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <h3>Les projets de groupes</h3>
+                            <p>Les projets de groupes sont nombreux en Métiers du Livre et du Patrimoine et parmi eux, certains m'ont permis d'en apprendre plus sur le numérique.</p>
+                            <h4>Vidéo de promotion de livre - Escales du Livre</h4>
+                            <p>Une vraie première fois en tournage et en montage : écrire un script, découper en plans, gérer le cadrage, le son, le rythme, le lien entre texte et image. Là encore, même logique : comment adapter un objet (un livre) à un autre médium (une vidéo), sans perdre son intention ?</p>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">6</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feuille 2 -->
+                <div class="page" data-page="2">
+                    <div class="page-front parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <p>Pas seulement le résultat, dont l'UI est sommaire, mais le processus lui-même : structurer l'information, choisir les couleurs, voir mes modifications s'afficher en direct. J'y ai passé plus de temps que les autres. Pas par obligation, mais parce que quelque chose dans cette façon de créer me plaisait vraiment. J'ai eu la meilleure note de ma promo pour ce projet.</p>
+                            <img src="Images/Italie.png" alt="Premier site internet créé en Janvier 2025" class="page-image" style="margin-top: 50px" onclick="openLightbox(this)">
+                            <div class="image-caption">Premier site internet créé en Janvier 2025</div>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">3</span></div>
+                        </div>
+                    </div>
+                    <div class="page-back parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <h2>03 // Péripétie — L'exploration</h2>
+                            <p>Après cette première expérience, j'ai commencé à voir les sites non plus comme de simples et jolies interfaces mais comme la résultante d'un processus de création mûrement réfléchi. J'ai donc décidé d'approfondir ces connaissances en en apprenant plus sur ce domaine si présent dont moi, simple moldu, ne connaissais pas.</p>
+                            <p>D'abord Figma, pour sortir de la page statique et réfléchir en termes d'interface. Comment disposer les éléments pour que l'œil comprenne où aller ? Où placer un bouton, un menu, un titre ? Quels composants réutiliser, quels états prévoir ? Figma m'a appris qu'avant même une ligne de code, on peut déjà raconter quelque chose avec des blocs, des espacements et des couleurs.</p>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">4</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feuille 1 -->
+                <div class="page" data-page="1">
+                    <div class="page-front parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <p>Au lycée, Python en cours de maths a tout cassé. Des équations que je ne comprenais déjà pas, traduites dans un langage qui me restait opaque. J'en ai tiré une conclusion simple et fausse : le code, c'était ça, des mathématiques inaccessibles. Pas pour moi. Cette conviction m'a suivi pendant des années.</p>
+                            <p>Aujourd'hui en 2e année de Métiers du Livre, dans un cours de développement web, tout a basculé. Le code n'était finalement pas qu'affaire d'équations : il était visuel, organique, vivant.</p>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">1</span></div>
+                        </div>
+                    </div>
+                    <div class="page-back parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <h2>02 // Élément Déclencheur - L'Italie</h2>
+                            <p>Il y a un an, j'ai créé mon premier site web lors d'un cours d'informatique. Le sujet : l'Italie. Trois sections en cards — Nourriture, Monuments, Villes — structurées en HTML et stylisées en CSS. Les bases les plus basiques de la basitude.</p>
+                            <div class="pull-quote" style="text-align: center;">Mais j'ai aimé le faire.</div>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">2</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Couverture -->
+                <div class="cover" data-page="0">
+                    <div class="cover-front">
+                        <h1>À Propos</h1>
+                        <div style="font-size: 24px; color: var(--accent); margin-bottom: 20px;">✦</div>
+                        <p class="cover-subtitle">Une histoire en cinq actes</p>
+                    </div>
+                    <div class="cover-back parchment-style">
+                        <div class="binary-corner top-left">01010101<br>0<br>1<br>0<br>1<br>0<br>1<br>0</div>
+                        <div class="binary-corner top-right">10101010<br>1<br>0<br>1<br>0<br>1<br>0<br>1</div>
+                        <div class="page-content">
+                            <h2>01 // Situation Initiale - Qui suis-je ?</h2>
+                            <p>Au CDI du collège, j'ai découvert deux mondes : Percy Jackson et Scratch. L'un vivait des histoires, l'autre permettait d'en créer. Mais quand mes camarades programmaient des jeux de vaisseaux spatiaux avec collisions et scores, moi je passais mes heures à animer des évolutions Pokémon. Le résultat visuel m'importait plus que la mécanique. Ce n'était pas le système qui me fascinait, c'était le mouvement, la transformation à l'écran, le processus de création.</p>
+                            <div class="binary-line-bottom">01001000 01000101 01001100 01001100 01001111</div>
+                            <div class="page-footer"><span class="page-number">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="book-controls">
+        <button id="prev-page" class="book-nav-btn">← Précédent</button>
+        <span id="page-indicator">Couverture</span>
+        <button id="next-page" class="book-nav-btn">Suivant →</button>
+    </div>
+
+    <script>
+    const book = document.getElementById('book');
+    const container = document.querySelector('.book-container');
+    const allPages = document.querySelectorAll('.page, .cover');
+    const indicator = document.getElementById('page-indicator');
+    
+    let currentPage = 0;
+    const totalPages = allPages.length;
+
+    const pageNames = {
+        0: "Couverture", 1: "Situation", 2: "L'Italie", 3: "Exploration",
+        4: "Projets Groupes", 5: "Atout Littéraire", 6: "Usage & Données",
+        7: "Pourquoi MMI ?", 8: "Conclusion", 9: "Fin ?"
+    };
+
+    function flipTo(pageNum) {
+        if (pageNum < 0 || pageNum > totalPages) return;
+        
+        const scene = document.querySelector('.book-scene');
+        scene.classList.remove('open', 'closed-final');
+        
+        if (pageNum === 9) scene.classList.add('closed-final');
+        else if (pageNum > 0) scene.classList.add('open');
+
+        // Volet gauche
+        const pageLeft = document.querySelector('.page-left');
+        if (pageNum > 0 && pageNum < 9) {
+            setTimeout(() => { if (currentPage > 0 && currentPage < 9) pageLeft.classList.add('visible'); }, 800);
+        } else {
+            pageLeft.classList.remove('visible');
+        }
+        
+        // Retournement
+        allPages.forEach(page => {
+            const idx = parseInt(page.dataset.page);
+            if (idx < pageNum) page.classList.add('flipped');
+            else page.classList.remove('flipped');
+        });
+
+        currentPage = pageNum;
+        indicator.textContent = pageNames[currentPage] || `Page ${currentPage}`;
+    }
+
+    // Navigation CLIC
+    allPages.forEach(page => {
+        page.addEventListener('click', (e) => {
+            if (e.target.classList.contains('page-image')) return;
+            const idx = parseInt(page.dataset.page);
+            if (page.classList.contains('flipped')) flipTo(idx);
+            else flipTo(idx + 1);
+        });
+    });
+
+    // Boutons navigation Making Of
+    document.querySelectorAll('.making-of-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const label = btn.textContent;
+            let section = 2; // Par défaut Making Of
+            if (label.includes('Projets')) section = 3;
+            window.parent.postMessage({ type: 'navigate', section: section }, '*');
+        });
+    });
+
+    // === SCROLL UNIFIÉ (TRACKPAD/SOURIS) & LOCK ===
+    let isPageTurning = false; 
+    let pageScrollAccumulator = 0;
+    let pageScrollTimeout;
+
+    window.addEventListener('wheel', (e) => {
+        if (isPageTurning) return; // 1. LOCK ANTI-DOUBLE PAGE
+
+        let rawDelta = e.deltaY;
+        let effectiveDelta = rawDelta;
+
+        // 2. ADAPTATION TRACKPAD
+        if (Math.abs(rawDelta) < 40) effectiveDelta = rawDelta * 3.0; 
+        else effectiveDelta = rawDelta * 0.6; 
+
+        pageScrollAccumulator += effectiveDelta;
+        
+        clearTimeout(pageScrollTimeout);
+        pageScrollTimeout = setTimeout(() => { pageScrollAccumulator = 0; }, 100);
+
+        // 3. SEUIL
+        if (Math.abs(pageScrollAccumulator) < 60) return;
+
+        const direction = pageScrollAccumulator > 0 ? 1 : -1;
+        pageScrollAccumulator = 0; 
+
+        // 4. SORTIES
+        if (currentPage >= 9 && direction > 0) {
+            window.parent.postMessage({ type: 'scroll', direction: 'down', atBoundary: true }, '*');
+            return;
+        }
+        if (currentPage === 0 && direction < 0) {
+            window.parent.postMessage({ type: 'scroll', direction: 'up', atBoundary: true }, '*');
+            return;
+        }
+
+        // 5. ACTION
+        isPageTurning = true;
+        if (direction > 0) flipTo(currentPage + 1);
+        else flipTo(currentPage - 1);
+        
+        setTimeout(() => { isPageTurning = false; }, 1200);
+
+    }, { passive: true });
+
+    // === RECEPTION MESSAGES (RESET) ===
+    window.addEventListener('message', (event) => {
+        if (event.data && event.data.type === 'reset') {
+            // Si on vient du BAS (Making Of), on ouvre à la fin
+            if (event.data.location === 'end') {
+                setTimeout(() => flipTo(9), 100);
+            } else {
+                flipTo(0);
+            }
+        }
+    });
+
+    document.getElementById('next-page').onclick = () => flipTo(currentPage + 1);
+    document.getElementById('prev-page').onclick = () => flipTo(currentPage - 1);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') flipTo(currentPage + 1);
+        if (e.key === 'ArrowLeft') flipTo(currentPage - 1);
+    });
+
+    window.addEventListener('load', () => flipTo(0));
+
+    function openLightbox(img) {
+        const lb = document.getElementById('lightbox');
+        document.getElementById('lightbox-img').src = img.src;
+        lb.classList.add('active');
+    }
+    document.getElementById('lightbox').onclick = function() { this.classList.remove('active'); };
+</script>
+</body>
+</html>
