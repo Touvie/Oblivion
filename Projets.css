@@ -760,24 +760,71 @@ body {
 /* =========================================
    RESPONSIVE
    ========================================= */
-@media (max-width: 900px) {
-    .modal-content {
-        width: 75%;
-        padding: 50px 30px;
-    }
-    
-    .modal-title {
-        font-size: 32px;
-    }
-}
 
-@media (max-width: 600px) {
-    .modal-content {
-        width: 100%;
-        padding: 40px 25px;
+@media (max-width: 768px) {
+    /* --- 1. GALERIE HORIZONTALE --- */
+    .gallery-viewport {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .gallery-canvas {
+        display: flex;
+        flex-direction: row;
+        width: max-content;
+        height: 100%;
+        align-items: center;
+        padding: 0 50px;
+        position: static; 
+        transform: none !important; 
+        top: auto; left: auto;
+    }
+
+    /* Standardisation des cadres */
+    .frame, .frame-large-landscape, .frame-medium, .frame-small {
+        position: relative !important;
+        top: auto !important; left: auto !important;
+        transform: none !important;
+        flex-shrink: 0; 
+        margin-right: 40px; 
+        width: 70vw; 
+        max-width: 280px;
+        height: auto; 
+        aspect-ratio: 1/1.3;
+    }
+
+    .frame:last-child { margin-right: 0; }
+
+    /* Étiquettes */
+    .frame-label {
+        position: absolute;
+        bottom: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 1;
+        background: rgba(0,0,0,0.8);
+        white-space: nowrap;
+    }
+
+    /* --- 2. FIX DE LA MODALE ET DE LA CROIX --- */
+    /* On descend la croix pour ne pas taper dans le header */
+    .modal-close {
+        top: 100px; 
+        right: 20px;
+        position: fixed;
+        z-index: 9999;
+        background: rgba(0,0,0, 0.9);
+        border: 1px solid var(--accent);
     }
     
-    .modal-title {
-        font-size: 28px;
+    /* On pousse le contenu pour qu'il ne soit pas caché par la croix */
+    .modal-content {
+        padding-top: 140px; 
+        width: 100%; 
     }
 }
