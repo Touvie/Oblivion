@@ -425,6 +425,59 @@
             transition: 0.3s;
         }
         .making-of-btn:hover { background: #d4b896; }
+
+        /* --- RESPONSIVE MOBILE POUR LE LIVRE --- */
+@media (max-width: 768px) {
+    body {
+        /* On déplace le point de pivot au centre pour que le zoom se fasse bien */
+        transform-origin: center center;
+        overflow: hidden; /* On évite que ça déborde */
+    }
+    
+    .book-scene {
+        /* LA MAGIE EST ICI : On réduit le livre à 55% de sa taille (0.55) */
+        /* On enlève le décalage X qui servait sur PC pour centrer la page de droite */
+        transform: scale(0.55) translateX(0) !important; 
+        margin-top: -20px;
+    }
+    
+    /* Quand le livre est ouvert */
+    .book-scene.open {
+        transform: scale(0.55) translateX(0) !important;
+    }
+    
+    /* On cache le volet gauche décoratif qui prend de la place pour rien sur mobile */
+    .page-left { display: none; }
+    
+    /* On agrandit les boutons de navigation pour les gros doigts */
+    .book-controls {
+        position: fixed;
+        bottom: 20px;
+        left: 0; 
+        width: 100%;
+        justify-content: center;
+        transform: scale(0.9);
+        gap: 10px;
+        z-index: 1000;
+        background: rgba(0,0,0,0.5); /* Petit fond pour lisibilité */
+        padding: 10px 0;
+    }
+    
+    /* On cache le texte binaire décoratif qui surcharge */
+    .binary-corner, .binary-line-bottom {
+        display: none;
+    }
+    
+    /* On agrandit un peu le texte pour qu'il reste lisible malgré le dézoom */
+    .page-content {
+        font-size: 13px; /* Était 10.5px */
+        padding: 25px;
+    }
+    
+    .page-content p {
+        line-height: 1.4;
+    }
+}
     </style>
 </head>
 <body>
