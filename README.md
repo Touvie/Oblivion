@@ -4,6 +4,7 @@ Je savais bien que des gens arriveront ici.
 La structure du site actuelle n'est pas encore terminée. Je suis en plein réaménagement.
 Voici la version qui adviendra prochainement : 
 
+```text
 📁 Oblivion/
 │
 ├── 📄 index.html
@@ -43,6 +44,7 @@ Voici la version qui adviendra prochainement :
 │   │   ├── 📄 making-of.css
 │   │   ├── 📄 making-of.js
 │   │   └── 📁 images
+```text
 
 C'est tout pour aujourd'hui, en vous souhaitant une agréable et bonne journée, 
 Myself
