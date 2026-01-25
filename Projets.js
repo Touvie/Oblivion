@@ -107,7 +107,7 @@ const projectsData = {
         tags: ["Premier Site", "HTML", "Découverte", "IA"],
         content: `
             <h3>Le point de départ</h3>
-            <p>Mon premier site web lors d'un cours d'informatique.</p>
+            <p>Ce projet fut le premier présenté ici. C'est le premier site web que j'ai réalisé dans le cadre d'un travail scolaire à l'IUT. J'ai choisi de le présenter ici non pas car il est particulièrement intéressant, mais comme archive, comme point de départ. Mettre ce projet en avant permet de mettre en évidence d'où je suis partie, et quels sont les progrès réalisés en l'espace d'un an.</p>
         `,
         link: "https://touvie.github.io/Italie",
         linkLabel: "Visiter le site"
