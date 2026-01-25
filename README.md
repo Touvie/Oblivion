@@ -1,6 +1,6 @@
 # Oblivion
 Cher visiteur, bonjour ! 
-Je savais bien que des gens arriveront ici. 
+Je savais bien que des gens viendront ici. 
 La structure du site actuelle n'est pas encore terminée. Je suis en plein réaménagement.
 Voici la version qui adviendra prochainement : 
 
