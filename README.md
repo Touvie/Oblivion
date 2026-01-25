@@ -44,7 +44,7 @@ Voici la version qui adviendra prochainement :
 │   │   ├── 📄 making-of.css
 │   │   ├── 📄 making-of.js
 │   │   └── 📁 images
-```text
+```
 
 C'est tout pour aujourd'hui, en vous souhaitant une agréable et bonne journée, 
 Myself
