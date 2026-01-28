@@ -116,16 +116,20 @@ const projectsData = {
         title: "Animation Figma",
         tags: ["Figma", "UI", "Motion", "No IA"],
         content: `
-            <h3>Prototype Nothing</h3>
-            <p>Ce projet est une exploration des capacités de prototypage avancé (Smart Animate) de Figma. L'objectif était de recréer une interface fluide et réactive.</p>
-            
+            <h3>Présentation</h3>
+            <p>Dans le monde du numérique, il y a des univers qui marquent plus que d'autres. Nothing en fait partie. Pour les moldus, Nothing est une marque tech anglaise notamment connue pour les écouteurs et les téléphones. La particularité de cette entreprise est sans aucun doute son parti-pris graphique très poussé. Nothing est une marque que j'apprécie beaucoup pour l'originalité et l'audace de leur univers qu'ils transposent dans leurs produits tech.</p>
+            <h3>Intention</h3>
+            <p>Lors de la sortie du Nothing phone 3a, j'ai eu l'idée de créer à l'aide de Figma une petite animation en l'honneur de la sortie du téléphone. C'est la première animation que je faisais avec l'outil d'UX et d'UI design.</p>
+            <h3>Conclusion</h3>
+            <p>L'idée n'était pas de faire quelque chose de parfait ou de grandiose. Je l'ai fait car je suis persuadé qu'on apprend toujours mieux en pratique plutôt qu'en théorie. Et car j'aime faire ça, tout simplement. Le prochain sera fait sur blender, qui sait ?</p>
+
             <figure class="modal-figure">
                 <video controls loop muted autoplay width="100%" class="zoomable-image" 
                     style="cursor: pointer; border: 1px solid var(--accent); width: auto; max-width: 100%; max-height: 60vh; display: block;">
                     <source src="Videos/Figma_Nothing.mp4" type="video/mp4">
                     Votre navigateur ne supporte pas la balise vidéo.
                 </video>
-                <figcaption class="modal-caption">Démonstration du prototype Figma</figcaption>
+                <figcaption class="modal-caption">Prototypage Nothing</figcaption>
             </figure>
         `,
         link: null,
