@@ -12,48 +12,84 @@ Les modifications qui vont bientôt arriver :
 
 
 La structure du site actuelle n'est pas encore terminée. Je suis en plein réaménagement.
-Voici la version qui adviendra prochainement : 
+Voici la version qui adviendra le 1er Mars 2026 : 
 
 ```text
-📁 Oblivion/
+📁 Oblivion12/
 │
 ├── 📄 index.html
-├── 📄 style.css
+├── 📄 Styles.css
 ├── 📄 app.js
 │
 ├── 📁 assets/
-│   ├── 🖼️ logo.png
-│   └── 🖼️ favicon.ico
+│   ├── 🖼️ Favicon.jpg
+│   ├── 🎞️ header-center.gif
+│   ├── 🖼️ VSCode.png
+│   ├── 🖼️ Claude.png
+│   ├── 🖼️ Figma.png
+│   ├── 🖼️ Github.png
+│   ├── 🖼️ Canva.png
+│   ├── 🖼️ Capcut.png
+│   ├── 🖼️ Obsidian.png
+│   ├── 🖼️ Blender.png
+│   └── 🖼️ Scratch.png
 │
 ├── 📁 js/
-│   ├── 📄 MobileManager.js
 │   └── 📄 ScrollManager.js
 │
-├── 📁 modules/
-│   │
-│   ├── 📁 livre/
-│   │   ├── 📄 livre.html
-│   │   ├── 📄 livre.css
-│   │   ├── 📄 livre.js
-│   │   └── 📁 images
-│   │
-│   ├── 📁 projets/
-│   │   ├── 📄 projets.html
-│   │   ├── 📄 projets.css
-│   │   ├── 📄 projets.js
-│   │   └── 📁 images
-│   │
-│   ├── 📁 tableau/
-│   │  ├── 📄 tableau.html
-│   │  ├── 📄 tableau.css
-│   │  ├── 📄 tableau.js
-│   │  └── 📁 images
-│   │
-│   └── 📁 Making-Of
-│   │   ├── 📄 making-of.html
-│   │   ├── 📄 making-of.css
-│   │   ├── 📄 making-of.js
-│   │   └── 📁 images
+└── 📁 modules/
+    │
+    ├── 📁 tableau/
+    │   ├── 📄 Tableau.html
+    │   ├── 📄 tableau.css
+    │   └── 📄 tableau.js
+    │
+    ├── 📁 livre/
+    │   ├── 📄 Livre.html
+    │   ├── 📄 livre.css
+    │   ├── 📄 livre.js
+    │   └── 📁 images/
+    │       ├── 🖼️ Infographie.jpg  ← à placer manuellement
+    │       ├── 🖼️ Nvidia.png       ← à placer manuellement
+    │       └── 🖼️ Italie.png       ← à placer manuellement
+    │
+    ├── 📁 making-of/
+    │   ├── 📄 Making-Of.html
+    │   ├── 📄 making-of.css
+    │   ├── 📄 making-of.js
+    │   ├── 📁 images/
+    │   │   ├── 🖼️ Plan.png
+    │   │   ├── 🖼️ Prince.jpg
+    │   │   ├── 🖼️ Awwwards.png
+    │   │   ├── 🖼️ Mantis.png
+    │   │   ├── 🖼️ Material.png
+    │   │   ├── 🖼️ New.png
+    │   │   ├── 🖼️ Splash.png
+    │   │   ├── 🖼️ Skybox.png
+    │   │   ├── 🖼️ Renard.png
+    │   │   ├── 🖼️ Livre.png
+    │   │   ├── 🖼️ Maquette_Projet.png
+    │   │   └── 🖼️ Maquette_Competences.png
+    │   └── 📁 videos/
+    │       ├── 🎬 Rick.mp4
+    │       ├── 🎬 Third.mp4
+    │       └── 🎬 Quatro.mp4
+    │
+    └── 📁 projets/
+        ├── 📄 Projets.html
+        ├── 📄 Projets.css
+        ├── 📄 Projets.js
+        ├── 📁 images/
+        │   ├── 🖼️ Hermes.png
+        │   ├── 🖼️ Escale.png
+        │   ├── 🖼️ Frise.png
+        │   ├── 🖼️ Big_Brother.png
+        │   ├── 🖼️ Big_Brother2.png
+        │   ├── 🖼️ Rome.jpg
+        │   └── 🖼️ Projets_Figma.png
+        └── 📁 videos/
+            └── 🎬 Figma_Nothing.mp4
+
 ```
 
 C'est tout pour aujourd'hui, en vous souhaitant une agréable et bonne journée, 
