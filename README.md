@@ -49,9 +49,9 @@ Voici la version qui adviendra le 1er Mars 2026 :
     │   ├── 📄 livre.css
     │   ├── 📄 livre.js
     │   └── 📁 images/
-    │       ├── 🖼️ Infographie.jpg  ← à placer manuellement
-    │       ├── 🖼️ Nvidia.png       ← à placer manuellement
-    │       └── 🖼️ Italie.png       ← à placer manuellement
+    │       ├── 🖼️ Infographie.jpg
+    │       ├── 🖼️ Nvidia.png
+    │       └── 🖼️ Italie.png
     │
     ├── 📁 making-of/
     │   ├── 📄 Making-Of.html
