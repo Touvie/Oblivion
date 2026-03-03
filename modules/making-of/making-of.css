@@ -169,6 +169,11 @@ body {
     line-height: 1.2;
 }
 
+.card-title a {
+    color: #fff;
+    text-decoration: underline;
+}
+
 /* Style unifié pour le texte court et long */
 .text-block {
     font-size: 16px;
