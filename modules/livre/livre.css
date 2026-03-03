@@ -129,6 +129,7 @@ body {
 .page[data-page="6"] { z-index: 40; }
 .page[data-page="7"] { z-index: 30; }
 .page[data-page="8"] { z-index: 20; }
+.page[data-page="9"] { z-index: 10; }
 
 .cover.flipped { z-index: 1; }
 .page[data-page="1"].flipped { z-index: 10; }
@@ -139,6 +140,7 @@ body {
 .page[data-page="6"].flipped { z-index: 60; }
 .page[data-page="7"].flipped { z-index: 70; }
 .page[data-page="8"].flipped { z-index: 80; }
+.page[data-page="9"].flipped { z-index: 90; }
 
 .page-front, .page-back, .cover-front, .cover-back {
     position: absolute;

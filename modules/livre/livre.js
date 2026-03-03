@@ -10,7 +10,7 @@ const totalPages = allPages.length;
 const pageNames = {
     0: "Couverture", 1: "Situation", 2: "L'Italie", 3: "Exploration",
     4: "Projets Groupes", 5: "Atout Littéraire", 6: "Usage & Données",
-    7: "Pourquoi MMI ?", 8: "Conclusion", 9: "Fin ?"
+    7: "Pourquoi MMI ?", 8: "Conclusion", 9: "Épilogue", 10: "Fin"
 };
 
 function flipTo(pageNum) {
@@ -19,13 +19,13 @@ function flipTo(pageNum) {
     const scene = document.querySelector('.book-scene');
     scene.classList.remove('open', 'closed-final');
 
-    if (pageNum === 9) scene.classList.add('closed-final');
+    if (pageNum === totalPages) scene.classList.add('closed-final');
     else if (pageNum > 0) scene.classList.add('open');
 
     // Volet gauche
     const pageLeft = document.querySelector('.page-left');
-    if (pageNum > 0 && pageNum < 9) {
-        setTimeout(() => { if (currentPage > 0 && currentPage < 9) pageLeft.classList.add('visible'); }, 800);
+    if (pageNum > 0 && pageNum < totalPages) {
+        setTimeout(() => { if (currentPage > 0 && currentPage < totalPages) pageLeft.classList.add('visible'); }, 800);
     } else {
         pageLeft.classList.remove('visible');
     }
@@ -87,7 +87,7 @@ window.addEventListener('wheel', (e) => {
     pageScrollAccumulator = 0;
 
     // Sorties
-    if (currentPage >= 9 && direction > 0) {
+    if (currentPage >= totalPages && direction > 0) {
         window.parent.postMessage({ type: 'scroll', direction: 'down', atBoundary: true }, '*');
         return;
     }

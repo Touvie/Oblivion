@@ -116,19 +116,18 @@ const projectsData = {
         linkLabel: null
     },
     affiche2: {
-        title: "APATITREUH",
+        title: "Vectorial Vitrail",
         tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "Figma"],
         content: `
             <h3>Présentation Générale</h3>
             <p>Affiche du mois de Février 2026</p>
 
             <figure class="modal-figure">
-               <!-- FIX: Images/ → images/ -->
-               <img src="images/Big_rother.png" alt="" class="zoomable-image">
-               <figcaption class="modal-caption">Lorem Ipsum</figcaption>
+               <img src="images/Fevrier.png" alt="" class="zoomable-image">
+               <figcaption class="modal-caption">Vectorial Vitrail with noise</figcaption>
                <br><br>
-               <img src="images/Big_Broher2.png" alt="" class="zoomable-image">
-               <figcaption class="modal-caption">Lorem Ipsum</figcaption>
+               <img src="images/Fevrier2.png" alt="" class="zoomable-image">
+               <figcaption class="modal-caption">Vectorial Vitrail without noise</figcaption>
             </figure>
         `,
         link: null,
