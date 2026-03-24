@@ -4,15 +4,10 @@ Je savais bien que des gens viendront ici.
 
 Les modifications qui vont bientôt arriver : 
 
-- Ajout de l'affiche de Février 2026,
-- Retirement du scroll sur pc (le jury (moi-même) a unanimement décider que celui-ci n'était malheureusement pas adapté au site actuel et sera remplacé par des liens internes),
-- Ajout de nouvelles sections dans le "à propos" pour parler plus de mes passions et ce que j'aime,
-- Amélioration graphique des pages du livre du "à propos",
-- Réécriture entière du "à propos" pour améliorer le ton et le rendre plus direct et agréable à lire.
+- Ajout du descriptif de l'affiche Février 2026
+- Ajout du cadre + descriptif de l'affiche Mars 2026
 
-
-La structure du site actuelle n'est pas encore terminée. Je suis en plein réaménagement.
-Voici la version qui adviendra début Mars 2026 : 
+Voici l'arborescence de fichier mise à jour en Mars 2026 : 
 
 ```text
 📁 Oblivion12/
