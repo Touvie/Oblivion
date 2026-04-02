@@ -32,6 +32,52 @@ const CONFIG = {
     sphereSegments: gpuTier === 'low' ? 32 : 64
 };
 
+// --- LOADING ---
+let isLoaded = false;
+let loaderProgress = 0;
+let loaderInterval = null;
+let textureReady = false;
+let minTimeReady = false;
+
+function updateLoader(pct) {
+    const fill = document.getElementById('splash-loader-fill');
+    const pctEl = document.getElementById('splash-loader-percent');
+    if (fill) fill.style.width = pct + '%';
+    if (pctEl) pctEl.textContent = pct + ' %';
+}
+
+function startLoaderSimulation() {
+    loaderInterval = setInterval(() => {
+        if (loaderProgress < 90) {
+            loaderProgress += (90 - loaderProgress) * 0.04 + 0.2;
+            updateLoader(Math.min(Math.round(loaderProgress), 90));
+        }
+    }, 80);
+    setTimeout(() => { minTimeReady = true; tryActivate(); }, 3000);
+}
+
+function tryActivate() {
+    if (textureReady && minTimeReady) activateButton();
+}
+
+function onTextureLoad() {
+    textureReady = true;
+    tryActivate();
+}
+
+function activateButton() {
+    if (isLoaded) return;
+    clearInterval(loaderInterval);
+    updateLoader(100);
+    isLoaded = true;
+    setTimeout(() => {
+        const loader = document.getElementById('splash-loader');
+        const btn = document.getElementById('splash-btn');
+        if (loader) loader.classList.add('fade-out');
+        if (btn) btn.classList.remove('loading');
+    }, 500);
+}
+
 // --- VARIABLES THREE.JS (exportées pour ScrollManager) ---
 export let scene, camera, renderer, bgMesh, stars, blackHole, glowSphere, accretionDisk;
 
@@ -75,6 +121,7 @@ function generateNoiseTexture(size = 256) {
 
 // --- INIT ---
 function init() {
+    startLoaderSimulation();
     const container = document.getElementById('canvas-container');
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 3000);
@@ -94,7 +141,7 @@ function init() {
     const bgGeo = new THREE.SphereGeometry(1500, CONFIG.sphereSegments, CONFIG.sphereSegments);
     bgGeo.scale(-1, 1, 1);
     const bgMat = new THREE.ShaderMaterial({
-        uniforms: { u_texture: { value: textureLoader.load(milkyWayUrl) } },
+        uniforms: { u_texture: { value: textureLoader.load(milkyWayUrl, onTextureLoad) } },
         vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
         fragmentShader: `uniform sampler2D u_texture; varying vec2 vUv; void main() { vec4 texColor = texture2D(u_texture, vUv); texColor.rgb = pow(texColor.rgb, vec3(3.0)) * 1.5; gl_FragColor = vec4(texColor.rgb, 1.0); }`
     });
@@ -179,7 +226,10 @@ function init() {
 
     // Bouton Splash
     const splashBtn = document.getElementById('splash-btn');
-    if (splashBtn) splashBtn.addEventListener('click', startIntroSequence);
+    if (splashBtn) splashBtn.addEventListener('click', () => { if (isLoaded) startIntroSequence(); });
+
+    // Sécurité : activer le bouton après 25s même si la texture ne charge pas
+    setTimeout(() => { textureReady = true; tryActivate(); }, 25000);
 
     // CHEAT CODE : Touche "P" pour passer l'intro
     window.addEventListener('keydown', (e) => {

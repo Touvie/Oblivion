@@ -120,13 +120,49 @@ const projectsData = {
         tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "Figma"],
         content: `
             <h3>Présentation Générale</h3>
-            <p>Affiche du mois de Février 2026</p>
+            <p>L'idée de base était de représenter un vitrail, comme on peut en trouver dans les églises. Pour créer l'effet au mieux, j'ai utilisé une combinaison de l'effet glass et du noise. Une fois le squelette du vitrail terminé, la question s'est portée sur la couleur. Celle-ci est un gradient arc-en-ciel volontairement très visible, pour jouer sur le deuxième élément central de l'affiche, les ombres. Il y a un jeu d'ombres entre les couleurs pour en accentuer la profondeur et donner une légère impression de vitrail en 3D. À noter que les vrais vitraux fonctionnent grâce à une source lumineuse placée derrière la vitre, un effet que je n'ai pas réussi à reproduire sous forme de shader et qui reste une piste à explorer. Cette prémisse, utiliser l'ombre pour créer du faux relief, sera un élément central que je compte pleinement maîtriser dans mes projets futurs.</p>
 
             <figure class="modal-figure">
                <img src="images/Fevrier.png" alt="" class="zoomable-image">
                <figcaption class="modal-caption">Vectorial Vitrail with noise</figcaption>
                <br><br>
                <img src="images/Fevrier2.png" alt="" class="zoomable-image">
+               <figcaption class="modal-caption">Vectorial Vitrail without noise</figcaption>
+            </figure>
+        `,
+        link: null,
+        linkLabel: null
+    },
+    affiche3: {
+        title: "Zootrope circulaire",
+        tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "Figma"],
+        content: `
+            <h3>Présentation Générale</h3>
+            <p>Affiche du mois de Mars 2026</p>
+
+            <figure class="modal-figure">
+               <img src="images/Mars.png" alt="" class="zoomable-image">
+               <figcaption class="modal-caption">Lorem ipsum dolor sit amet</figcaption>
+               <br><br>
+               <img src="images/Mars2.png" alt="" class="zoomable-image">
+               <figcaption class="modal-caption">Lorem ipsum dolor sit amet</figcaption>
+            </figure>
+        `,
+        link: null,
+        linkLabel: null
+    },
+    affiche4: {
+        title: "What's next ?",
+        tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "Figma"],
+        content: `
+            <h3>Présentation Générale</h3>
+            <p>Affiche du mois de Avril 2026</p>
+
+            <figure class="modal-figure">
+               <img src="images/Avril.png" alt="" class="zoomable-image">
+               <figcaption class="modal-caption">Vectorial Vitrail with noise</figcaption>
+               <br><br>
+               <img src="images/Avril2.png" alt="" class="zoomable-image">
                <figcaption class="modal-caption">Vectorial Vitrail without noise</figcaption>
             </figure>
         `,
@@ -143,7 +179,7 @@ const projectsData = {
         link: "https://touvie.github.io/Italie",
         linkLabel: "Visiter le site"
     },
-    traiteur: {
+    figma: {
         title: "Animation Figma",
         tags: ["Figma", "UI", "Motion", "No IA"],
         content: `
@@ -289,6 +325,12 @@ galleryViewport.addEventListener('scroll', () => {
         offsetX: offsetX
     }, '*');
 }, { passive: true });
+
+// === BUFFER DROIT DE LA GALERIE ===
+window.addEventListener('load', () => {
+    const canvas = document.querySelector('.gallery-canvas');
+    canvas.style.minWidth = (galleryViewport.scrollWidth + window.innerWidth * 0.04) + 'px';
+});
 
 // === RECEPTION MESSAGES (RESET) ===
 window.addEventListener('message', (event) => {

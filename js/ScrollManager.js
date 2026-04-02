@@ -93,7 +93,7 @@ function setupTouchListener() {
         if (overlay && overlay.classList.contains('visible')) return;
 
         const target = e.target;
-        if (target.closest('.gallery-viewport') || target.closest('.competences-bento')) {
+        if (target.closest('.gallery-viewport')) {
             return;
         }
 
@@ -165,8 +165,11 @@ function loadIframeIfNeeded(index) {
     const makingOfFrame = document.querySelector('.section[data-section="2"] iframe');
     const projFrame = document.querySelector('.section[data-section="3"] iframe');
 
+    const compFrame = document.querySelector('.section[data-section="4"] iframe');
+
     if (index === 2 && makingOfFrame && !makingOfFrame.getAttribute('src')) makingOfFrame.src = makingOfFrame.dataset.src;
     if (index === 3 && projFrame && !projFrame.getAttribute('src')) projFrame.src = projFrame.dataset.src;
+    if (index === 4 && compFrame && !compFrame.getAttribute('src')) compFrame.src = compFrame.dataset.src;
     if (tableauIframe && !tableauIframe.getAttribute('src')) tableauIframe.src = tableauIframe.dataset.src;
     if (livreIframe && !livreIframe.getAttribute('src')) livreIframe.src = livreIframe.dataset.src;
 }
