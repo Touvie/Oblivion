@@ -97,6 +97,8 @@ const projectsData = {
         title: "Большой Брат",
         tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "Figma"],
         content: `
+            <h3>Concept</h3>
+            <p>Je crée chaque mois une nouvelle affiche créée par moi-même sans un octet d'IA. Elles ne suivent pas l'actualité des mois et leurs sujets me viennent par l'inspiration du moment. Pour l'année 2026, il y aura 12 affiches, de Janvier à Décembre. Cette deadline imposée sur le long terme me permet de m'améliorer chaque mois un peu plus et d'essayer de créer de nouvelles choses.</p>
             <h3>Présentation Générale</h3>
             <p>Cette affiche est la première d'une série de travaux personnels qui ne comporte pas un octet d'IA de la réflexion à la conception.</p>
             <p>Elle adopte volontairement une forme abstraite et codée : sa structure reprend celle du plan du métro de Moscou, non pas comme une citation immédiatement reconnaissable, mais comme un réseau sous-jacent, presque invisible, à l'image des systèmes qu'elle évoque.</p>
@@ -105,10 +107,10 @@ const projectsData = {
 
             <figure class="modal-figure">
                <!-- FIX: Images/ → images/ -->
-               <img src="images/Big_Brother.png" alt="Affiche Big Brother positif Moscou" class="zoomable-image">
+               <img src="images/Big_Brother.webp" alt="Affiche Big Brother positif Moscou" class="zoomable-image">
                <figcaption class="modal-caption">Figure 1 : Большой Брат (positif)</figcaption>
                <br><br>
-               <img src="images/Big_Brother2.png" alt="Affiche Big Brother négatif Moscou" class="zoomable-image">
+               <img src="images/Big_Brother2.webp" alt="Affiche Big Brother négatif Moscou" class="zoomable-image">
                <figcaption class="modal-caption">Figure 2 : Большой Брат (négatif)</figcaption>
             </figure>
         `,
@@ -119,14 +121,16 @@ const projectsData = {
         title: "Vectorial Vitrail",
         tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "Figma"],
         content: `
+            <h3>Concept</h3>
+            <p>Je crée chaque mois une nouvelle affiche créée par moi-même sans un octet d'IA. Elles ne suivent pas l'actualité des mois et leurs sujets me viennent par l'inspiration du moment. Pour l'année 2026, il y aura 12 affiches, de Janvier à Décembre. Cette deadline imposée sur le long terme me permet de m'améliorer chaque mois un peu plus et d'essayer de créer de nouvelles choses.</p>
             <h3>Présentation Générale</h3>
             <p>L'idée de base était de représenter un vitrail, comme on peut en trouver dans les églises. Pour créer l'effet au mieux, j'ai utilisé une combinaison de l'effet glass et du noise. Une fois le squelette du vitrail terminé, la question s'est portée sur la couleur. Celle-ci est un gradient arc-en-ciel volontairement très visible, pour jouer sur le deuxième élément central de l'affiche, les ombres. Il y a un jeu d'ombres entre les couleurs pour en accentuer la profondeur et donner une légère impression de vitrail en 3D. À noter que les vrais vitraux fonctionnent grâce à une source lumineuse placée derrière la vitre, un effet que je n'ai pas réussi à reproduire sous forme de shader et qui reste une piste à explorer. Cette prémisse, utiliser l'ombre pour créer du faux relief, sera un élément central que je compte pleinement maîtriser dans mes projets futurs.</p>
 
             <figure class="modal-figure">
-               <img src="images/Fevrier.png" alt="" class="zoomable-image">
+               <img src="images/Fevrier.webp" alt="" class="zoomable-image">
                <figcaption class="modal-caption">Vectorial Vitrail with noise</figcaption>
                <br><br>
-               <img src="images/Fevrier2.png" alt="" class="zoomable-image">
+               <img src="images/Fevrier2.webp" alt="" class="zoomable-image">
                <figcaption class="modal-caption">Vectorial Vitrail without noise</figcaption>
             </figure>
         `,
@@ -136,17 +140,22 @@ const projectsData = {
     affiche3: {
         title: "Zootrope circulaire",
         tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "Figma"],
+        vinyl: true,
         content: `
+            <h3>Concept</h3>
+            <p>Je crée chaque mois une nouvelle affiche créée par moi-même sans un octet d'IA. Elles ne suivent pas l'actualité des mois et leurs sujets me viennent par l'inspiration du moment. Pour l'année 2026, il y aura 12 affiches, de Janvier à Décembre. Cette deadline imposée sur le long terme me permet de m'améliorer chaque mois un peu plus et d'essayer de créer de nouvelles choses.</p>
             <h3>Présentation Générale</h3>
-            <p>Affiche du mois de Mars 2026</p>
-
-            <figure class="modal-figure">
-               <img src="images/Mars.png" alt="" class="zoomable-image">
-               <figcaption class="modal-caption">Lorem ipsum dolor sit amet</figcaption>
-               <br><br>
-               <img src="images/Mars2.png" alt="" class="zoomable-image">
-               <figcaption class="modal-caption">Lorem ipsum dolor sit amet</figcaption>
-            </figure>
+            <p>Pour l'affiche de Mars j'ai eu l'idée de faire un vinyle sous forme de zootrope. En recherchant ce qui avait déjà été fait sur le sujet, je me suis rendu compte que la plupart jouaient beaucoup sur la symétrie. Le principe même de la zootropie est que l'image semble créer une scène animée directement sur le vinyle. Ici ce n'est pas le cas, ou du moins pas exactement. C'est une expérimentation en plusieurs phases. Au centre nous avons ce qui peut s'apparenter à une fleur géométrique et symétrique. L'élément beau du vinyle lors de son arrêt. Ensuite nous avons les 4 formes turquoises qui doivent donner une impression de rotation extérieure par rapport à la grande fleur centrale. Et puis enfin nous avons le bord fait de lignes arrondies. C'est d'une certaine manière l'élément qui gagne le plus lorsque le vinyle se met à tourner ; on a une vraie impression d'animation fluide et continue. Lors de ma prochaine création de vinyle en zootrope, c'est plutôt cet aspect que je souhaiterai développer. La rotation du vinyle est disponible en 33 tours, 45 tours, 70 tours (oui des vinyles peuvent aller à cette vitesse) et 200 tours (non les vinyles ne vont pas à cette vitesse mais c'est joli quand même).</p>
+            <div class="vinyl-player">
+                <img src="images/Mars.webp" alt="Zootrope Vinyle" id="vinyl-disc" class="vinyl-disc">
+                <div class="vinyl-controls">
+                    <button class="vinyl-btn" data-rpm="0">■ Stop</button>
+                    <button class="vinyl-btn" data-rpm="33">33 RPM</button>
+                    <button class="vinyl-btn vinyl-btn-active" data-rpm="45">45 RPM</button>
+                    <button class="vinyl-btn" data-rpm="70">70 RPM</button>
+                    <button class="vinyl-btn" data-rpm="200">200 RPM</button>
+                </div>
+            </div>
         `,
         link: null,
         linkLabel: null
@@ -155,15 +164,14 @@ const projectsData = {
         title: "What's next ?",
         tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "Figma"],
         content: `
+            <h3>Concept</h3>
+            <p>Je crée chaque mois une nouvelle affiche créée par moi-même sans un octet d'IA. Elles ne suivent pas l'actualité des mois et leurs sujets me viennent par l'inspiration du moment. Pour l'année 2026, il y aura 12 affiches, de Janvier à Décembre. Cette deadline imposée sur le long terme me permet de m'améliorer chaque mois un peu plus et d'essayer de créer de nouvelles choses.</p>
             <h3>Présentation Générale</h3>
             <p>Affiche du mois de Avril 2026</p>
 
             <figure class="modal-figure">
                <img src="images/Avril.png" alt="" class="zoomable-image">
-               <figcaption class="modal-caption">Vectorial Vitrail with noise</figcaption>
-               <br><br>
-               <img src="images/Avril2.png" alt="" class="zoomable-image">
-               <figcaption class="modal-caption">Vectorial Vitrail without noise</figcaption>
+               <figcaption class="modal-caption">Lorem Ipsum</figcaption>
             </figure>
         `,
         link: null,
@@ -194,7 +202,7 @@ const projectsData = {
                 <video controls loop muted autoplay width="100%" class="zoomable-image"
                     style="cursor: pointer; border: 1px solid var(--accent); width: auto; max-width: 100%; max-height: 60vh; display: block;">
                     <!-- FIX: Videos/ → videos/ -->
-                    <source src="videos/Figma_Nothing.mp4" type="video/mp4">
+                    <source src="videos/Figma_Nothing.webm" type="video/webm">
                     Votre navigateur ne supporte pas la balise vidéo.
                 </video>
                 <figcaption class="modal-caption">Prototypage Nothing</figcaption>
@@ -208,10 +216,58 @@ const projectsData = {
 // === VARIABLES ===
 const modal = document.getElementById('modal');
 
+// === VINYL PLAYER ===
+let vinylRaf = null;
+let vinylAngle = 0;
+let vinylRPM = 0;
+let vinylLastTime = null;
+
+function vinylTick(timestamp) {
+    if (!vinylLastTime) vinylLastTime = timestamp;
+    const delta = (timestamp - vinylLastTime) / 1000;
+    vinylLastTime = timestamp;
+    vinylAngle += (vinylRPM / 60) * 360 * delta;
+    const disc = document.getElementById('vinyl-disc');
+    if (disc) disc.style.transform = `rotate(${vinylAngle}deg)`;
+    vinylRaf = requestAnimationFrame(vinylTick);
+}
+
+function setVinylSpeed(rpm) {
+    vinylRPM = rpm;
+    if (rpm === 0) {
+        if (vinylRaf) { cancelAnimationFrame(vinylRaf); vinylRaf = null; }
+        vinylLastTime = null;
+    } else if (!vinylRaf) {
+        vinylLastTime = null;
+        vinylRaf = requestAnimationFrame(vinylTick);
+    }
+}
+
+function stopVinyl() {
+    if (vinylRaf) { cancelAnimationFrame(vinylRaf); vinylRaf = null; }
+    vinylRPM = 0;
+    vinylLastTime = null;
+}
+
+function setupVinylPlayer() {
+    const disc = document.getElementById('vinyl-disc');
+    if (!disc) return;
+    vinylAngle = 0;
+    setVinylSpeed(45);
+    document.querySelectorAll('.vinyl-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.vinyl-btn').forEach(b => b.classList.remove('vinyl-btn-active'));
+            btn.classList.add('vinyl-btn-active');
+            setVinylSpeed(parseInt(btn.dataset.rpm));
+        });
+    });
+}
+
 // FIX: closeModal() factorisé — remplace 3 blocs identiques
 function closeModal() {
     modal.classList.remove('visible');
     document.querySelectorAll('video').forEach(v => v.pause());
+    stopVinyl();
 }
 
 // === SCROLL HORIZONTAL DE LA GALERIE ===
@@ -266,6 +322,7 @@ document.querySelectorAll('.frame').forEach(frame => {
 
         modal.classList.add('visible');
         setupImageZoom();
+        if (data.vinyl) setupVinylPlayer();
     });
 });
 

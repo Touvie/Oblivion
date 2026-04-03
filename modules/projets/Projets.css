@@ -402,6 +402,82 @@ body {
 }
 
 /* =========================================
+   CADRE VINYLE CIRCULAIRE
+   ========================================= */
+.frame-vinyl {
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50%;
+    width: 11vw;
+    max-width: 240px;
+    padding: 6px;
+}
+
+.frame-vinyl .frame-image {
+    border-radius: 50%;
+    object-fit: contain;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.frame-vinyl::before,
+.frame-vinyl::after {
+    display: none;
+}
+
+/* =========================================
+   PLAYER VINYLE (MODAL)
+   ========================================= */
+.vinyl-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+    gap: 20px;
+}
+
+.vinyl-disc {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 50%;
+    display: block;
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    cursor: default;
+}
+
+.vinyl-controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.vinyl-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    background: rgba(191, 161, 129, 0.08);
+    border: 1px solid rgba(191, 161, 129, 0.35);
+    color: var(--accent);
+    padding: 8px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+}
+
+.vinyl-btn:hover {
+    background: rgba(191, 161, 129, 0.2);
+    border-color: var(--accent);
+}
+
+.vinyl-btn.vinyl-btn-active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+}
+
+/* =========================================
    INDICATEUR DE NAVIGATION
    ========================================= */
 .nav-hint {

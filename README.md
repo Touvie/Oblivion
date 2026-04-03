@@ -2,17 +2,15 @@
 Cher visiteur, bonjour !
 Je savais bien que des gens viendront ici.
 
-Contenu de la nouvelle version Oblivion V13 :
+Contenu de la nouvelle version Oblivion V13.5 :
 
-- Ajout de l'affiche de Mars 2026,
-- Ajout de l'explication de l'affiche de Février 2026,
-- Ajout du pourcentage de chargement sur le splash,
-- Réorganisation du canva de la section Projets,
-- Changements mineurs global.
+- Ajout de l'affiche Zootrope vinyle de Mars 2026,
+- Explication de l'affiche Zootrope vinyle de Mars 2026,
+- Conversion des images et vidéos en version web (+200Mo économisés),
+- Changements mineurs globaux.
 
 À venir dans la prochaine MAJ : 
-- Ajout de l'affiche Zootrope vinyle de Mars 2026,
-- Explication de l'affiche Zootrope vinyle de Mars 2026.
+- Ajout d'un effet 3D "window effect" via MediaPipe.
 
 
 Arborescence de fichier de Avril 2026 :
@@ -25,18 +23,8 @@ Arborescence de fichier de Avril 2026 :
 ├── 📄 app.js
 │
 ├── 📁 assets/
-│   ├── 🖼️ Favicon.jpg
-│   ├── 🎞️ header-center.gif
-│   ├── 🖼️ VSCode.png
-│   ├── 🖼️ Claude.png
-│   ├── 🖼️ Figma.png
-│   ├── 🖼️ Github.png
-│   ├── 🖼️ Canva.png
-│   ├── 🖼️ Capcut.png
-│   ├── 🖼️ Obsidian.png
-│   ├── 🖼️ Blender.png
-│   ├── 🖼️ Scratch.png
-│   └── 🖼️ TouchDesigner.png
+│   ├── 🖼️ Favicon.ico
+│   └── 🎞️ header-center.gif
 │
 ├── 📁 js/
 │   └── 📄 ScrollManager.js
@@ -53,53 +41,62 @@ Arborescence de fichier de Avril 2026 :
     │   ├── 📄 livre.css
     │   ├── 📄 livre.js
     │   └── 📁 images/
-    │       └── 🖼️ Infographie.jpg
+    │       └── 🖼️ Infographie.webp
     │
     ├── 📁 making-of/
     │   ├── 📄 Making-Of.html
     │   ├── 📄 making-of.css
     │   ├── 📄 making-of.js
     │   ├── 📁 images/
-    │   │   ├── 🖼️ Plan.png
-    │   │   ├── 🖼️ Prince.jpg
-    │   │   ├── 🖼️ Awwwards.png
-    │   │   ├── 🖼️ Mantis.png
-    │   │   ├── 🖼️ Material.png
-    │   │   ├── 🖼️ New.png
-    │   │   ├── 🖼️ Splash.png
-    │   │   ├── 🖼️ Skybox.png
-    │   │   ├── 🖼️ Renard.png
-    │   │   ├── 🖼️ Livre.png
-    │   │   ├── 🖼️ Maquette_Projet.png
-    │   │   └── 🖼️ Maquette_Competences.png
+    │   │   ├── 🖼️ Plan.webp
+    │   │   ├── 🖼️ Prince.webp
+    │   │   ├── 🖼️ Awwwards.webp
+    │   │   ├── 🖼️ Mantis.webp
+    │   │   ├── 🖼️ Material.webp
+    │   │   ├── 🖼️ New.webp
+    │   │   ├── 🖼️ Splash.webp
+    │   │   ├── 🖼️ Skybox.webp
+    │   │   ├── 🖼️ Renard.webp
+    │   │   ├── 🖼️ Livre.webp
+    │   │   ├── 🖼️ Maquette_Projet.webp
+    │   │   └── 🖼️ Maquette_Competences.webp
     │   └── 📁 videos/
-    │       ├── 🎬 Rick.mp4
-    │       ├── 🎬 Third.mp4
-    │       └── 🎬 Quatro.mp4
+    │       ├── 🎬 Rick.webm
+    │       ├── 🎬 Third.webm
+    │       └── 🎬 Quatro.webm
     │
     ├── 📁 projets/
     │   ├── 📄 Projets.html
     │   ├── 📄 Projets.css
     │   ├── 📄 Projets.js
     │   ├── 📁 images/
-    │   │   ├── 🖼️ Hermes.png
-    │   │   ├── 🖼️ Escale.png
-    │   │   ├── 🖼️ Frise.png
-    │   │   ├── 🖼️ Big_Brother.png
-    │   │   ├── 🖼️ Big_Brother2.png
-    │   │   ├── 🖼️ Rome.jpg
-    │   │   ├── 🖼️ Fevrier.png
-    │   │   ├── 🖼️ Fevrier2.png
-    │   │   ├── 🖼️ Mars.png
-    │   │   ├── 🖼️ Avril.png
-    │   │   ├── 🖼️ Avril2.png
-    │   │   └── 🖼️ Projets_Figma.png
+    │   │   ├── 🖼️ Hermes.webp
+    │   │   ├── 🖼️ Escale.webp
+    │   │   ├── 🖼️ Frise.webp
+    │   │   ├── 🖼️ Big_Brother.webp
+    │   │   ├── 🖼️ Big_Brother2.webp
+    │   │   ├── 🖼️ Rome.webp
+    │   │   ├── 🖼️ Fevrier.webp
+    │   │   ├── 🖼️ Fevrier2.webp
+    │   │   ├── 🖼️ Mars.webp
+    │   │   └── 🖼️ Projets_Figma.webp
     │   └── 📁 videos/
-    │       └── 🎬 Figma_Nothing.mp4
+    │       └── 🎬 Figma_Nothing.webm
     │
     └── 📁 competences/
         ├── 📄 Competences.html
-        └── 📄 Competences.css
+        ├── 📄 Competences.css
+        └── 📁 images/
+            ├── 🖼️ VSCode.webp
+            ├── 🖼️ Claude.webp
+            ├── 🖼️ Figma.webp
+            ├── 🖼️ Github.webp
+            ├── 🖼️ Canva.webp
+            ├── 🖼️ Capcut.webp
+            ├── 🖼️ Obsidian.webp
+            ├── 🖼️ Blender.webp
+            ├── 🖼️ Scratch.webp
+            └── 🖼️ TouchDesigner.webp
 
 ```
 
