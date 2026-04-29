@@ -11,6 +11,8 @@ Contenu de la nouvelle version Oblivion V13.5 :
 
 À venir dans la prochaine MAJ : 
 - Ajout d'un effet 3D "window effect" via MediaPipe.
+- Ajout de l'affiche de Avril
+- Rectification mineur en tout genre
 
 
 Arborescence de fichier de Avril 2026 :
