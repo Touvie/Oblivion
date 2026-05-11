@@ -1,0 +1,161 @@
+/* --- BASE & LAYOUT GLOBAL --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    overflow: hidden;
+    height: 100vh;
+    background: #000;
+    color: white;
+    transition: background 0.5s;
+    cursor: default;
+    user-select: none;
+}
+
+button, .thumb, #pauseBtn, #logo, a { cursor: pointer; }
+
+.slideshow { position: relative; width: 100%; height: 100vh; }
+
+/* --- IMAGES DE FOND --- */
+.hero-container { position: absolute; inset: 0; z-index: 1; background: black; }
+
+.hero-image { 
+    width: 100%; height: 100%; 
+    object-fit: cover; 
+    opacity: 0; 
+    transition: opacity 0.1s ease; 
+}
+.hero-image.loaded { opacity: 1; }
+
+/* --- POSITIONS DES ÉLÉMENTS (Layout) --- */
+header { 
+    position: absolute; top: 0; left: 0; right: 0; 
+    padding: 1.5rem; 
+    display: flex; justify-content: space-between; align-items: flex-start; 
+    z-index: 20; 
+}
+
+.header-box { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; }
+.year-box { padding: 0.8rem 1.25rem; }
+
+/* Titre Principal (Bas Gauche) */
+.title-section { 
+    position: absolute; bottom: 8rem; left: 1.5rem; 
+    z-index: 20; max-width: 500px; 
+}
+
+/* Description Image (Tout en bas à gauche) */
+.image-description-box { 
+    position: absolute; bottom: 2rem; left: 1.5rem; 
+    z-index: 20; max-width: 450px; 
+    padding: 1rem; display: flex; gap: 1rem; 
+}
+
+/* Carrousel (Vertical à droite) */
+.carousel { 
+    position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); 
+    z-index: 20; display: flex; flex-direction: column; gap: 0.8rem; padding: 0.8rem; 
+}
+
+/* Navigation (Compteur bas centre) */
+.nav-center { 
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); 
+    z-index: 20; display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem; 
+}
+
+/* --- MINIATURES (CORRECTION DEMANDÉE) --- */
+/* On force l'image à ne pas être zoomée */
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important; /* Affiche l'image entière sans couper */
+    background: #000; /* Fond noir pour combler les vides */
+}
+
+
+/* --- BOUTON PAUSE (NOUVEAU) --- */
+.pause-btn {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    width: 45px; height: 45px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+    background: rgba(0,0,0,0.5); 
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transition: all 0.2s;
+    user-select: none;
+}
+.pause-btn:hover { background: rgba(255,255,255,0.3); }
+.pause-btn.paused { 
+    background: #d32f2f; /* Rouge quand c'est en pause */
+    border-color: #d32f2f;
+    box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+}
+
+/* --- LE TEASER / ZOOM (Commun) --- */
+.transition-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none; opacity: 0;
+    background-color: black; mix-blend-mode: multiply; /* L'effet pochoir */
+    transition: opacity 0.5s ease;
+}
+.transition-overlay.active { opacity: 1; pointer-events: all; }
+
+.transition-text {
+    color: white; 
+    font-size: 15vw; /* TAILLE DU TEXTE DEPART */
+    font-weight: 900; text-transform: uppercase; line-height: 1; margin: 0;
+    transform-origin: center center;
+    transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1); /* VITESSE ANIMATION */
+    will-change: transform;
+}
+.transition-overlay.zoom-active .transition-text { transform: scale(200); }
+.transition-overlay.finished { display: none; }
+
+/* --- FORCER LE CENTRAGE (A mettre à la fin de style-global.css) --- */
+
+.header-info {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Centre les blocs (h1 et p) horizontalement */
+    justify-content: center !important;
+}
+
+.header-info h1, 
+.header-info p {
+    text-align: center !important; /* Force le texte à se centrer dans son bloc */
+    width: 100%; /* S'assure que le bloc prend la place pour pouvoir centrer */
+}
+
+/* Pour le gros texte de transition */
+.transition-text {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* --- UTILITAIRES --- */
+
+/* Masquer les indicateurs (points) car trop de stations */
+.indicators { display: none !important; }
+
+/* Forcer le centrage des textes header */
+.header-info {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; 
+    justify-content: center !important;
+}
+.header-info h1, .header-info p {
+    text-align: center !important; 
+    width: 100%; 
+}

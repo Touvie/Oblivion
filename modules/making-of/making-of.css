@@ -309,6 +309,44 @@ body {
 }
 
 /* =========================================
+   ARBRE DE FICHIERS (accordéon variante code)
+   ========================================= */
+
+.accordion-item.active .accordion-content--code { max-height: 560px; }
+
+.accordion-inner--code {
+    height: 500px;
+    align-items: stretch;
+}
+
+.acc-tree-col {
+    flex: 1.5;
+    padding: 30px 40px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    overflow-y: auto;
+    overflow-x: auto;
+    height: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+}
+
+.acc-tree-col::-webkit-scrollbar { width: 4px; }
+.acc-tree-col::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+.file-tree {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.9;
+    white-space: pre;
+    margin: 0;
+}
+
+.file-tree .t-folder { color: var(--accent); }
+.file-tree .t-root   { color: #fff; font-weight: bold; }
+.file-tree .t-note   { color: rgba(255,255,255,0.35); font-style: italic; }
+
+/* =========================================
    RESPONSIVE
    ========================================= */
 @media (max-width: 1000px) {

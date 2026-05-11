@@ -1,0 +1,106 @@
+/* --- STYLE MODERNE (Basé sur Russe.html) --- */
+
+body.style-moderne {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: white;
+}
+
+/* Application du style "Verre fumé" d'origine sur les éléments d'interface */
+body.style-moderne .ui-box,
+body.style-moderne .header-box,
+body.style-moderne .year-box,
+body.style-moderne .title-section, /* Si on veut encadrer le titre comme au début */
+body.style-moderne .carousel,
+body.style-moderne .nav-center,
+body.style-moderne .image-description-box {
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1rem;
+    box-shadow: none; /* On retire les ombres complexes ajoutées avant */
+}
+
+/* TYPOGRAPHIE D'ORIGINE */
+body.style-moderne .logo {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 1.1rem;
+    /* Thème par défaut */
+    background: #f59e0b; color: white; 
+    box-shadow: none; border: none;
+}
+
+body.style-moderne .header-info p {
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5);
+}
+body.style-moderne .header-info h1 {
+    font-size: 1.2rem; font-weight: 400; letter-spacing: 0.025em; color: white; background: none; -webkit-text-fill-color: initial;
+}
+
+body.style-moderne .year {
+    font-size: 1.5rem; font-weight: 300; color: #f59e0b; /* Couleur par défaut */
+}
+
+body.style-moderne .subtitle {
+    font-size: 1.75rem; font-weight: 400; margin-bottom: 0.5rem; color: #fbbf24; text-shadow: none;
+}
+
+body.style-moderne .station-desc {
+    color: rgba(255,255,255,0.6); font-size: 0.875rem; line-height: 1.6; border: none; padding: 0;
+}
+
+/* CARROUSEL : LA MODIFICATION EST ICI (Vertical) */
+body.style-moderne .carousel {
+    display: flex;
+    flex-direction: column; /* On passe en vertical */
+    gap: 0.5rem;
+    padding: 0.5rem;
+    
+    /* Positionnement vertical centré à droite */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1.5rem;
+    bottom: auto; /* On annule le bottom d'origine */
+}
+
+body.style-moderne .thumb {
+    width: 60px; height: 60px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 2px solid transparent;
+    opacity: 0.6;
+    background: rgba(255,255,255,0.1);
+    transition: all 0.3s;
+    filter: none; /* Pas de gris */
+}
+
+body.style-moderne .thumb:hover,
+body.style-moderne .thumb.active {
+    opacity: 1;
+    transform: none; /* Pas de zoom excessif */
+    border-color: #f59e0b; /* Couleur active par défaut */
+}
+
+/* Indicateurs */
+body.style-moderne .indicators { gap: 0.375rem; }
+body.style-moderne .indicator {
+    height: 4px; width: 8px; border-radius: 2px; background: rgba(255,255,255,0.2); transition: all 0.3s;
+}
+body.style-moderne .indicator.active {
+    width: 24px; background: #f59e0b;
+}
+body.style-moderne .counter {
+    color: rgba(255,255,255,0.5); font-size: 0.75rem; font-weight: 300; font-family: 'Inter'; opacity: 1;
+}
+
+/* Gestion spécifique du Teaser pour le moderne (Police Inter) */
+body.style-moderne .transition-text {
+    font-family: 'Inter', sans-serif;
+}
+
+body.style-moderne .title-section {
+    padding: 0.5rem; /* Tu peux essayer 1.5rem, 2rem ou 30px selon tes goûts */
+}

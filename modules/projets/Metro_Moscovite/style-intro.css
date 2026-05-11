@@ -1,0 +1,125 @@
+/* --- STYLE INTRO : LANDING PAGE MODERNE --- */
+
+body.style-intro {
+    overflow: hidden;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #000;
+}
+
+/* 1. IMAGE DE FOND (Plein écran) */
+body.style-intro .hero-container {
+    position: absolute; inset: 0; z-index: 1;
+}
+body.style-intro .hero-image {
+    width: 100%; height: 100%; 
+    object-fit: cover; 
+    opacity: 0.7; /* Légèrement sombre pour le texte */
+    filter: contrast(1.1) saturate(1.1); /* On booste un peu les couleurs */
+    transform: scale(1);
+    transition: transform 20s ease-out; /* Zoom très lent "effet documentaire" */
+}
+body.style-intro .hero-image.loaded {
+    transform: scale(1.1);
+}
+
+/* 2. CONTENEUR LANDING (Au dessus de l'image) */
+body.style-intro .landing-container {
+    position: absolute; inset: 0; z-index: 10;
+    display: flex; /* Flexbox pour centrer */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* Petit dégradé noir en bas pour le bouton */
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8) 100%);
+}
+
+/* 3. LE CONTENU (Texte) */
+body.style-intro .landing-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    
+    /* Animation d'entrée */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+/* TITRE */
+body.style-intro #landingTitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 6vw; /* Responsive : 6% de la largeur de l'écran */
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -2px; /* Lettrage serré moderne */
+    margin: 0;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* SEPARATEUR */
+body.style-intro .separator {
+    width: 80px;
+    height: 3px;
+    background: #c5a05a; /* Or */
+    margin: 10px 0;
+}
+
+/* SOUS-TITRE */
+body.style-intro #landingSubtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    letter-spacing: 4px; /* Très espacé */
+    margin: 0;
+}
+
+/* 4. BOUTON EXPLORER (Style "Ghost Button") */
+body.style-intro .explore-btn {
+    margin-top: 3rem;
+    padding: 15px 40px;
+    
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px; /* Bouton pillule */
+    
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+body.style-intro .explore-btn:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* ANIMATION */
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* CACHER LE RESTE */
+body.style-intro header, 
+body.style-intro .title-section, 
+body.style-intro .image-description-box, 
+body.style-intro .nav-center, 
+body.style-intro .pause-btn,
+body.style-intro .carousel {
+    display: none !important;
+}

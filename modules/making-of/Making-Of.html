@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
     <div class="process-row">
         <div class="process-card">
             <div class="card-media-wrapper">
-                <div class="card-media" style="background:#111; display:flex; align-items:center; justify-content:center; color:#555; font-family:'Space Mono'">[ IMAGE MANQUANTE ]</div>
+                <video class="card-media" data-src="videos/Clawd.webm" autoplay muted loop playsinline></video>
                 <div class="media-legend"><br>Fig 2. Les choix technologiques</div>
             </div>
             <div class="card-content">
@@ -59,7 +59,6 @@
     <div class="process-row">
         <div class="process-card">
             <div class="card-media-wrapper">
-                <!-- FIX: Videos/ → videos/ + lazy loading via data-src -->
                 <video class="card-media" data-src="videos/Rick.webm" autoplay muted loop playsinline></video>
                 <div class="media-legend"><br>Fig 3. Découverte de Three.js via Claude Artifacts</div>
             </div>
@@ -69,7 +68,7 @@
                 <div class="text-block">
                     C'est en explorant les Artefacts publics de Claude IA que j'ai découvert ce site. La page 26, avec ses particules qui bougent comme des vagues, m'a vraiment inspiré.
                     <div class="full-text">
-                        En l'inspectant et en comprenant comment il était construit, j'ai découvert Three.js — une bibliothèque JavaScript pour faire de la 3D sur le web. Jusqu'alors, j'ignorais qu'il était même possible de faire une telle chose.
+                        En l'inspectant et en comprenant comment il était construit, j'ai découvert Three.js, une bibliothèque JavaScript pour faire de la 3D sur le web. Jusqu'alors, j'ignorais qu'il était même possible de faire une telle chose.
                     </div>
                 </div>
                 <button class="btn-expand">[ Lire plus ]</button>
@@ -109,7 +108,7 @@
                 <div class="text-block">
                     J'ai imaginé quelque chose d'ambitieux : un vrai trou noir en 3D. Une sphère noire entourée d'une spirale en particules.
                     <div class="full-text">
-                        Le site commencerait par un splash — une vue du trou noir en 3D de 45 degrés d'en haut. L'inspiration me venait des jeux vidéo gacha que je connais, car ils ont tous des splashs immersifs. Je voulais faire quelque chose de similaire.
+                        Le site commencerait par un splash avec une vue du trou noir en 3D de 45 degrés d'en haut. L'inspiration me venait des jeux vidéo gacha que je connais, car ils ont tous des splashs immersifs. Je voulais faire quelque chose de similaire.
                     </div>
                 </div>
                 <button class="btn-expand">[ Lire plus ]</button>
@@ -129,7 +128,7 @@
                 <div class="text-block">
                     Sur le splash, un bouton "entrer" déclencherait l'animation. La caméra se déplacerait en ligne droite vers le centre de la sphère.
                     <div class="full-text">
-                        Au début, j'avais prévu que ça fonctionne au scroll. Mais j'ai réalisé que le concept d'un splash c'est d'être au début uniquement. J'ai opté pour un bouton qui lance directement l'animation. L'idée : le site se trouve au centre du trou noir — le spectateur plonges à l'intérieur.
+                        Au début, j'avais prévu que ça fonctionne au scroll. Mais j'ai réalisé que le concept d'un splash c'est d'être au début uniquement. J'ai opté pour un bouton qui lance directement l'animation. L'idée : le site se trouve au centre du trou noir, le spectateur plonges à l'intérieur.
                     </div>
                 </div>
                 <button class="btn-expand">[ Lire plus ]</button>
@@ -187,9 +186,9 @@
                 <span class="step-number">09</span>
                 <h3 class="card-title"><a href="https://ccus.heidelbergmaterials.com/en" target="_blank" rel="noopener noreferrer">Heidelberg — 3D Total</a></h3>
                 <div class="text-block">
-                    Le site entier n'était que du 3D. Pas des éléments 3D dans un environnement 2D — du pur 3D avec des mouvements de caméra.
+                    Le site entier n'était que du 3D. Pas des éléments 3D dans un environnement 2D mais du pur 3D avec des mouvements de caméra.
                     <div class="full-text">
-                        Ça a été révélateur. J'ai pensé : "Pourquoi faire un site 2D après le splash alors que je peux faire le site entier en 3D avec des mouvements de caméra pour naviguer ?" Ça m'a montré qu'il n'y avait pas que le 2D avec intégration du 3D qui marche — il y a le 3D complet, et c'est merveilleux.
+                        Ça a été révélateur. J'ai pensé : "Pourquoi faire un site 2D après le splash alors que je peux faire le site entier en 3D avec des mouvements de caméra pour naviguer ?" Ça m'a montré qu'il n'y avait pas que le 2D avec intégration du 3D qui marche, il y a le 3D complet, et c'est merveilleux.
                     </div>
                 </div>
                 <button class="btn-expand">[ Lire plus ]</button>
@@ -200,7 +199,7 @@
     <div class="process-row">
         <div class="process-card">
             <div class="card-media-wrapper">
-                <div class="card-media" style="background:#111; display:flex; align-items:center; justify-content:center; color:#555; font-family:'Space Mono'">[ SCHÉMA NARRATIF ]</div>
+                <img src="images/Retour.webp" class="card-media" alt="R" data-image="Heidelberg">
                 <div class="media-legend"><br>Fig 10. Changement de perspective</div>
             </div>
             <div class="card-content">
@@ -209,7 +208,7 @@
                 <div class="text-block">
                     Le portfolio n'était pas juste un site qui regroupe mes projets. Le portfolio lui-même était le projet. En littérature, on appelle ça un récit enchâssé.
                     <div class="full-text">
-                        J'ai compris qu'une véritable vitrine, c'est pas seulement une belle interface — c'est le site entier qui doit respirer créativité, originalité et storytelling. Un portfolio doit jouer sur ces trois éléments, pas juste les énumérer.
+                        J'ai compris qu'une véritable vitrine, c'est pas seulement une belle interface, c'est le site entier qui doit respirer créativité, originalité et storytelling. Un portfolio doit jouer sur ces trois éléments, pas juste les énumérer.
                     </div>
                 </div>
                 <button class="btn-expand">[ Lire plus ]</button>
@@ -227,9 +226,9 @@
                 <span class="step-number">11</span>
                 <h3 class="card-title">Le pivot majeur</h3>
                 <div class="text-block">
-                    J'ai revu entièrement mon plan. Le trou noir ne serait plus le splash d'introduction — c'était devenu l'objet central du site.
+                    J'ai revu entièrement mon plan. Le trou noir ne serait plus le splash d'introduction. C'était devenu l'objet central du site.
                     <div class="full-text">
-                        Au lieu de plonger dedans et de scroller verticalement, le site tournerait autour du trou noir avec des mouvements de caméra. C'était un changement radical. J'ai gardé deux éléments de la première vision : l'idée d'entrer dans le trou noir et les formes en particules. Je les ai réaffectés à la section À propos — elle se trouverait à l'intérieur du trou noir.
+                        Au lieu de plonger dedans et de scroller verticalement, le site tournerait autour du trou noir avec des mouvements de caméra. C'était un changement radical. J'ai gardé un élément central de la première vision : l'idée d'entrer dans le trou noir. Je l'ai réaffecté à la section <em>À propos</em>.
                     </div>
                 </div>
                 <button class="btn-expand">[ Lire plus ]</button>
@@ -242,14 +241,14 @@
             <div class="card-content" style="text-align: center;">
                 <h3 class="card-title" style="font-size: 48px; color: var(--accent); margin-bottom: 30px;">Conclusion</h3>
                 <div class="text-block" style="font-size: 18px; max-width: 800px; margin: 0 auto;">
-                    Ce projet a demandé beaucoup de travail — explorations, itérations, apprentissages. Ce n'était pas juste quelques prompts et c'est fini. J'ai expérimenté beaucoup, j'ai cherché beaucoup, j'ai échoué beaucoup mais surtout j'ai appris beaucoup.
+                    Ce projet a demandé beaucoup de travail d'explorations, d'itérations et d'apprentissages. Ce n'était pas juste quelques prompts et c'est fini. J'ai expérimenté beaucoup, j'ai cherché beaucoup, j'ai échoué beaucoup mais surtout j'ai appris beaucoup.
                     <br><br>
-                    Tout le monde dit qu'ils sont motivés et curieux, moi j'ai décidé de le montrer concrètement. Ce portfolio c'est une motivation concrète, pas celle des lettres de motivation. C'est 50 heures d'expérimentation, c'est des pivots conscients, c'est des découvertes qu'on suit.
+                    Tout le monde dit qu'ils sont motivés et curieux, moi j'ai décidé de le montrer concrètement. Ce portfolio c'est une motivation concrète, pas celle des lettres de motivation. C'est plus de 50 heures d'expérimentation, c'est des pivots conscients, c'est des découvertes qu'on suit.
                     <br><br>
                     C'est la preuve que quand une idée m'intéresse, je creuse vraiment. MMI c'est l'opportunité d'amplifier ça : apprendre vraiment le développement web, le design d'interfaces, la narration interactive.
                 </div>
                 <div style="margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-muted);">
-                    Créativement vôtre, <span style="color: var(--accent);">Un passionné</span>
+                    Créativement vôtre, <br> <span style="color: var(--accent);">Un passionné</span>
                 </div>
             </div>
         </div>
@@ -274,7 +273,7 @@
                 <div class="accordion-inner">
                     <div class="acc-text-col">
                         <h4>Intention</h4>
-                        <p class="text-block">Transformer une simple intro en mise en scène narrative. La citation "un site doit être simple..." suivie de "but I have an authority issue" — une provocation qui annonce que ce ne sera pas un portfolio lambda.</p>
+                        <p class="text-block">Transformer une simple intro en mise en scène narrative. La citation "un site doit être simple..." suivie de "but I have an authority issue" une provocation qui annonce que ce ne sera pas un portfolio lambda.</p>
                         <div class="acc-tags">
                             <span class="acc-tag">Rail de caméra</span>
                             <span class="acc-tag">Animation 3 phases</span>
@@ -298,7 +297,7 @@
                 <div class="accordion-inner">
                     <div class="acc-text-col">
                         <h4>Intention</h4>
-                        <p class="text-block">Créer une immersion totale dans l'espace. L'utilisateur se trouve à l'intérieur d'une skybox cosmique, pas devant — une vraie présence plutôt qu'une toile de fond.</p>
+                        <p class="text-block">Créer une immersion totale dans l'espace. L'utilisateur se trouve à l'intérieur d'une skybox cosmique, pas devant, pour créer une vraie présence plutôt qu'une toile de fond.</p>
                         <div class="acc-tags">
                             <span class="acc-tag">Skybox Voie Lactée</span>
                             <span class="acc-tag">Shader GLSL</span>
@@ -347,9 +346,9 @@
                         <h4>Intention</h4>
                         <p class="text-block">Raconter mon parcours via un schéma narratif littéraire classique. Intégrer des systèmes de particules 3D à côté du texte sans que l'un éclipse l'autre.</p>
                         <div class="acc-tags">
-                            <span class="acc-tag">Attracteurs mathématiques</span>
-                            <span class="acc-tag">Particules morphing</span>
-                            <span class="acc-tag">Scroll paramétrique</span>
+                            <span class="acc-tag">CSS 3D</span>
+                            <span class="acc-tag">Stroytelling</span>
+                            <span class="acc-tag">Easter Egg</span>
                         </div>
                     </div>
                     <div class="acc-media-col">
@@ -369,9 +368,9 @@
                 <div class="accordion-inner">
                     <div class="acc-text-col">
                         <h4>Intention</h4>
-                        <p class="text-block">Le fond de chaque carte est un teaser visuel du projet. C'est montrer plutôt que raconter. Trouver l'équilibre entre sobriété et style.</p>
+                        <p class="text-block"> Pour présenter mes projets j'ai choisi de les mettres sous forme de tableau dans ma gallerie cosmique. Chaque tableau est intéractif et présente plus en détail chaque projet.</p>
                         <div class="acc-tags">
-                            <span class="acc-tag">CSS Grid 3x2</span>
+                            <span class="acc-tag">Gallery</span>
                             <span class="acc-tag">Glass effect</span>
                             <span class="acc-tag">Overlay modal</span>
                         </div>
@@ -393,7 +392,7 @@
                 <div class="accordion-inner">
                     <div class="acc-text-col">
                         <h4>Intention</h4>
-                        <p class="text-block">Présenter les skills sous forme de Bento Grid — layout asymétrique inspiré des keynotes Apple. Vision rapide et condensée comme un CV, mais esthétique.</p>
+                        <p class="text-block">Présenter les skills sous forme de Bento Grid, layout asymétrique inspiré des keynotes Apple. Vision rapide et condensée comme un CV, mais esthétique.</p>
                         <div class="acc-tags">
                             <span class="acc-tag">Bento Grid</span>
                             <span class="acc-tag">Layout asymétrique</span>
@@ -403,6 +402,210 @@
                     <div class="acc-media-col">
                         <img src="images/Maquette_Competences.webp" class="acc-img" alt="Maquette des Compétences">
                         <div class="media-legend">Fig 17. Le Bento Grid</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item stair-element">
+            <div class="accordion-header">
+                <h3>Architecture du projet</h3>
+                <span>+</span>
+            </div>
+            <div class="accordion-content accordion-content--code">
+                <div class="accordion-inner accordion-inner--code">
+                    <div class="acc-text-col">
+                        <h4>Structure modulaire</h4>
+                        <p class="text-block">Le projet est divisé en modules indépendants, chacun avec son propre HTML, CSS et JS. Le fichier racine orchestre la scène Three.js et charge chaque section via des iframes positionnées dans l'espace 3D.</p>
+                        <div class="acc-tags">
+                            <span class="acc-tag">Vanilla JS</span>
+                            <span class="acc-tag">Three.js</span>
+                            <span class="acc-tag">Modules iframes</span>
+                            <span class="acc-tag">WebP / WebM</span>
+                        </div>
+                    </div>
+                    <div class="acc-tree-col">
+                                                <pre class="file-tree"><span class="t-root">📁 Oblivion/</span>
+│
+├── <span class="t-folder">📄 index.html</span>          <span class="t-note">← scène Three.js principale</span>
+├── <span class="t-folder">📄 Styles.css</span>
+├── <span class="t-folder">📄 app.js</span>              <span class="t-note">← caméra + navigation 3D</span>
+│
+├── 📁 assets/
+│   ├── 🖼️ Favicon.ico
+│   └── 🎞️ header-center.gif
+│
+├── 📁 js/
+│   └── <span class="t-folder">📄 ScrollManager.js</span>   <span class="t-note">← lazy loading iframes</span>
+│
+└── 📁 modules/
+    │
+    ├── 📁 a-propos/          <span class="t-note">← section À propos</span>
+    │   ├── 📁 tableau/
+    │   │   ├── 📄 Tableau.html
+    │   │   ├── 📄 tableau.css
+    │   │   └── 📄 tableau.js
+    │   └── 📁 livre/
+    │       ├── 📄 Livre.html
+    │       ├── 📄 livre.css
+    │       ├── 📄 livre.js
+    │       └── 📁 images/
+    │           └── 🖼️ Infographie.webp
+    │
+    ├── 📁 making-of/         <span class="t-note">← ce module</span>
+    │   ├── 📄 Making-Of.html
+    │   ├── 📄 making-of.css
+    │   ├── 📄 making-of.js
+    │   ├── 📁 images/
+    │   │   ├── 🖼️ Awwwards.webp
+    │   │   ├── 🖼️ Livre.webp
+    │   │   ├── 🖼️ Mantis.webp
+    │   │   ├── 🖼️ Maquette_Competences.webp
+    │   │   ├── 🖼️ Maquette_Projet.webp
+    │   │   ├── 🖼️ Material.webp
+    │   │   ├── 🖼️ New.webp
+    │   │   ├── 🖼️ Plan.webp
+    │   │   ├── 🖼️ Prince.webp
+    │   │   ├── 🖼️ Renard.webp
+    │   │   ├── 🖼️ Retour.webp
+    │   │   ├── 🖼️ Skybox.webp
+    │   │   └── 🖼️ Splash.webp
+    │   └── 📁 videos/
+    │       ├── 🎬 Clawd.webm
+    │       ├── 🎬 Rick.webm
+    │       ├── 🎬 Third.webm
+    │       └── 🎬 Quatro.webm
+    │
+    ├── 📁 projets/           <span class="t-note">← galerie cosmique</span>
+    │   ├── 📄 Projets.html
+    │   ├── 📄 Projets.css
+    │   ├── 📄 Projets.js
+    │   ├── 📁 images/
+    │   │   ├── 🖼️ Avril.webp
+    │   │   ├── 🖼️ Big_Brother.webp
+    │   │   ├── 🖼️ Big_Brother2.webp
+    │   │   ├── 🖼️ BigBang.webp
+    │   │   ├── 🖼️ Escale.webp
+    │   │   ├── 🖼️ Fevrier.webp
+    │   │   ├── 🖼️ Fevrier2.webp
+    │   │   ├── 🖼️ Frise.webp
+    │   │   ├── 🖼️ geolibri.webp
+    │   │   ├── 🖼️ Geolibri2.webp
+    │   │   ├── 🖼️ Hermes.webp
+    │   │   ├── 🖼️ Hermes2.webp
+    │   │   ├── 🖼️ Italie2.webp
+    │   │   ├── 🖼️ Mars.webp
+    │   │   ├── 🖼️ Metro.webp
+    │   │   ├── 🖼️ Murmuration.webp
+    │   │   ├── 🖼️ Projets_Figma.webp
+    │   │   ├── 🖼️ Rome.webp
+    │   │   ├── 🖼️ Station_Moderne.webp
+    │   │   └── 🖼️ Station_Trad.webp
+    │   ├── 📁 videos/
+    │   │   ├── 🎬 BigBang.webm
+    │   │   ├── 🎬 Figma_Circle.webm
+    │   │   ├── 🎬 Figma_Nothing.webm
+    │   │   └── 🎬 Murmuration.webm
+    │   ├── 📁 Metro_Moscovite/   <span class="t-note">← diaporama interactif</span>
+    │   │   ├── 📄 index.html
+    │   │   ├── 📄 data.js
+    │   │   ├── 📄 script.js
+    │   │   ├── 📄 style-global.css
+    │   │   ├── 📄 style-ancien.css
+    │   │   ├── 📄 style-moderne.css
+    │   │   ├── 📄 style-intro.css
+    │   │   ├── 📄 style-conclusion.css
+    │   │   ├── 📄 style-fullscreen.css
+    │   │   ├── 📁 Images/
+    │   │   │   ├── 🖼️ Intro.webp
+    │   │   │   ├── 🖼️ Moderne.webp
+    │   │   │   ├── 🖼️ Trad.webp
+    │   │   │   ├── 📁 Aminyevskaya/
+    │   │   │   │   ├── 🖼️ Escalator.webp
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   ├── 🖼️ Hall2.webp
+    │   │   │   │   └── 🖼️ Rail.webp
+    │   │   │   ├── 📁 Belorusskaya/
+    │   │   │   │   ├── 🖼️ Couloir.webp
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   ├── 🖼️ Rail.webp
+    │   │   │   │   └── 🖼️ Statuts.webp
+    │   │   │   ├── 📁 Davydkovo/
+    │   │   │   │   ├── 🖼️ Embleme.webp
+    │   │   │   │   ├── 🖼️ Escalator.webp
+    │   │   │   │   ├── 🖼️ Frise.webp
+    │   │   │   │   └── 🖼️ Hall.webp
+    │   │   │   ├── 📁 Komsomolskaia/
+    │   │   │   │   ├── 🖼️ Fresque.webp
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   ├── 🖼️ Hall2.webp
+    │   │   │   │   ├── 🖼️ Hall3.webp
+    │   │   │   │   └── 🖼️ Plafond.webp
+    │   │   │   ├── 📁 Kyivskaya/
+    │   │   │   │   ├── 🖼️ Fresque.webp
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   └── 🖼️ Hall2.webp
+    │   │   │   ├── 📁 Novoslabodskaya/
+    │   │   │   │   ├── 🖼️ Fresque.webp
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   └── 🖼️ Vitre.webp
+    │   │   │   ├── 📁 Prospekt/
+    │   │   │   │   ├── 🖼️ Dehors.webp
+    │   │   │   │   ├── 🖼️ Escalator.webp
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   ├── 🖼️ Hall2.webp
+    │   │   │   │   └── 🖼️ Michurinsky_Prospect_ceiling.webp
+    │   │   │   ├── 📁 Revoliutsii/
+    │   │   │   │   ├── 🖼️ Escalator.webp
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   ├── 🖼️ Statut.webp
+    │   │   │   │   └── 🖼️ Symbole.webp
+    │   │   │   ├── 📁 Rizhskaya/
+    │   │   │   │   ├── 🖼️ Escalator.webp
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   ├── 🖼️ Porte.webp
+    │   │   │   │   ├── 🖼️ Rail.webp
+    │   │   │   │   └── 🖼️ Rail2.webp
+    │   │   │   ├── 📁 Taganskaya/
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   ├── 🖼️ Rond.webp
+    │   │   │   │   └── 🖼️ Statut.webp
+    │   │   │   ├── 📁 Terekhovo/
+    │   │   │   │   ├── 🖼️ Escalator.webp
+    │   │   │   │   ├── 🖼️ Fresque.webp
+    │   │   │   │   ├── 🖼️ Hall.webp
+    │   │   │   │   └── 🖼️ Hall2.webp
+    │   │   │   └── 📁 Vorontsovskaya/
+    │   │   │       ├── 🖼️ Escalator.webp
+    │   │   │       ├── 🖼️ Hall.webp
+    │   │   │       ├── 🖼️ Poteau.webp
+    │   │   │       └── 🖼️ Poteau2.webp
+    │   │   └── 📁 Videos/
+    │   │       └── 🎬 Futur.webm
+    │   └── 📁 Lab_Numerique/     <span class="t-note">← expériences Three.js</span>
+    │       ├── 📁 Murmuration/
+    │       │   ├── 📄 index.html
+    │       │   ├── 📄 style.css
+    │       │   └── 📄 script.js
+    │       └── 📁 BigBang/
+    │           ├── 📄 index.html
+    │           ├── 📄 style.css
+    │           └── 📄 script.js
+    │
+    └── 📁 competences/       <span class="t-note">← bento grid</span>
+        ├── 📄 Competences.html
+        ├── 📄 Competences.css
+        └── 📁 images/
+            ├── 🖼️ Blender.webp
+            ├── 🖼️ Canva.webp
+            ├── 🖼️ Capcut.webp
+            ├── 🖼️ Claude.webp
+            ├── 🖼️ Figma.webp
+            ├── 🖼️ Github.webp
+            ├── 🖼️ Obsidian.webp
+            ├── 🖼️ Scratch.webp
+            ├── 🖼️ TouchDesigner.webp
+            └── 🖼️ VSCode.webp</pre>
                     </div>
                 </div>
             </div>

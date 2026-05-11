@@ -1,0 +1,36 @@
+/* --- STYLE FULLSCREEN : JUSTE L'IMAGE --- */
+
+body.style-fullscreen {
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+}
+
+/* 1. L'IMAGE EN PLEIN ÉCRAN */
+/* On cible l'image de fond et on la force au premier plan */
+body.style-fullscreen #bgImage,
+body.style-fullscreen .background-container {
+    position: fixed !important; /* Force la position */
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Remplit l'écran (attention ça peut rogner un peu les bords) */
+    /* Si tu préfères voir TOUTE l'image sans rogner (avec bandes noires), mets : object-fit: contain; */
+    z-index: 9999; /* Passe au dessus de tout */
+    opacity: 1 !important;
+    filter: none !important; /* Pas d'effets bizarres */
+    transform: none !important; /* Pas de zoom */
+}
+
+/* 2. ON CACHE TOUT LE RESTE */
+/* On masque les titres, le menu, le carrousel, etc. */
+body.style-fullscreen header,
+body.style-fullscreen .title-section,
+body.style-fullscreen .image-description-box,
+body.style-fullscreen .nav-center,
+body.style-fullscreen .carousel,
+body.style-fullscreen .year-display,
+body.style-fullscreen .line-indicator,
+body.style-fullscreen .pause-btn {
+    display: none !important;
+}

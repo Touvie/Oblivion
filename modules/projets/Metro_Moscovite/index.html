@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métro de Moscou</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style-global.css">
+    <link rel="stylesheet" href="style-moderne.css">
+    <link rel="stylesheet" href="style-ancien.css">
+    <link rel="stylesheet" href="style-conclusion.css">
+    <link rel="stylesheet" href="style-intro.css">
+    <link rel="stylesheet" href="style-fullscreen.css">
+
+</head>
+<body>
+
+<div id="appBody" class="slideshow">
+
+  <div id="landingPage" class="landing-container" style="display: none;">
+      <div class="landing-content">
+          <h1 id="landingTitle">LE MÉTRO<br>MOSCOVITE</h1>
+          <div class="separator"></div>
+          <p id="landingSubtitle"><strong>Le plus beau métro du monde</strong></p>
+          
+          <button class="explore-btn" onclick="goNextStation()">
+              EXPLORER LE RÉSEAU
+          </button>
+      </div>
+  </div>
+
+  <div class="desc-left ui-box" id="descLeft" style="display: none;"></div>
+
+  <div class="hero-container">
+    <img class="hero-image" id="heroImage" src="" alt="">
+    
+    <video class="hero-video" id="heroVideo" loop muted playsinline style="display: none; width: 100%; height: 100%; object-fit: cover;">
+        <source src="" type="video/mp4">
+    </video>
+
+    <div class="hero-placeholder"></div>
+  </div>
+  
+  <div class="desc-right ui-box" id="descRight" style="display: none;"></div>
+  
+  <header>
+    <div class="header-box ui-box">
+      <div class="logo" id="logo">M</div>
+      <div class="header-info">
+        <p id="lineName">Ligne</p>
+        <h1 id="stationName">Station</h1>
+      </div>
+    </div>
+    <div class="year-box ui-box"><span class="year" id="year">2021</span></div>
+  </header>
+  
+  <div class="title-section ui-box">
+    <h2 class="subtitle" id="subtitle">Titre</h2>
+    <p class="station-desc" id="stationDesc">Description.</p>
+  </div>
+
+  <div class="image-description-box ui-box" id="imageSpecificDescBox">
+    <div class="info-icon">i</div>
+    <p id="imageSpecificDesc">Info image...</p>
+  </div>
+  
+  <div class="carousel ui-box" id="carousel"></div>
+  
+<div class="nav-center ui-box">
+    <div class="indicators" id="indicators"></div>
+    <span class="counter" id="counter">01 / 03</span>
+  </div>
+  
+  <div id="pauseBtn" class="pause-btn ui-box">❚❚</div>
+
+  <div class="transition-overlay" id="transitionOverlay">
+    <h1 class="transition-text" id="transitionText">TITRE</h1>
+  </div>
+
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -348,11 +348,11 @@ body {
 /* =========================================
    EFFET NÉGATIF SUR L'AFFICHE
    ========================================= */
-.frame-affiche .frame-image {
+.frame-image {
     transition: filter 0.3s ease;
 }
 
-.frame-affiche:hover .frame-image {
+.frame:hover .frame-image {
     filter: invert(1);
 }
 
@@ -676,8 +676,9 @@ body {
 }
 
 .modal-link {
-    display: inline-block;
-    margin-top: 30px;
+    display: block;
+    width: fit-content;
+    margin: 30px auto 0;
     padding: 14px 28px;
     border: 1px solid var(--accent);
     color: var(--accent);

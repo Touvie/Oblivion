@@ -1,0 +1,190 @@
+/* --- STYLE CONCLUSION : LAYOUT "SANDWICH" (10% - 80% - 10%) --- */
+
+body.style-conclusion {
+    overflow: hidden;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+}
+
+body.style-conclusion #appBody {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box; 
+    
+    /* On enlève le padding latéral pour coller aux bords (sinon les 10% sont trop écrasés) */
+    padding: 2vh 0; 
+    gap: 0; /* Pas d'espace, on veut que ça se touche ou presque */
+    
+    /* FOND */
+    background-color: #f2f2f2; 
+    background-image: radial-gradient(#bbb 2px, transparent 2px); 
+    background-size: 30px 30px; 
+    
+    /* GRILLE 3 COLONNES : 10% | 80% | 10% */
+    grid-template-columns: 10vw 80vw 10vw;
+    
+    /* LIGNES : Titre en haut, Contenu en dessous */
+    grid-template-rows: auto 1fr;
+    
+    grid-template-areas: 
+        "header header header"
+        "left   video  right";
+}
+
+/* 1. LE TITRE (Prend toute la largeur) */
+body.style-conclusion .title-section {
+    grid-area: header;
+    position: static !important; 
+    transform: none !important;
+    max-width: none !important;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    padding-bottom: 1rem;
+    
+    /* Pas de bordure en bas pour ce style, plus aérien */
+    margin-bottom: 0;
+    z-index: 10;
+}
+
+body.style-conclusion .subtitle {
+    font-family: 'Playfair Display', serif; 
+    font-size: 2.5rem; 
+    font-weight: 900;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    text-align: center;
+    background: #f2f2f2; /* Petit fond pour cacher les pois sous le titre */
+    padding: 0 20px;
+    border: 2px solid #1a1a1a;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+}
+/* On cache les descriptions du titre */
+body.style-conclusion .title-section #stationDesc,
+body.style-conclusion .title-section .station-desc { display: none !important; }
+
+
+/* 2. LA VIDÉO CENTRALE (80%) */
+body.style-conclusion .hero-container {
+    grid-area: video;
+    
+    width: 100%; 
+    height: 100%;
+    
+    position: relative !important; inset: auto !important; z-index: 5 !important;
+    
+    /* Cadre Vidéo */
+    background: #000;
+    border-top: 2px solid #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
+    /* Pas de bordure gauche/droite pour fusionner avec les textes ? 
+       Ou bordure complète pour séparer. Gardons complet pour le style "Architecte" */
+    border: 2px solid #1a1a1a;
+    
+    overflow: hidden; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.style-conclusion #heroVideo {
+    width: 100%; height: 100%; object-fit: contain;
+}
+body.style-conclusion .hero-image, 
+body.style-conclusion .hero-placeholder { display: none !important; }
+
+
+/* 3. LES COLONNES DE TEXTE (Gauche et Droite) */
+/* On définit un style commun pour les deux colonnes */
+body.style-conclusion .desc-left,
+body.style-conclusion .desc-right {
+    display: flex !important; /* On les affiche */
+    flex-direction: column;
+    justify-content: center; /* Centré verticalement */
+    align-items: center;
+    
+    background: #fff;
+    border: 2px solid #1a1a1a;
+    
+    /* Petites ombres pour le style */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+    
+    padding: 1rem 0.5rem; /* Marges internes étroites car colonne fine */
+    overflow: hidden;
+    height: 100%;
+}
+
+body.style-conclusion .desc-left {
+    grid-area: left;
+    border-right: none; /* Collé à la vidéo */
+}
+
+body.style-conclusion .desc-right {
+    grid-area: right;
+    border-left: none; /* Collé à la vidéo */
+}
+
+
+/* STYLE DU TEXTE DANS LES COLONNES (Vertical) */
+body.style-conclusion ul {
+    list-style: none;
+    padding: 0; margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* Espace entre les points */
+    text-align: center;
+}
+
+body.style-conclusion li {
+    font-size: 0.9rem; /* Texte petit car colonne étroite */
+    line-height: 1.4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Puce décorative au dessus du texte */
+body.style-conclusion li::before {
+    content: '';
+    display: block;
+    width: 20px; height: 20px;
+    background: #d32f2f; /* Carré rouge */
+    margin-bottom: 5px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+}
+
+/* Titres en gras dans le texte */
+body.style-conclusion strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 0.2rem;
+    writing-mode: horizontal-tb; /* On garde horizontal, sinon vertical-rl pour effet matrix */
+}
+
+
+/* --- NETTOYAGE --- */
+/* On cache la boite de description standard */
+body.style-conclusion .image-description-box { display: none !important; }
+
+body.style-conclusion .carousel,
+body.style-conclusion .header-box,
+body.style-conclusion .year-box,
+body.style-conclusion .nav-center,
+body.style-conclusion .info-icon,
+body.style-conclusion .header-info,
+body.style-conclusion .pause-btn,
+body.style-conclusion .carousel,      
+body.style-conclusion .transition-overlay {
+    display: none !important;
+}
