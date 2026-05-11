@@ -7,7 +7,7 @@ Contenu de la nouvelle version Oblivion V14 :
 
 - Intégration du diaporama Metro_Moscovite (16 slides, assets WebP/WebM),
 - Ajout du Laboratoire Numérique : Murmuration + Big Bang (Three.js, vanilla JS),
-- Ajout des affiches Avril et Mai 2026,
+- Ajout de l'affiche du mois d'avril 2026,
 - Ajout des projets Géolibri et Animation Figma,
 - Nouvelles vidéos WebM dans la modal Figma (Nothing + Circle),
 - Effet négatif au hover généralisé à tous les tableaux,
