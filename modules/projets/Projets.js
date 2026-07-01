@@ -187,13 +187,20 @@ const projectsData = {
         linkLabel: "Visiter le site"
     },
     affiche5: {
-        title: "Affiche de Mai",
-        tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "InDesign"],
+        title: "Attention Is All You Need",
+        tags: ["Design", "Créativité", "Print", "No IA", "Made by human", "InDesign", "Typographie"],
         content: `
             <h3>Concept</h3>
-            <p>Je crée chaque mois une nouvelle affiche. 12 affiches créatives à l'année, garanties sans un token d'IA.</p>
+            <p>Je crée chaque mois une nouvelle affiche. 12 affiches créatives à l'année, garanties sans un token d'IA. Première affiche réalisée sur <strong>Adobe InDesign</strong>, entièrement centrée sur la typographie.</p>
             <h3>Présentation Générale</h3>
-            <p>Première affiche qui sera créer avec Adobe Indesign. L'objectif de cette affiche sera principalement la typographie.</p>
+            <p>En 2017, huit chercheurs de Google publient un article scientifique d'une quinzaine de pages au titre étrange. <em>Attention Is All You Need</em>. Son contenu est une révolution. C'est dans ces pages qu'est née l'idée qui permet aujourd'hui aux machines de comprendre notre langage, celle dont descendent toutes les intelligences artificielles qu'on connaît, ChatGPT en tête. Quinze pages écrites pour une poignée de chercheurs, et qui ont fini par concerner tout le monde. Asimov aurait appelé ça le cerveau positronique.</p>
+            <p>L'affiche raconte ce que ce papier a fait. Le bloc de texte en partie basse reprend le véritable début de l'article. Les lignes s'y chevauchent, se croisent, se brouillent. Et ce <strong>D</strong> massif qui chute du titre et vient fracasser le texte, c'est l'article lui-même. Quinze pages tombées sur le monde informatique comme une météorite, qui ont tout cassé sur leur passage.</p>
+            <p>Le reste se joue dans le détail. Au milieu du chaos typographique, quelques mots émergent en gras. <strong>Attention. Is. All. You. Need.</strong> C'est exactement ainsi que fonctionne l'idée au cœur de l'article. Quand une intelligence artificielle lit une phrase, elle pèse chaque mot et ne retient que ceux qui comptent. Le reste devient du bruit de fond. Cette affiche fait au lecteur ce que la machine fait au langage. Elle choisit pour lui où porter son attention.</p>
+
+            <figure class="modal-figure">
+               <img src="images/Mai.webp" alt="Affiche Attention Is All You Need" class="zoomable-image">
+               <figcaption class="modal-caption">Attention Is All You Need — Mai 2026</figcaption>
+            </figure>
         `,
         link: null,
         linkLabel: null
@@ -294,6 +301,44 @@ const projectsData = {
         `,
         link: null,
         linkLabel: null
+    },
+    affiche6: {
+        title: "Affiche de Juin",
+        tags: ["Design", "Créativité", "Print", "No IA", "Made by human"],
+        content: `
+            <h3>Concept</h3>
+            <p>Je crée chaque mois une nouvelle affiche. 12 affiches créatives à l'année, garanties sans un token d'IA.</p>
+            <h3>Présentation Générale</h3>
+            <p>Affiche du mois de Juin 2026 — en cours de création.</p>
+        `,
+        link: null,
+        linkLabel: null
+    },
+    affiche7: {
+        title: "Affiche de Juillet",
+        tags: ["Design", "Créativité", "Print", "No IA", "Made by human"],
+        content: `
+            <h3>Concept</h3>
+            <p>Je crée chaque mois une nouvelle affiche. 12 affiches créatives à l'année, garanties sans un token d'IA.</p>
+            <h3>Présentation Générale</h3>
+            <p>Affiche du mois de Juillet 2026 — en cours de création.</p>
+        `,
+        link: null,
+        linkLabel: null
+    },
+    codex: {
+        title: "Codex",
+        tags: ["Three.js", "WebGL", "GSAP", "Livre 3D", "Rétrospective", "MLP"],
+        content: `
+            <h3>Présentation</h3>
+            <p>Le Codex est la <strong>rétrospective de mes deux années de MLP</strong>, conçue non pas comme un document plat mais comme un <strong>grimoire 3D interactif</strong> que l'on ouvre et que l'on feuillette. Chaque double-page raconte un pan de ce parcours.</p>
+            <h3>Approche technique</h3>
+            <p>Tout est construit en <strong>Three.js</strong> pour la scène et le livre (couverture, reliure et dorures procédurales, feuilles en WebGL, animation de page qui se tourne) et en <strong>GSAP</strong> pour les transitions. Aucun build : tout se charge via CDN. Le livre est posé dans un décor en parallaxe à une vingtaine de calques.</p>
+            <h3>Détails</h3>
+            <p>Le grimoire cache quelques surprises : un trou noir cliquable en pages 8-9 qui sert de portail vers Oblivion, et en dernière page l'affiche <em>Attention Is All You Need</em>.</p>
+        `,
+        link: "https://touvie.github.io/Codex/",
+        linkLabel: "Visiter le site"
     }
 };
 

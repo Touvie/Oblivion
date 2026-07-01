@@ -3,22 +3,27 @@
 Cher visiteur, bonjour !
 Je savais bien que des gens viendront ici.
 
-Contenu de la nouvelle version Oblivion V14 :
+Contenu de la nouvelle version Oblivion V14.5 :
 
-- Intégration du diaporama Metro_Moscovite (16 slides, assets WebP/WebM),
-- Ajout du Laboratoire Numérique : Murmuration + Big Bang (Three.js, vanilla JS),
-- Ajout de l'affiche du mois d'avril 2026,
-- Ajout des projets Géolibri et Animation Figma,
-- Nouvelles vidéos WebM dans la modal Figma (Nothing + Circle),
-- Effet négatif au hover généralisé à tous les tableaux,
-- Nettoyage CSS orphelins Metro_Moscovite.
+- Affiche de Mai 2026 « Attention Is All You Need » (couverture + modal),
+- Tableaux placeholder pour les affiches de Juin et Juillet 2026,
+- Nouveau tableau Codex (livre 3D en ligne : touvie.github.io/Codex),
+- Page d'erreur 404 (trou noir + pluie Matrix),
+- Sélection de texte désactivée sur l'ensemble du site,
+- Nettoyage : suppression de code mort (particlesCount).
 
-Arborescence de fichier de Mai 2026 :
+Prochains ajouts :
+
+- Affiches de Juin et Juillet 2026,
+- Contrôle du site via la webcam (MediaPipe).
+
+Arborescence de fichier de Juillet 2026 :
 
 ```text
 📁 Oblivion/
 │
 ├── 📄 index.html
+├── 📄 404.html
 ├── 📄 Styles.css
 ├── 📄 app.js
 │
@@ -85,6 +90,7 @@ Arborescence de fichier de Mai 2026 :
     │   │   ├── 🖼️ Hermes.webp
     │   │   ├── 🖼️ Hermes2.webp
     │   │   ├── 🖼️ Italie2.webp
+    │   │   ├── 🖼️ Mai.webp
     │   │   ├── 🖼️ Mars.webp
     │   │   ├── 🖼️ Metro.webp
     │   │   ├── 🖼️ Murmuration.webp

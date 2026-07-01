@@ -9,7 +9,7 @@
     --parchment-dark: rgba(0,0,0,0.03);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; }
 
 body {
     background: transparent !important;

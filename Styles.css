@@ -10,7 +10,7 @@
     --glass-border: rgba(191, 161, 129, 0.25);
     --glass-blur: blur(25px);
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; }
 body { background: #000; font-family: 'Inter', sans-serif; color: #fff; overflow: hidden; height: 100vh; width: 100vw; }
 
 /* --- ZOOM INITIAL SUR LE CANVAS --- */

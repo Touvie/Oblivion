@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Réalité introuvable</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --green:#00ff41; --accent:#ffaa33; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; background:#000; overflow:hidden; font-family:'Space Mono', monospace; color:#fff; }
+
+  /* Couches : fond noir < pluie Matrix < scène 3D < texte */
+  #matrix{ position:fixed; inset:0; z-index:1; display:block; }
+  #hole{ position:fixed; inset:0; z-index:2; display:block; width:100%; height:100%; transform:translateY(-10vh); }
+  .wrap{ position:fixed; inset:0; z-index:3; pointer-events:none; }
+  .wrap a{ pointer-events:auto; }
+
+  /* 4 [trou noir centré] 4 — la rangée est centrée sur l'écran, donc sur le trou noir */
+  .glyphrow{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; transform:translateY(-10vh); }
+  .four{ font-size:min(42vmin,400px); font-weight:700; line-height:.8; color:#fff;
+         text-shadow:0 0 28px rgba(255,170,51,.45), 0 0 6px rgba(0,0,0,.6); }
+  .spacer{ width:min(30vmin,300px); flex:0 0 auto; }   /* trou de la composition : laisse voir le trou noir */
+
+  .tag{ position:fixed; top:6%; left:0; right:0; text-align:center;
+        font-size:12px; color:rgba(0,255,65,.7); letter-spacing:4px; text-shadow:0 0 8px #000; }
+
+  .text{ position:fixed; bottom:5%; left:0; right:0; text-align:center;
+         display:flex; flex-direction:column; align-items:center; gap:16px; padding:0 20px; }
+  .text::before{ content:''; position:absolute; inset:-40px -5%; z-index:-1;
+         background:radial-gradient(ellipse at center, rgba(0,0,0,.72) 30%, transparent 72%); }
+  .glitch{ position:relative; font-size:clamp(16px,2.4vw,26px); font-weight:700; letter-spacing:4px; text-transform:uppercase; text-shadow:0 0 10px #000; }
+  .glitch::before,.glitch::after{ content:attr(data-text); position:absolute; left:0; top:0; width:100%; overflow:hidden; }
+  .glitch::before{ color:rgba(255,255,255,.9); clip-path:inset(0 0 55% 0); animation:gl1 2.4s infinite linear alternate; }
+  .glitch::after{ color:rgba(255,255,255,.55); clip-path:inset(55% 0 0 0); animation:gl2 1.8s infinite linear alternate; }
+  @keyframes gl1{ 0%{transform:translate(0,0)} 20%{transform:translate(-3px,1px)} 40%{transform:translate(2px,-1px)} 100%{transform:translate(0,0)} }
+  @keyframes gl2{ 0%{transform:translate(0,0)} 25%{transform:translate(3px,-1px)} 55%{transform:translate(-2px,1px)} 100%{transform:translate(0,0)} }
+
+  .sub{ font-size:clamp(12px,1.4vw,15px); color:rgba(255,255,255,.85); max-width:520px; line-height:1.6; text-shadow:0 2px 8px #000; }
+  .home{ display:inline-block; padding:12px 22px; border:1px solid rgba(0,255,65,.5);
+         color:var(--green); text-decoration:none; font-size:13px; letter-spacing:2px;
+         background:rgba(0,0,0,.35); transition:all .2s; }
+  .home:hover{ background:var(--green); color:#000; box-shadow:0 0 24px rgba(0,255,65,.5); }
+</style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <canvas id="hole"></canvas>
+
+  <div class="wrap">
+    <div class="tag">// SYSTEM_ERROR</div>
+    <div class="glyphrow">
+      <span class="four">4</span>
+      <span class="spacer"></span>
+      <span class="four">4</span>
+    </div>
+    <div class="text">
+      <div class="glitch" data-text="BUG DANS LA SIMULATION">BUG DANS LA SIMULATION</div>
+      <p class="sub">La page que tu cherches a franchi l'horizon des événements.
+         Happée par le trou noir, elle n'existe plus dans cette réalité.</p>
+      <a class="home" id="home" href="index.html">[ Retour à l'accueil ]</a>
+    </div>
+  </div>
+
+<!-- ====================== PLUIE MATRIX (derrière la scène 3D) ====================== -->
+<script>
+(() => {
+  const cv = document.getElementById('matrix'), ctx = cv.getContext('2d');
+  const chars = 'アカサタナハマヤラワ0123456789ABCDEF<>/\\{}[]=+*404BUG'.split('');
+  let cols, drops, fs = 16;
+  function resize(){
+    cv.width = innerWidth; cv.height = innerHeight;
+    fs = Math.max(12, Math.round(innerWidth/110));
+    cols = Math.ceil(cv.width / fs);
+    drops = Array.from({length:cols}, () => Math.random() * -50);
+  }
+  resize(); addEventListener('resize', resize);
+  function draw(){
+    ctx.fillStyle = 'rgba(0,0,0,0.07)'; ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.font = fs + "px 'Space Mono', monospace"; ctx.textAlign = 'center';
+    for (let i=0;i<cols;i++){
+      const c = chars[(Math.random()*chars.length)|0];
+      const x = i*fs + fs/2, y = drops[i]*fs;
+      ctx.fillStyle = Math.random() < 0.03 ? '#caffd4' : 'rgba(0,255,65,0.85)';
+      ctx.fillText(c, x, y);
+      if (y > cv.height && Math.random() > 0.975) drops[i] = Math.random() * -20;
+      drops[i] += 1;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<!-- ====================== TROU NOIR (Three.js, plein écran transparent) ====================== -->
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+const canvas = document.getElementById('hole');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.01, 3000);
+camera.position.set(0, 18, 16);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+function resizeHole(){ renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix(); }
+
+function generateNoiseTexture(size){
+  const c = document.createElement('canvas'); c.width = c.height = size;
+  const x2 = c.getContext('2d'); const img = x2.createImageData(size, size);
+  for (let y=0;y<size;y++) for (let x=0;x<size;x++){
+    let v = Math.sin(x*0.05)*Math.cos(y*0.05)*0.5 + Math.sin(x*0.1+y*0.1)*0.3 + Math.random()*0.2;
+    const n = ((v+1)*0.5)*255, i=(y*size+x)*4;
+    img.data[i]=img.data[i+1]=img.data[i+2]=n; img.data[i+3]=255;
+  }
+  x2.putImageData(img,0,0);
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+}
+
+// étoiles
+const starsCount = 1500, starsGeo = new THREE.BufferGeometry(), sp = new Float32Array(starsCount*3);
+for (let i=0;i<starsCount;i++){ const r=500+Math.random()*800, th=Math.random()*Math.PI*2, ph=Math.acos(2*Math.random()-1);
+  sp[i*3]=r*Math.sin(ph)*Math.cos(th); sp[i*3+1]=r*Math.sin(ph)*Math.sin(th); sp[i*3+2]=r*Math.cos(ph); }
+starsGeo.setAttribute('position', new THREE.BufferAttribute(sp,3));
+scene.add(new THREE.Points(starsGeo, new THREE.PointsMaterial({ color:0xffffff, size:0.8, transparent:true, opacity:0.8 })));
+
+// trou noir + glow + disque (shaders repris d'app.js)
+const BH = 4.0;
+scene.add(new THREE.Mesh(new THREE.SphereGeometry(BH,64,64), new THREE.MeshBasicMaterial({ color:0x000000, side:THREE.DoubleSide })));
+
+const glow = new THREE.Mesh(new THREE.SphereGeometry(BH*1.05,64,64), new THREE.ShaderMaterial({
+  uniforms:{ glowColor:{value:new THREE.Color(0xffaa33)}, viewVector:{value:new THREE.Vector3()}, power:{value:3.5}, intensity:{value:1.4} },
+  vertexShader:`uniform vec3 viewVector; varying float vIntensity; uniform float power; void main(){ vec3 vN=normalize(normalMatrix*normal); vec3 vNe=normalize(normalMatrix*viewVector); vIntensity=pow(0.7-dot(vN,vNe),power); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader:`uniform vec3 glowColor; uniform float intensity; varying float vIntensity; void main(){ gl_FragColor=vec4(glowColor*vIntensity*intensity,1.0); }`,
+  side:THREE.BackSide, blending:THREE.AdditiveBlending, transparent:true, depthWrite:false
+}));
+scene.add(glow);
+
+const disk = new THREE.Mesh(new THREE.RingGeometry(BH*1.1, 60.0, 192, 1), new THREE.ShaderMaterial({
+  uniforms:{ u_time:{value:0}, u_noiseTexture:{value:generateNoiseTexture(256)} },
+  vertexShader:`varying vec3 vPos; void main(){ vPos=position; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader:`
+    varying vec3 vPos; uniform float u_time; uniform sampler2D u_noiseTexture;
+    mat2 rotate2d(float a){ return mat2(cos(a),-sin(a),sin(a),cos(a)); }
+    void main(){
+      float r=length(vPos.xy);
+      float tw=3.0*log(r)-(min(u_time,20.0)*2.0/(r*0.5+0.1))-(u_time*0.2);
+      vec2 tc=rotate2d(tw)*vPos.xy;
+      float n=texture2D(u_noiseTexture, tc*0.05+vec2(u_time*0.02,u_time*0.015)).r;
+      n+=0.5*texture2D(u_noiseTexture, tc*0.12+vec2(u_time*0.03)).r;
+      n=n*0.5+0.25;
+      float arms=smoothstep(0.3,0.7,n);
+      float rp=(r-4.5)/50.5;
+      vec3 col=mix(vec3(1.0,0.5,0.05), vec3(0.6,0.05,0.0), pow(rp,0.5));
+      col=mix(col, vec3(1.0,0.95,0.8), smoothstep(0.1,0.0,rp));
+      col*=(0.9+0.1*sin(r*2.0+n*2.0))*(arms*1.5+0.2);
+      float alpha=smoothstep(4.2,5.0,r)*smoothstep(55.0,35.0,r)*smoothstep(0.1,0.6,n);
+      gl_FragColor=vec4(col, alpha);
+    }`,
+  transparent:true, side:THREE.DoubleSide, blending:THREE.AdditiveBlending, depthWrite:false
+}));
+disk.rotation.x = -Math.PI/2;
+scene.add(disk);
+
+const clock = new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  const t = clock.getElapsedTime();
+  disk.material.uniforms.u_time.value = t;
+  glow.material.uniforms.viewVector.value.subVectors(camera.position, glow.position);
+  renderer.render(scene, camera);
+}
+resizeHole(); animate();
+addEventListener('resize', resizeHole);
+
+// Retour à l'accueil — racine du site (GitHub Pages projet) ou index.html en local
+(() => {
+  const seg = location.pathname.split('/').filter(Boolean)[0];
+  const isHtml = location.pathname.endsWith('.html');
+  document.getElementById('home').href = (location.protocol === 'file:' || isHtml)
+      ? 'index.html' : location.origin + (seg ? '/' + seg + '/' : '/');
+})();
+</script>
+</body>
+</html>

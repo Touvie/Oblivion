@@ -28,7 +28,6 @@ function getGPUTier() {
 const gpuTier = getGPUTier();
 const CONFIG = {
     pixelRatio: gpuTier === 'low' ? 1 : Math.min(window.devicePixelRatio, 2),
-    particlesCount: gpuTier === 'low' ? 5000 : 20000,
     sphereSegments: gpuTier === 'low' ? 32 : 64
 };
 
